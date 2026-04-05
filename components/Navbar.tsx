@@ -8,10 +8,9 @@ export default function Navbar() {
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'bio', label: 'Biography' },
     { id: 'research', label: 'Research' },
-    { id: 'publications', label: 'Publications' },
     { id: 'awards', label: 'Awards' },
+    { id: 'publications', label: 'Publications' },
     { id: 'contact', label: 'Contact' },
   ];
 

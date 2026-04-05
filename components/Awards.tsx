@@ -1,71 +1,49 @@
+import { Award, Trophy, Star } from 'lucide-react';
+
 export default function Awards() {
   const awards = [
     {
-      year: 2023,
-      title: 'Excellence in Research Award',
-      organization: 'UKM Research Office',
-      description: 'Recognition for outstanding contributions to academic research and innovation.',
+      year: '2018',
+      title: 'Top Research Scientist Malaysia',
+      organization: 'Academy of Sciences Malaysia'
     },
     {
-      year: 2022,
-      title: 'Best Teaching Award',
-      organization: 'Faculty of Computer Science',
-      description: 'Awarded for innovative teaching methods and exceptional student mentorship.',
+      year: '2019',
+      title: 'UKM Bitara Award',
+      organization: 'Universiti Kebangsaan Malaysia'
     },
     {
-      year: 2021,
-      title: 'International Collaboration Grant',
-      organization: 'Ministry of Higher Education Malaysia',
-      description: 'Funding for collaborative research project with Cambridge University.',
+      year: '2020',
+      title: 'Excellence in Environmental Research',
+      organization: 'Malaysian Institute of Chemistry'
     },
     {
-      year: 2020,
-      title: 'Impact Award for Sustainable Computing',
-      organization: 'Institute of Research and Development',
-      description:
-        'Recognition for research advancing environmental sustainability through computing solutions.',
-    },
-    {
-      year: 2019,
-      title: 'Promising Young Researcher Award',
-      organization: 'IEEE Malaysia Section',
-      description: 'Award recognizing significant contributions to computer science research under age 45.',
-    },
-    {
-      year: 2018,
-      title: 'Publication Excellence Award',
-      organization: 'UKM Faculty Council',
-      description: 'Recognition for publishing in highly-ranked international journals and conferences.',
-    },
+      year: '2021',
+      title: 'Distinguished Scholar Award',
+      organization: 'ASEAN Academy of Sciences'
+    }
   ];
 
   return (
-    <section id="awards" className="section section-divider">
-      <div className="container-main">
-        <h2>Awards & Recognition</h2>
-
+    <section id="awards" className="py-20 bg-white">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-4xl mb-12 text-gray-900 text-center">Awards & Recognition</h2>
         <div className="space-y-6">
           {awards.map((award, index) => (
-            <div
-              key={index}
-              className="relative pl-8 pb-8 border-l-2 border-blue-200 last:pb-0 last:border-l-0"
-            >
-              {/* Timeline dot */}
-              <div className="absolute -left-4 top-0 w-6 h-6 bg-blue-600 rounded-full border-4 border-white shadow"></div>
-
-              {/* Content */}
-              <div>
-                <div className="flex flex-col md:flex-row md:items-baseline md:gap-3 mb-2">
-                  <span className="text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full w-fit">
-                    {award.year}
-                  </span>
-                  <h3 className="text-lg font-semibold text-gray-900 mt-2 md:mt-0">
-                    {award.title}
-                  </h3>
+            <div key={index} className="flex items-start gap-6 bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg p-6">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-600 to-blue-600 rounded-full flex items-center justify-center">
+                  {index === 0 ? <Trophy size={28} className="text-white" /> :
+                   index === 1 ? <Award size={28} className="text-white" /> :
+                   <Star size={28} className="text-white" />}
                 </div>
-
-                <p className="text-blue-600 font-medium mb-2">{award.organization}</p>
-                <p className="text-gray-700">{award.description}</p>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-baseline gap-4 mb-2">
+                  <span className="text-2xl text-teal-700">{award.year}</span>
+                  <h3 className="text-xl text-gray-900">{award.title}</h3>
+                </div>
+                <p className="text-gray-600">{award.organization}</p>
               </div>
             </div>
           ))}

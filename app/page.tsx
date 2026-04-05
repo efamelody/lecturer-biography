@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Bio from '@/components/Bio';
 import Research from '@/components/Research';
 import Publications from '@/components/Publications';
 import Affiliations from '@/components/Affiliations';
@@ -15,11 +14,10 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Bio />
         <Research />
-        <Publications />
-        <Affiliations />
         <Awards />
+        <Affiliations />
+        <Publications />
       </main>
       <Footer />
     </>
