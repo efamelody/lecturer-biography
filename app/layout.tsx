@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: {
@@ -32,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable} ${playfair.variable}`}>
       <body className="bg-[#f8fafc] text-[#334155] antialiased font-sans">
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

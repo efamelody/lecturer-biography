@@ -26,10 +26,8 @@ export default function Footer() {
               <a href="https://www.linkedin.com/in/mohd-talib-latif-18915073/" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin size={16} className="text-[#94a3b8]" />
               </a>
-              <a href="#" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
-                </svg>
+              <a href="mailto:talib@ukm.edu.my" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">
+                <Mail size={16} className="text-[#94a3b8]" />
               </a>
             </div>
           </div>

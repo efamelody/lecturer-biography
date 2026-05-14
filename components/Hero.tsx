@@ -57,13 +57,13 @@ export default async function Hero() {
               <MapPin size={16} />
               <span>Bangi, Selangor, Malaysia</span>
             </div>
-            <a
+            {/* <a
               href="/cv.pdf"
               className="flex items-center gap-2 text-[#0f172a] hover:text-[#475569] transition-colors text-sm font-medium"
             >
               <FileDown size={16} />
               <span>Download CV</span>
-            </a>
+            </a> */}
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 pt-2">

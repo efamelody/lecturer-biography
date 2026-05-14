@@ -1,6 +1,6 @@
 const ORCID_ID = "0000-0003-2339-3321";
 const EXCLUDED_DOI = "https://doi.org/10.1017/cbo9780511617652"; // The wrong book DOI
-const API_KEY = process.env.OPENALEX_API_KEY;
+const API_KEY = process.env.OPENALEX_API_KEY || "";
 
 /**
  * FETCH 1: For the Hero (Author Statistics)
