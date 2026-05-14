@@ -40,3 +40,10 @@ yarn-error.log*
 # OS
 Thumbs.db
 .DS_Store
+
+# Sanity
+.sanity/
+dist/
+
+# TypeScript
+tsconfig.tsbuildinfo
