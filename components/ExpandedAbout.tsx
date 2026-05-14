@@ -48,8 +48,8 @@ const affiliations = [
 
 const sections = [
   { id: 'background', label: 'Background' },
-  { id: 'research', label: 'Research' },
   { id: 'affiliations', label: 'Affiliations' },
+  { id: 'research', label: 'Research' },
 ];
 
 export default function ExpandedAbout() {

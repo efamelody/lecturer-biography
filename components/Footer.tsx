@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-[#94a3b8] mb-4">Connect</h3>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://www.linkedin.com/in/mohd-talib-latif-18915073/" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin size={16} className="text-[#94a3b8]" />
               </a>
               <a href="#" className="w-9 h-9 bg-[#1e293b] hover:bg-[#334155] rounded-lg flex items-center justify-center transition-colors">

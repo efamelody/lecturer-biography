@@ -3,14 +3,14 @@ import { GraduationCap } from 'lucide-react';
 const educationData = [
   {
     degree: "Ph.D.",
-    year: "2008",
+    year: "2006",
     field: "Atmospheric Chemistry",
     institution: "University of East Anglia, UK",
   },
   {
     degree: "M.Sc.",
-    year: "2005",
-    field: "Environmental Chemistry (Air Pollution)",
+    year: "1999",
+    field: "Environmental Science",
     institution: "Universiti Kebangsaan Malaysia",
   },
   {

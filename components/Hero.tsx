@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { Mail, MapPin, FileDown } from 'lucide-react';
+import { getAuthorProfile, formatCitationCount } from '@/lib/academic';
 
-export default function Hero() {
+export default async function Hero() {
+  const profile = await getAuthorProfile();
+
   return (
     <section className="relative pt-32 pb-20 bg-[#f8fafc] overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
@@ -59,7 +62,7 @@ export default function Hero() {
               className="flex items-center gap-2 text-[#0f172a] hover:text-[#475569] transition-colors text-sm font-medium"
             >
               <FileDown size={16} />
-              {/* <span>Download CV</span> */}
+              <span>Download CV</span>
             </a>
           </div>
 
@@ -80,23 +83,26 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Impact Ribbon — Real-time data from OpenAlex */}
       <div className="max-w-5xl mx-auto px-6 mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-[#e2e8f0] rounded-lg overflow-hidden shadow-sm">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#e2e8f0] rounded-lg overflow-hidden shadow-sm">
           <div className="bg-white py-8 px-6 text-center">
-            <div className="text-3xl font-serif font-bold text-[#0f172a]">25+</div>
-            <p className="text-sm text-[#64748b] mt-1">Years of Research</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Citations</p>
+            <div className="text-3xl font-serif font-bold text-[#0f172a]">
+              {formatCitationCount(profile.citedByCount)}<span className="text-[#475569]">+</span>
+            </div>
           </div>
           <div className="bg-white py-8 px-6 text-center">
-            <div className="text-3xl font-serif font-bold text-[#0f172a]">500+</div>
-            <p className="text-sm text-[#64748b] mt-1">Publications</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">h-index</p>
+            <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.hIndex}</div>
           </div>
           <div className="bg-white py-8 px-6 text-center">
-            <div className="text-3xl font-serif font-bold text-[#0f172a]">12K+</div>
-            <p className="text-sm text-[#64748b] mt-1">Citations</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Publications</p>
+            <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.worksCount}</div>
           </div>
           <div className="bg-white py-8 px-6 text-center">
-            <div className="text-3xl font-serif font-bold text-[#0f172a]">PhD</div>
-            <p className="text-sm text-[#64748b] mt-1">Univ. of East Anglia</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">i10-index</p>
+            <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.i10Index}</div>
           </div>
         </div>
       </div>
