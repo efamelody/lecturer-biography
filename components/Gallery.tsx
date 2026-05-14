@@ -1,6 +1,5 @@
-import Image from 'next/image'
 import { getGallery } from '@/sanity/lib'
-import { urlFor } from '@/sanity/lib'
+import GalleryClient from './GalleryClient'
 
 export default async function Gallery() {
   const gallery = await getGallery()
@@ -20,40 +19,7 @@ export default async function Gallery() {
         <h2 className="text-2xl font-serif font-bold text-[#0f172a] tracking-tight">Photo Gallery</h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {gallery.map((item) => (
-          <div
-            key={item._id}
-            className="group bg-white border border-[#e2e8f0] rounded-lg overflow-hidden hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200"
-          >
-            <div className="aspect-[16/9] bg-[#f1f5f9] relative overflow-hidden">
-              {item.image && (
-                <Image
-                  src={urlFor(item.image).width(600).height(338).url()}
-                  alt={item.title || ''}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-              )}
-            </div>
-            <div className="p-5">
-              <h3 className="text-sm font-medium text-[#0f172a] leading-snug mb-1 line-clamp-2">
-                {item.title}
-              </h3>
-              {item.eventDate && (
-                <p className="text-xs text-[#64748b]">
-                  {new Date(item.eventDate).toLocaleDateString('en-GB', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </p>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      <GalleryClient items={gallery} />
     </section>
   )
 }

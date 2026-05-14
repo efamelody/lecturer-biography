@@ -5,6 +5,8 @@ import { client } from './client'
 export const galleryQuery = groq`*[_type == "gallery"] | order(eventDate desc) {
   _id,
   title,
+  type,
+  description,
   eventDate,
   image
 }`

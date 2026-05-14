@@ -14,9 +14,11 @@
 | `app/media/page.tsx` | Media page that renders Gallery |
 
 **Schema fields** (`gallery` document):
-- **Title** — short description of the photo
-- **Event Date** — when the photo was taken
-- **Image** — the photo file (with hotspot/crop)
+- **Title** — short description of the photo (required)
+- **Category** — choose: News Interview, Newspaper, Key Activities & Events, or Media Coverage (required)
+- **Description** — optional longer caption
+- **Event Date** — when the photo was taken (optional)
+- **Image** — the photo file (with hotspot/crop, required)
 
 ## For content editors (Prof. Latif)
 
@@ -25,7 +27,9 @@
 3. Click the **+** (pencil icon) next to "Gallery"
 4. Fill in:
    - **Title** — e.g. "IPCC Expert Meeting 2022"
-   - **Event Date** — pick the date
+   - **Category** — pick from the dropdown
+   - **Description** — optional caption
+   - **Event Date** — optional, pick the date
    - **Image** — drag & drop a photo
 5. Click **Publish**
 
@@ -35,9 +39,16 @@ The photo appears on the website's **Media Room** page automatically. No code ch
 
 The Sanity Image Pipeline auto-resizes and optimizes every photo:
 
-- Gallery component requests `600×338` (16:9) via `urlFor().width(600).height(338).url()`
+- Thumbnails: `600×338` (16:9) via `urlFor().width(600).height(338).url()`
+- Lightbox: `1600px` wide via `urlFor().width(1600).url()`
 - Sanity's CDN serves WebP format automatically based on browser support
 - Next.js `<Image>` component adds lazy loading and responsive `sizes`
+
+## Features
+
+- **Category badges** — each photo shows its category (News Interview, Newspaper, etc.)
+- **Lightbox** — click any photo to see it full-size with title, description, and date
+- **Keyboard navigation** — arrow keys to browse, Esc to close in the lightbox
 
 ## Commands
 

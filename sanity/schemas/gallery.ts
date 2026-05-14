@@ -12,6 +12,26 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'type',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'News Interview', value: 'news-interview' },
+          { title: 'Newspaper', value: 'newspaper' },
+          { title: 'Key Activities & Events', value: 'key-activity' },
+          { title: 'Media Coverage', value: 'media-coverage' },
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
       name: 'eventDate',
       title: 'Event Date',
       type: 'datetime',
@@ -32,6 +52,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
+      subtitle: 'type',
       media: 'image',
     },
   },
