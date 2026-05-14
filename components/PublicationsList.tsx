@@ -75,7 +75,7 @@ export default async function PublicationsList() {
       <section>
         <div className="mb-8">
           <h2 className="text-2xl font-serif font-bold text-[#0f172a] tracking-tight mb-1">Featured Publications</h2>
-          <p className="text-sm text-[#64748b]">Highest impact works ranked by citation count</p>
+          <p className="text-sm text-[#64748b]">Highest impact works ranked by citation count — data via OpenAlex</p>
         </div>
         <div className="space-y-0">
           {topCited.map((pub: any) => (

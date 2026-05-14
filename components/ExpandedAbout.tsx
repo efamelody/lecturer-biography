@@ -7,19 +7,19 @@ import { GraduationCap, Mail, MapPin } from 'lucide-react';
 const educationData = [
   {
     degree: "Ph.D.",
-    year: "2008",
+    year: "2006",
     field: "Atmospheric Chemistry",
     institution: "University of East Anglia, UK",
   },
   {
     degree: "M.Sc.",
-    year: "2005",
-    field: "Environmental Chemistry (Air Pollution)",
+    year: "1999",
+    field: "Environmental Science",
     institution: "Universiti Kebangsaan Malaysia",
   },
   {
     degree: "B.Sc.",
-    year: "2003",
+    year: "1995",
     field: "Chemistry",
     institution: "Universiti Kebangsaan Malaysia",
   },
@@ -32,6 +32,7 @@ const researchInterests = [
 ];
 
 const awards = [
+  { year: "2022 – 2025", title: "World's Top 2% Scientist", organization: "Stanford University & Elsevier"},
   { year: '2021', title: 'Distinguished Scholar Award', organization: 'ASEAN Academy of Sciences' },
   { year: '2020', title: 'Excellence in Environmental Research', organization: 'Malaysian Institute of Chemistry' },
   { year: '2019', title: 'UKM Bitara Award', organization: 'Universiti Kebangsaan Malaysia' },
