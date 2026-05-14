@@ -4,40 +4,45 @@ const interests = [
   {
     icon: Wind,
     title: 'Atmospheric Aerosols',
-    description: 'Chemical composition and physical properties of atmospheric particles',
+    description: 'Chemical composition and physical properties of atmospheric particles and their climate impacts',
   },
   {
     icon: FlaskConical,
     title: 'Surface Ozone & VOCs',
-    description: 'Ground-level ozone formation and volatile organic compound dynamics',
+    description: 'Ground-level ozone formation, precursor dynamics, and photochemical processes',
   },
   {
     icon: Droplets,
     title: 'Air Pollution Sources',
-    description: 'Source apportionment and emission characterization studies',
+    description: 'Source apportionment, emission characterization, and transboundary pollution',
   },
   {
     icon: Waves,
     title: 'Sea-Surface Microlayer',
-    description: 'Marine atmospheric chemistry and ocean-atmosphere interactions',
+    description: 'Marine atmospheric chemistry and ocean-atmosphere interactions in tropical waters',
   },
 ];
 
 export default function Research() {
   return (
-    <section id="research" className="py-20 bg-gray-50">
+    <section id="research" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl mb-12 text-gray-900 text-center">Research Interests</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#64748b] mb-3">Research Focus</p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0f172a] tracking-tight">
+            Research Interests
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {interests.map((interest, index) => {
             const Icon = interest.icon;
             return (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-blue-500 rounded-lg flex items-center justify-center mb-4">
-                  <Icon size={28} className="text-white" />
+              <div key={index} className="group bg-white rounded-lg border border-[#e2e8f0] p-6 hover:border-[#94a3b8] hover:shadow-md transition-all duration-300">
+                <div className="w-12 h-12 bg-[#f1f5f9] rounded-lg flex items-center justify-center mb-5 group-hover:bg-[#e2e8f0] transition-colors">
+                  <Icon size={24} className="text-[#475569]" />
                 </div>
-                <h3 className="text-xl mb-2 text-gray-900">{interest.title}</h3>
-                <p className="text-gray-600">{interest.description}</p>
+                <h3 className="text-lg font-serif font-bold text-[#0f172a] mb-3">{interest.title}</h3>
+                <p className="text-sm text-[#64748b] leading-relaxed">{interest.description}</p>
               </div>
             );
           })}

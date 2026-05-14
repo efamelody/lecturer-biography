@@ -1,4 +1,4 @@
-import { FileText, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const publications = [
   {
@@ -35,36 +35,49 @@ const publications = [
 
 export default function Publications() {
   return (
-    <section id="publications" className="py-20 bg-gray-50">
+    <section id="publications" className="py-20 bg-[#f8fafc]">
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl mb-12 text-gray-900 text-center">Recent Publications</h2>
-        <div className="space-y-6">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#64748b] mb-3">Recent Works</p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0f172a] tracking-tight">
+            Selected Publications
+          </h2>
+        </div>
+        <div className="space-y-0">
           {publications.map((pub, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <FileText size={24} className="text-teal-600" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg mb-2 text-gray-900">{pub.title}</h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
-                    <span className="italic">{pub.journal}</span>
-                    <span>•</span>
-                    <span>{pub.year}</span>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-1">{pub.authors}</p>
-                </div>
-                <button className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                  <ExternalLink size={20} className="text-gray-400" />
-                </button>
+            <div
+              key={index}
+              className="group flex items-start gap-4 py-5 border-b border-[#e2e8f0] last:border-b-0 hover:bg-white hover:px-4 hover:-mx-4 rounded transition-all duration-200"
+            >
+              <div className="flex-shrink-0 mt-0.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#94a3b8] group-hover:bg-[#0f172a] transition-colors" />
               </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-medium text-[#0f172a] mb-1 leading-snug group-hover:text-[#0f172a] transition-colors">
+                  {pub.title}
+                </h3>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#64748b]">
+                  <span className="italic">{pub.journal}</span>
+                  <span className="text-[#cbd5e1]">/</span>
+                  <span>{pub.year}</span>
+                  <span className="text-[#cbd5e1]">/</span>
+                  <span>{pub.authors}</span>
+                </div>
+              </div>
+              <button className="flex-shrink-0 p-2 opacity-0 group-hover:opacity-100 hover:bg-[#f1f5f9] rounded-lg transition-all duration-200">
+                <ExternalLink size={16} className="text-[#94a3b8]" />
+              </button>
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
-          <button className="px-8 py-3 bg-gradient-to-r from-teal-600 to-blue-600 text-white rounded-lg hover:shadow-lg transition-shadow">
+        <div className="text-center mt-12">
+          <a
+            href="/publications"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#0f172a] text-white text-sm font-medium rounded-lg hover:bg-[#1e293b] transition-colors shadow-sm"
+          >
             View All Publications
-          </button>
+            <ExternalLink size={16} />
+          </a>
         </div>
       </div>
     </section>
