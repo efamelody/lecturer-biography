@@ -1,29 +1,8 @@
-import { Wind, FlaskConical, Droplets, Waves } from 'lucide-react';
+import * as Icons from 'lucide-react';
+import { getContent } from '@/lib/content';
 
-const interests = [
-  {
-    icon: Wind,
-    title: 'Atmospheric Aerosols',
-    description: 'Chemical composition and physical properties of atmospheric particles and their climate impacts',
-  },
-  {
-    icon: FlaskConical,
-    title: 'Surface Ozone & VOCs',
-    description: 'Ground-level ozone formation, precursor dynamics, and photochemical processes',
-  },
-  {
-    icon: Droplets,
-    title: 'Air Pollution Sources',
-    description: 'Source apportionment, emission characterization, and transboundary pollution',
-  },
-  {
-    icon: Waves,
-    title: 'Sea-Surface Microlayer',
-    description: 'Marine atmospheric chemistry and ocean-atmosphere interactions in tropical waters',
-  },
-];
-
-export default function Research() {
+export default async function Research() {
+  const researchData = await getContent('research')
   return (
     <section id="research" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -34,12 +13,12 @@ export default function Research() {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {interests.map((interest, index) => {
-            const Icon = interest.icon;
+          {researchData.map((interest, index) => {
+            const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>)[interest.icon];
             return (
               <div key={index} className="group bg-white rounded-lg border border-[#e2e8f0] p-6 hover:border-[#94a3b8] hover:shadow-md transition-all duration-300">
                 <div className="w-12 h-12 bg-[#f1f5f9] rounded-lg flex items-center justify-center mb-5 group-hover:bg-[#e2e8f0] transition-colors">
-                  <Icon size={24} className="text-[#475569]" />
+                  {Icon && <Icon size={24} className="text-[#475569]" />}
                 </div>
                 <h3 className="text-lg font-serif font-bold text-[#0f172a] mb-3">{interest.title}</h3>
                 <p className="text-sm text-[#64748b] leading-relaxed">{interest.description}</p>

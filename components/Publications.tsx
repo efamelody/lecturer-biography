@@ -1,39 +1,8 @@
 import { ExternalLink } from 'lucide-react';
+import { getContent } from '@/lib/content';
 
-const publications = [
-  {
-    title: 'Chemical characterization and source apportionment of PM2.5 during Southeast Asian haze episodes',
-    journal: 'Atmospheric Environment',
-    year: '2025',
-    authors: 'Latif, M.T., et al.',
-  },
-  {
-    title: 'Temporal variations of surface ozone and its precursors in urban and rural areas of Malaysia',
-    journal: 'Science of the Total Environment',
-    year: '2025',
-    authors: 'Latif, M.T., Baharudin, N.H., et al.',
-  },
-  {
-    title: 'Air quality assessment during COVID-19 lockdown: implications for future environmental policies',
-    journal: 'Environmental Research',
-    year: '2025',
-    authors: 'Khan, M.F., Latif, M.T., et al.',
-  },
-  {
-    title: 'Marine aerosol properties in the sea-surface microlayer of tropical waters',
-    journal: 'Atmospheric Chemistry and Physics',
-    year: '2024',
-    authors: 'Latif, M.T., Mahmud, M., et al.',
-  },
-  {
-    title: 'Long-term trends in air quality and meteorological parameters in Southeast Asia',
-    journal: 'Environmental Pollution',
-    year: '2024',
-    authors: 'Latif, M.T., et al.',
-  },
-];
-
-export default function Publications() {
+export default async function Publications() {
+  const selectedPublications = await getContent('selected-publications')
   return (
     <section id="publications" className="py-20 bg-[#f8fafc]">
       <div className="max-w-5xl mx-auto px-6">
@@ -44,7 +13,7 @@ export default function Publications() {
           </h2>
         </div>
         <div className="space-y-0">
-          {publications.map((pub, index) => (
+          {selectedPublications.map((pub, index) => (
             <div
               key={index}
               className="group flex items-start gap-4 py-5 border-b border-[#e2e8f0] last:border-b-0 hover:bg-white hover:px-4 hover:-mx-4 rounded transition-all duration-200"
