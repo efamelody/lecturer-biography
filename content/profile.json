@@ -1,0 +1,44 @@
+{
+  "name": "Prof. Dr. Mohd Talib Latif",
+  "title": "Professor of Atmospheric Chemistry",
+  "tagline": "Advancing the understanding of atmospheric aerosols, air quality dynamics, and environmental sustainability in Southeast Asia",
+  "email": "talib@ukm.edu.my",
+  "location": "Bangi, Selangor, Malaysia",
+  "image": "/profile.jpg",
+  "roles": [
+    "IPCC Lead Author",
+    "President of MAAQR",
+    "Professor at UKM"
+  ],
+  "tags": [
+    "Atmospheric Aerosols",
+    "Air Quality",
+    "Environmental Chemistry",
+    "Climate Change"
+  ],
+  "bio": [
+    "Prof. Dr. Mohd Talib Latif is a distinguished atmospheric scientist and Professor of Atmospheric Chemistry at Universiti Kebangsaan Malaysia (UKM). He earned his PhD from the University of East Anglia, United Kingdom, specializing in atmospheric chemistry and air pollution studies.",
+    "Throughout his illustrious career, he has held numerous leadership positions including serving as a Lead Author for the Intergovernmental Panel on Climate Change (IPCC), President of the Malaysian Association for Aerosol and Air Quality Research (MAAQR), and key academic roles at UKM including Dean and Deputy Dean positions.",
+    "His research has significantly contributed to understanding air quality dynamics, atmospheric processes, and environmental sustainability in Southeast Asia. He has published extensively in high-impact journals and continues to mentor the next generation of environmental scientists."
+  ],
+  "education": [
+    {
+      "degree": "Ph.D.",
+      "year": "2006",
+      "field": "Atmospheric Chemistry",
+      "institution": "University of East Anglia, UK"
+    },
+    {
+      "degree": "M.Sc.",
+      "year": "1999",
+      "field": "Environmental Science",
+      "institution": "Universiti Kebangsaan Malaysia"
+    },
+    {
+      "degree": "B.Sc.",
+      "year": "2003",
+      "field": "Chemistry",
+      "institution": "Universiti Kebangsaan Malaysia"
+    }
+  ]
+}

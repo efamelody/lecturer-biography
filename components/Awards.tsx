@@ -1,27 +1,7 @@
-export default function Awards() {
-  const awards = [
-    {
-      year: '2021',
-      title: 'Distinguished Scholar Award',
-      organization: 'ASEAN Academy of Sciences'
-    },
-    {
-      year: '2020',
-      title: 'Excellence in Environmental Research',
-      organization: 'Malaysian Institute of Chemistry'
-    },
-    {
-      year: '2019',
-      title: 'UKM Bitara Award',
-      organization: 'Universiti Kebangsaan Malaysia'
-    },
-    {
-      year: '2018',
-      title: 'Top Research Scientist Malaysia',
-      organization: 'Academy of Sciences Malaysia'
-    }
-  ];
+import { getContent } from '@/lib/content';
 
+export default async function Awards() {
+  const awardsData = await getContent('awards')
   return (
     <section id="awards" className="py-20 bg-[#f8fafc]">
       <div className="max-w-5xl mx-auto px-6">
@@ -34,7 +14,7 @@ export default function Awards() {
         <div className="relative">
           <div className="absolute left-[19px] top-0 bottom-0 w-px bg-[#e2e8f0]" />
           <div className="space-y-8">
-            {awards.map((award, index) => (
+            {awardsData.map((award, index) => (
               <div key={index} className="relative flex items-start gap-6 pl-12">
                 <div className="absolute left-[11px] top-[6px] w-[17px] h-[17px] rounded-full bg-white border-2 border-[#94a3b8] z-10" />
                 <div className="flex-1 bg-white border border-[#e2e8f0] rounded-lg p-5 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200">

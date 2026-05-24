@@ -1,7 +1,8 @@
 import { Users, GraduationCap } from 'lucide-react';
-import membersData from '@/content/members.json';
+import { getContent } from '@/lib/content';
 
-export default function GroupMembers() {
+export default async function GroupMembers() {
+  const membersData = await getContent('members')
   const currentMembers = membersData.filter((member) => member.status === 'member');
   const alumni = membersData.filter((member) => member.status === 'alumni');
 

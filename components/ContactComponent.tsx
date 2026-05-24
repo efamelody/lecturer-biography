@@ -1,6 +1,8 @@
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
+import { getContent } from '@/lib/content';
 
-export default function Contact() {
+export default async function Contact() {
+  const contactData = await getContent('contact')
   return (
     <main className="pt-20">
       <section className="py-20 bg-white">
@@ -8,7 +10,7 @@ export default function Contact() {
           <div className="max-w-3xl mb-16">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#64748b] mb-3">Get in Touch</p>
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#0f172a] tracking-tight mb-4">Contact Information</h1>
-            <p className="text-[#64748b]">Reach out to Prof. Dr. Mohd Talib Latif for research collaborations, academic inquiries, or consultation</p>
+            <p className="text-[#64748b]">Reach out for research collaborations, academic inquiries, or consultation</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -17,8 +19,8 @@ export default function Contact() {
                 <Mail size={20} className="text-[#475569]" />
               </div>
               <h3 className="text-base font-serif font-bold text-[#0f172a] mb-1">Email</h3>
-              <a href="mailto:mtlatif@ukm.edu.my" className="text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
-                mtlatif@ukm.edu.my
+              <a href={`mailto:${contactData.email}`} className="text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
+                {contactData.email}
               </a>
             </div>
 
@@ -27,8 +29,8 @@ export default function Contact() {
                 <Phone size={20} className="text-[#475569]" />
               </div>
               <h3 className="text-base font-serif font-bold text-[#0f172a] mb-1">Phone</h3>
-              <a href="tel:+60389216450" className="text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
-                +603-8921-6450
+              <a href={`tel:${contactData.phone.replace(/[^+\d]/g, '')}`} className="text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
+                {contactData.phone}
               </a>
             </div>
 
@@ -38,11 +40,11 @@ export default function Contact() {
               </div>
               <h3 className="text-base font-serif font-bold text-[#0f172a] mb-1">Office Location</h3>
               <p className="text-sm text-[#64748b] leading-relaxed">
-                Department of Chemistry<br />
-                Faculty of Science<br />
-                Universiti Kebangsaan Malaysia<br />
-                43600 Bangi, Selangor<br />
-                Malaysia
+                {contactData.address.line1}<br />
+                {contactData.address.line2}<br />
+                {contactData.address.line3}<br />
+                {contactData.address.line4}<br />
+                {contactData.address.line5}
               </p>
             </div>
 
@@ -52,12 +54,11 @@ export default function Contact() {
               </div>
               <h3 className="text-base font-serif font-bold text-[#0f172a] mb-1">Online Profiles</h3>
               <div className="space-y-1">
-                <a href="https://ukm.edu.my" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
-                  UKM Official Site
-                </a>
-                <a href="https://researchgate.net" target="_blank" rel="noopener noreferrer" className="block text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
-                  ResearchGate Profile
-                </a>
+                {contactData.profiles.map((profile, i) => (
+                  <a key={i} href={profile.url} target="_blank" rel="noopener noreferrer" className="block text-sm text-[#475569] hover:text-[#0f172a] transition-colors">
+                    {profile.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -65,10 +66,10 @@ export default function Contact() {
           <div className="p-6 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg">
             <h3 className="text-base font-serif font-bold text-[#0f172a] mb-3">Office Hours</h3>
             <p className="text-sm text-[#64748b] leading-relaxed mb-3">
-              Prof. Dr. Mohd Talib Latif is generally available for meetings by appointment. For inquiries regarding research collaborations, academic matters, or consultation, please reach out via email or phone to schedule a meeting.
+              {contactData.officeHours}
             </p>
             <p className="text-xs text-[#94a3b8]">
-              <strong>Note:</strong> For urgent matters, it is recommended to contact via email with a clear subject line.
+              <strong>Note:</strong> {contactData.officeHoursNote}
             </p>
           </div>
         </div>

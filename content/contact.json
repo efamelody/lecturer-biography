@@ -1,0 +1,23 @@
+{
+  "email": "mtlatif@ukm.edu.my",
+  "phone": "+603-8921-6450",
+  "address": {
+    "line1": "Department of Chemistry",
+    "line2": "Faculty of Science",
+    "line3": "Universiti Kebangsaan Malaysia",
+    "line4": "43600 Bangi, Selangor",
+    "line5": "Malaysia"
+  },
+  "profiles": [
+    {
+      "label": "UKM Official Site",
+      "url": "https://ukm.edu.my"
+    },
+    {
+      "label": "ResearchGate Profile",
+      "url": "https://researchgate.net"
+    }
+  ],
+  "officeHours": "Prof. Dr. Mohd Talib Latif is generally available for meetings by appointment. For inquiries regarding research collaborations, academic matters, or consultation, please reach out via email or phone to schedule a meeting.",
+  "officeHoursNote": "For urgent matters, it is recommended to contact via email with a clear subject line."
+}

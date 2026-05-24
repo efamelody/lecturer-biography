@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "Globe",
+    "name": "IPCC",
+    "fullName": "Intergovernmental Panel on Climate Change",
+    "role": "Lead Author"
+  },
+  {
+    "icon": "Users",
+    "name": "MAAQR",
+    "fullName": "Malaysian Association for Aerosol and Air Quality Research",
+    "role": "President"
+  },
+  {
+    "icon": "Building2",
+    "name": "DOE Malaysia",
+    "fullName": "Department of Environment Malaysia",
+    "role": "Scientific Advisor"
+  },
+  {
+    "icon": "Briefcase",
+    "name": "MetMalaysia",
+    "fullName": "Malaysian Meteorological Department",
+    "role": "Research Collaborator"
+  },
+  {
+    "icon": "Globe",
+    "name": "IGAC-MANGO",
+    "fullName": "International Global Atmospheric Chemistry – Marine Aerosol Network as a Ground-based Observatory",
+    "role": "Member"
+  }
+]

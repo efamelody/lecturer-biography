@@ -1,39 +1,8 @@
-import { Globe, Users, Building2, Briefcase } from 'lucide-react';
+import * as Icons from 'lucide-react';
+import { getContent } from '@/lib/content';
 
-const affiliations = [
-  {
-    icon: Globe,
-    name: 'IPCC',
-    fullName: 'Intergovernmental Panel on Climate Change',
-    role: 'Lead Author',
-  },
-  {
-    icon: Users,
-    name: 'MAAQR',
-    fullName: 'Malaysian Association for Aerosol and Air Quality Research',
-    role: 'President',
-  },
-  {
-    icon: Building2,
-    name: 'DOE Malaysia',
-    fullName: 'Department of Environment Malaysia',
-    role: 'Scientific Advisor',
-  },
-  {
-    icon: Briefcase,
-    name: 'MetMalaysia',
-    fullName: 'Malaysian Meteorological Department',
-    role: 'Research Collaborator',
-  },
-  {
-    icon: Globe,
-    name: 'IGAC-MANGO',
-    fullName: 'International Global Atmospheric Chemistry – Marine Aerosol Network as a Ground-based Observatory',
-    role: 'Member',
-  },
-];
-
-export default function Affiliations() {
+export default async function Affiliations() {
+  const affiliationsData = await getContent('affiliations')
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -44,13 +13,13 @@ export default function Affiliations() {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {affiliations.map((affiliation, index) => {
-            const Icon = affiliation.icon;
+          {affiliationsData.map((affiliation, index) => {
+            const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>)[affiliation.icon];
             return (
               <div key={index} className="bg-[#f8fafc] border border-[#e2e8f0] rounded-lg p-5 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-white border border-[#e2e8f0] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon size={18} className="text-[#475569]" />
+                    {Icon && <Icon size={18} className="text-[#475569]" />}
                   </div>
                   <div className="min-w-0">
                     <div className="text-[#0f172a] font-semibold text-sm mb-0.5">{affiliation.name}</div>
