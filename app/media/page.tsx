@@ -1,5 +1,4 @@
 import MediaComponent from "@/components/MediaComponent";
-import Gallery from "@/components/Gallery";
 
 export default function MediaPage() {
   return (
@@ -14,10 +13,7 @@ export default function MediaPage() {
             </p>
           </div>
 
-          <div className="space-y-20">
-            <Gallery />
-            <MediaComponent />
-          </div>
+          <MediaComponent />
         </div>
       </section>
     </main>
