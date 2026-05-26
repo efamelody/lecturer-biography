@@ -1,0 +1,193 @@
+'use client';
+
+import { useState, useCallback, useEffect } from 'react';
+import { Newspaper, Mic, Video, Award, ExternalLink, Calendar, X } from 'lucide-react';
+import Image from 'next/image';
+
+const getCategoryIcon = (categoryType: string) => {
+  switch (categoryType) {
+    case 'news-interview': return <Video size={20} className="text-[#0f172a]" />;
+    case 'newspaper': return <Newspaper size={20} className="text-[#0f172a]" />;
+    case 'conference': return <Mic size={20} className="text-[#0f172a]" />;
+    default: return <Award size={20} className="text-[#0f172a]" />;
+  }
+};
+
+const getCategoryLabel = (categoryType: string) => {
+  switch (categoryType) {
+    case 'news-interview': return 'News & TV Interviews';
+    case 'newspaper': return 'Newspaper Columns & Op-Eds';
+    case 'conference': return 'Conferences & Keynote Addresses';
+    default: return 'Media Features & Activities';
+  }
+};
+
+type GalleryItem = {
+  _id: string;
+  title: string;
+  type: string;
+  outlet: string;
+  eventDate: string;
+  externalUrl?: string;
+  description?: string;
+  imageUrl?: string;
+};
+
+function Lightbox({ items, index, onClose }: { items: GalleryItem[]; index: number; onClose: () => void }) {
+  const [current, setCurrent] = useState(index);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  const item = items[current];
+  if (!item) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
+      <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white z-10">
+        <X size={28} />
+      </button>
+
+      <div className="relative max-w-5xl max-h-[90vh] w-full h-full flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full h-full max-h-[80vh]">
+          <Image
+            src={item.imageUrl || ''}
+            alt={item.title}
+            fill
+            className="object-contain"
+            sizes="90vw"
+          />
+        </div>
+        <div className="text-white text-center mt-4 max-w-2xl">
+          <p className="text-lg font-medium">{item.title}</p>
+          {item.description && <p className="text-sm text-white/70 mt-1">{item.description}</p>}
+          <p className="text-xs text-white/50 mt-1">{item.outlet} &middot; {new Date(item.eventDate).getFullYear()}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function MediaContent({ items }: { items: GalleryItem[] }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const categories = ['news-interview', 'newspaper', 'conference', 'media-coverage'];
+
+  return (
+    <>
+      <div className="space-y-24">
+        {categories.map((categoryKey) => {
+          const filteredItems = items.filter((item) => item.type === categoryKey);
+          if (filteredItems.length === 0) return null;
+
+          return (
+            <section key={categoryKey}>
+              <div className="flex items-center gap-3 border-b border-[#e2e8f0] pb-4 mb-8">
+                <div className="w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl flex items-center justify-center">
+                  {getCategoryIcon(categoryKey)}
+                </div>
+                <h2 className="text-2xl font-serif font-bold text-[#0f172a]">
+                  {getCategoryLabel(categoryKey)}
+                </h2>
+                <span className="text-xs bg-[#f1f5f9] text-[#64748b] px-2 py-0.5 rounded-full font-medium">
+                  {filteredItems.length}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredItems.map((item) => {
+                  const globalIndex = items.indexOf(item);
+                  const CardWrapper = item.externalUrl ? 'a' : 'div';
+                  const wrapperProps = item.externalUrl
+                    ? { href: item.externalUrl, target: '_blank', rel: 'noopener noreferrer' }
+                    : {};
+
+                  return (
+                    <CardWrapper
+                      key={item._id}
+                      {...wrapperProps}
+                      className={`bg-white border border-[#e2e8f0] rounded-xl overflow-hidden flex flex-col h-full transition-all duration-200 group ${
+                        item.externalUrl ? 'hover:border-[#94a3b8] hover:shadow-md cursor-pointer' : ''
+                      }`}
+                    >
+                      <button
+                        className="relative w-full h-48 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden block text-left cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          setLightboxIndex(globalIndex);
+                        }}
+                      >
+                        {item.imageUrl ? (
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 700px) 100vw, 33vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center text-[#94a3b8]">
+                            No Preview Image
+                          </div>
+                        )}
+                      </button>
+
+                      <div className="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                          <div className="flex items-center justify-between gap-2 mb-3">
+                            <span className="text-xs font-semibold tracking-wide text-[#3b82f6] uppercase">
+                              {item.outlet}
+                            </span>
+                            <div className="flex items-center gap-1 text-xs text-[#64748b]">
+                              <Calendar size={12} />
+                              <span>{new Date(item.eventDate).getFullYear()}</span>
+                            </div>
+                          </div>
+
+                          <h3 className="text-base font-serif font-bold text-[#0f172a] leading-snug tracking-tight mb-2 group-hover:text-[#3b82f6] transition-colors">
+                            {item.title}
+                          </h3>
+
+                          {item.description && (
+                            <p className="text-xs text-[#64748b] leading-relaxed line-clamp-3 mb-4">
+                              {item.description}
+                            </p>
+                          )}
+                        </div>
+
+                        {item.externalUrl && (
+                          <div className="mt-4 pt-4 border-t border-[#f1f5f9] flex items-center gap-1 text-xs font-medium text-[#475569] group-hover:text-[#3b82f6] transition-colors">
+                            <span>View original post</span>
+                            <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </div>
+                        )}
+                      </div>
+                    </CardWrapper>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          items={items}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+    </>
+  );
+}

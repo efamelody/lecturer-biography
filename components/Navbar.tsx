@@ -11,6 +11,7 @@ export default function Navbar() {
     { href: '/about', label: 'About' },
     { href: '/group-members', label: 'Group' },
     { href: '/publications', label: 'Publications' },
+    { href: '/media', label: 'Media' },
     { href: '/contact', label: 'Contact' },
   ];
 

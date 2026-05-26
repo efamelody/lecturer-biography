@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import { Mail, MapPin, FileDown } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { getAuthorProfile, formatCitationCount } from '@/lib/academic';
+import { getContent } from '@/lib/content';
 
 export default async function Hero() {
   const profile = await getAuthorProfile();
+  const profileData = await getContent('profile')
 
   return (
     <section className="relative pt-32 pb-20 bg-[#f8fafc] overflow-hidden">
@@ -17,8 +19,8 @@ export default async function Hero() {
           <div className="relative">
             <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-[#e2e8f0] p-2 bg-white shadow-xl">
               <Image
-                src="/profile.jpg"
-                alt="Prof. Dr. Mohd Talib Latif"
+                src={profileData.image}
+                alt={profileData.name}
                 width={192}
                 height={192}
                 className="w-full h-full object-cover rounded-full"
@@ -29,56 +31,48 @@ export default async function Hero() {
           <div className="max-w-3xl space-y-4">
             <div className="space-y-2">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#64748b]">
-                Professor of Atmospheric Chemistry
+                {profileData.title}
               </p>
               <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#0f172a] tracking-tight leading-tight">
-                Prof. Dr. Mohd Talib Latif
+                {profileData.name}
               </h1>
             </div>
             <p className="text-xl text-[#64748b] font-light max-w-2xl mx-auto leading-relaxed">
-              Advancing the understanding of atmospheric aerosols, air quality dynamics,
-              and environmental sustainability in Southeast Asia
+              {profileData.tagline}
             </p>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium text-[#475569]">
-              <span className="text-[#0f172a] font-semibold">IPCC Lead Author</span>
-              <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-              <span>President of MAAQR</span>
-              <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-              <span>Professor at UKM</span>
+              {profileData.roles.map((role, i) => (
+                <span key={i}>
+                  {i === 0 ? (
+                    <span className="text-[#0f172a] font-semibold">{role}</span>
+                  ) : (
+                    <span>{role}</span>
+                  )}
+                  {i < profileData.roles.length - 1 && (
+                    <span className="hidden sm:inline text-[#cbd5e1] ml-8">|</span>
+                  )}
+                </span>
+              ))}
             </div>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 pt-6 border-t border-[#e2e8f0] w-full max-w-lg">
-            <a href="mailto:talib@ukm.edu.my" className="flex items-center gap-2 text-[#64748b] hover:text-[#0f172a] transition-colors text-sm">
+            <a href={`mailto:${profileData.email}`} className="flex items-center gap-2 text-[#64748b] hover:text-[#0f172a] transition-colors text-sm">
               <Mail size={16} />
-              <span>talib@ukm.edu.my</span>
+              <span>{profileData.email}</span>
             </a>
             <div className="flex items-center gap-2 text-[#64748b] text-sm">
               <MapPin size={16} />
-              <span>Bangi, Selangor, Malaysia</span>
+              <span>{profileData.location}</span>
             </div>
-            {/* <a
-              href="/cv.pdf"
-              className="flex items-center gap-2 text-[#0f172a] hover:text-[#475569] transition-colors text-sm font-medium"
-            >
-              <FileDown size={16} />
-              <span>Download CV</span>
-            </a> */}
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 pt-2">
-            <span className="px-4 py-1.5 bg-white border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569] shadow-sm">
-              Atmospheric Aerosols
-            </span>
-            <span className="px-4 py-1.5 bg-white border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569] shadow-sm">
-              Air Quality
-            </span>
-            <span className="px-4 py-1.5 bg-white border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569] shadow-sm">
-              Environmental Chemistry
-            </span>
-            <span className="px-4 py-1.5 bg-white border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569] shadow-sm">
-              Climate Change
-            </span>
+            {profileData.tags.map((tag, i) => (
+              <span key={i} className="px-4 py-1.5 bg-white border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569] shadow-sm">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </div>

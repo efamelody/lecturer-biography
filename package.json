@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@vercel/analytics": "^2.0.1",
     "lucide-react": "^0.526.0",
     "next": "14.2.5",
+    "next-sanity": "^12.4.5",
     "postcss": "^8.5.8",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sanity": "^5.25.0",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
