@@ -47,6 +47,7 @@ export async function getGallery() {
     process.env.NEXT_PUBLIC_SANITY_PROJECT_ID !== 'your-project-id'
 
   if (!isConfigured) {
+    console.warn('[Sanity] Not configured — skipping gallery fetch')
     return []
   }
 
