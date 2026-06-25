@@ -28,22 +28,19 @@ const educationData = [
 const researchInterests = [
   "Atmospheric Aerosols", "Surface Ozone & VOCs",
   "Source Apportionment", "Sea-Surface Microlayer",
-  "Urban Air Quality", "Climate Change Mitigation",
+  "Urban Air Quality", 
 ];
 
 const awards = [
   { year: "2022 – 2025", title: "World's Top 2% Scientist", organization: "Stanford University & Elsevier"},
-  { year: '2021', title: 'Distinguished Scholar Award', organization: 'ASEAN Academy of Sciences' },
   { year: '2020', title: 'Excellence in Environmental Research', organization: 'Malaysian Institute of Chemistry' },
   { year: '2019', title: 'UKM Bitara Award', organization: 'Universiti Kebangsaan Malaysia' },
   { year: '2018', title: 'Top Research Scientist Malaysia', organization: 'Academy of Sciences Malaysia' },
 ];
 
 const affiliations = [
-  { name: 'IPCC', fullName: 'Intergovernmental Panel on Climate Change', role: 'Lead Author' },
+  { name: 'IPCC', fullName: 'Intergovernmental Panel on Climate Change', role: 'Member of Task Force Bureau (TFB)' },
   { name: 'MAAQR', fullName: 'Malaysian Association for Aerosol and Air Quality Research', role: 'President' },
-  { name: 'DOE Malaysia', fullName: 'Department of Environment Malaysia', role: 'Scientific Advisor' },
-  { name: 'MetMalaysia', fullName: 'Malaysian Meteorological Department', role: 'Research Collaborator' },
   { name: 'IGAC-MANGO', fullName: 'International Global Atmospheric Chemistry – Marine Aerosol Network', role: 'Member' },
 ];
 
@@ -101,7 +98,7 @@ export default function ExpandedAbout() {
                 Distinguished atmospheric scientist specializing in atmospheric chemistry and air pollution studies. Dedicated to advancing environmental sustainability and mentoring the next generation of scientists.
               </p>
               <div className="flex flex-wrap gap-2 mt-5">
-                <span className="px-3 py-1.5 bg-[#f1f5f9] border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569]">IPCC Lead Author</span>
+                <span className="px-3 py-1.5 bg-[#f1f5f9] border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569]">IPCC Member of Task Force Bureau (TFB)</span>
                 <span className="px-3 py-1.5 bg-[#f1f5f9] border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569]">Environmental Research</span>
                 <span className="px-3 py-1.5 bg-[#f1f5f9] border border-[#e2e8f0] rounded-full text-xs font-medium text-[#475569]">Southeast Asia Expert</span>
               </div>
@@ -199,25 +196,10 @@ export default function ExpandedAbout() {
           <div className="flex-1 min-w-0 space-y-20">
             {/* Professional Background */}
             <section id="background" className="scroll-mt-24">
-              <h2 className="text-3xl font-serif font-bold text-[#0f172a] mb-8 tracking-tight">Professional Background</h2>
+              <h2 className="text-3xl font-serif font-bold text-[#0f172a] mb-8 tracking-tight">Biography</h2>
               <div className="space-y-5 text-[#475569] leading-relaxed max-w-4xl">
                 <p>
-                  Prof. Dr. Mohd Talib Latif is a distinguished atmospheric scientist and Professor of
-                  Atmospheric Chemistry at Universiti Kebangsaan Malaysia (UKM). He earned his PhD from
-                  the University of East Anglia, United Kingdom, specializing in atmospheric chemistry and
-                  air pollution studies.
-                </p>
-                <p>
-                  Throughout his illustrious career, he has held numerous leadership positions including
-                  serving as a Lead Author for the Intergovernmental Panel on Climate Change (IPCC),
-                  President of the Malaysian Association for Aerosol and Air Quality Research (MAAQR),
-                  and key academic roles at UKM including Dean and Deputy Dean positions.
-                </p>
-                <p>
-                  His research has significantly contributed to understanding air quality dynamics,
-                  atmospheric processes, and environmental sustainability in Southeast Asia. He has
-                  published extensively in high-impact journals and continues to mentor the next
-                  generation of environmental scientists.
+                  Mohd Talib Latif is a professor of atmospheric chemistry and air pollution at the Department of Earth Sciences and Environment, Faculty of Science and Technology, Universiti Kebangsaan Malaysia, and a fellow of the Malaysian Academy of Science (FASc). He completed his BSc in Chemistry and MSc in Environmental Chemistry (Air Pollution) at Universiti Kebangsaan Malaysia and his PhD at the School of Environmental Science, University of East Anglia, United Kingdom. Currently, he serves as the President of the Malaysian Association for Aerosol and Air Quality Research (MAAQR). His main research work involves the composition of atmospheric aerosols from various sources, including the sea surface microlayer (SML). He also works on the composition of gases, primarily focusing on surface ozone and volatile organic compounds (VOCs) in the atmosphere. His research group collaborates closely with government agencies in Malaysia, including the Malaysian Department of Environment (DOE) and the Malaysian Meteorological Department (MetMalaysia). At the international level, he is actively involved with the research community within the Asian continent through the International Global Atmospheric Chemistry-Monsoon Asia (IGAC-MANGO) project. From 2018 to 2023, he was appointed to one of the scientific steering committees for the Surface Ocean Lower Atmosphere Study (SOLAS). He is currently a member of the Task Force Bureau (TFB) on the National Greenhouse Gas Inventories (TFI), the Intergovernmental Panel on Climate Change (IPCC). In 2018, he received the Top Research Scientist Award from the Academy of Sciences Malaysia for his research and publications.
                 </p>
               </div>
             </section>
