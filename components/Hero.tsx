@@ -77,9 +77,9 @@ export default async function Hero() {
         </div>
       </div>
 
-      {/* Impact Ribbon — Real-time data from OpenAlex */}
+      {/* Impact Ribbon — combined sources (Scopus count, OpenAlex citations/h-index) */}
       <div className="max-w-5xl mx-auto px-6 mt-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#e2e8f0] rounded-lg overflow-hidden shadow-sm">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[#e2e8f0] rounded-lg overflow-hidden shadow-sm">
           <div className="bg-white py-8 px-6 text-center">
             <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Citations</p>
             <div className="text-3xl font-serif font-bold text-[#0f172a]">
@@ -93,10 +93,6 @@ export default async function Hero() {
           <div className="bg-white py-8 px-6 text-center">
             <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Publications</p>
             <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.worksCount}</div>
-          </div>
-          <div className="bg-white py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">i10-index</p>
-            <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.i10Index}</div>
           </div>
         </div>
       </div>

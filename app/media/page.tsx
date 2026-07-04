@@ -1,5 +1,7 @@
 import MediaComponent from "@/components/MediaComponent";
 
+export const dynamic = 'force-dynamic'
+
 export default function MediaPage() {
   return (
     <main className="pt-20">

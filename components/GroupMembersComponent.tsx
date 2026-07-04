@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Users, GraduationCap, BookOpen, FileText } from 'lucide-react';
 import { getGroupMembers } from '@/lib/content';
 
@@ -24,10 +25,16 @@ export default async function GroupMembers() {
             {currentMembers.map((member) => (
               <div key={member._id} className="bg-white border border-[#e2e8f0] rounded-lg p-6 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg flex items-center justify-center flex-shrink-0">
-                      <GraduationCap size={20} className="text-[#0f172a]" />
-                    </div>
+                    <div className="flex items-start gap-4 mb-4">
+                    {member.imageUrl ? (
+                      <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#e2e8f0]">
+                        <Image src={member.imageUrl} alt={member.name} width={48} height={48} className="object-cover w-full h-full" />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg flex items-center justify-center flex-shrink-0">
+                        <GraduationCap size={20} className="text-[#0f172a]" />
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-base font-serif font-bold text-[#0f172a]">{member.name}</h3>
                       <p className="text-xs text-[#64748b] font-medium">{member.role}</p>
@@ -66,9 +73,15 @@ export default async function GroupMembers() {
               {alumni.map((alum) => (
                 <div key={alum._id} className="bg-[#f8fafc] border border-[#e2e8f0] rounded-lg p-6 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200">
                   <div className="flex items-start gap-4 mb-3">
-                    <div className="w-10 h-10 bg-white border border-[#e2e8f0] rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Users size={20} className="text-[#94a3b8]" />
-                    </div>
+                    {alum.imageUrl ? (
+                      <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#e2e8f0]">
+                        <Image src={alum.imageUrl} alt={alum.name} width={48} height={48} className="object-cover w-full h-full" />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 bg-white border border-[#e2e8f0] rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Users size={20} className="text-[#94a3b8]" />
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-base font-serif font-bold text-[#0f172a]">{alum.name}</h3>
                       <p className="text-xs text-[#64748b]">{alum.role}</p>

@@ -1,4 +1,4 @@
-import { getGallery } from '@/sanity/lib'
+import { getGallery } from '@/lib/gallery'
 import MediaContent from './MediaContent'
 
 export default async function MediaComponent() {
