@@ -114,10 +114,10 @@ export async function DELETE(request: NextRequest) {
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN' }, { status: 500 })
   }
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
   try {
-    if (!isAuthorized(request)) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
     const id = request.nextUrl.searchParams.get('id')
 
     if (!id) {
@@ -128,6 +128,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Delete error:', error)
-    return NextResponse.json({ error: 'Failed to delete entry' }, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Failed to delete entry'
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
