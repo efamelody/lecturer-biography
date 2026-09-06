@@ -100,7 +100,19 @@ function Lightbox({ items, index, onClose }: { items: GalleryItem[]; index: numb
 export default function MediaContent({ items }: { items: GalleryItem[] }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const categories = ['news-interview', 'newspaper', 'conference', 'media-coverage'];
+  const categories = ['news-interview', 'newspaper', 'conference', 'media-coverage'] as const;
+
+  if (!items || items.length === 0) {
+    return (
+      <div className="py-16 text-center border border-dashed border-[#e2e8f0] rounded-xl bg-[#f8fafc]">
+        <p className="text-sm text-[#64748b]">No media entries yet.</p>
+        <p className="text-xs text-[#94a3b8] mt-1">Add entries from /admin → Media tab.</p>
+      </div>
+    )
+  }
+
+  const knownSet = new Set<string>(categories as unknown as string[])
+  const uncategorized = items.filter((item) => !knownSet.has(item.type))
 
   return (
     <>
@@ -203,6 +215,42 @@ export default function MediaContent({ items }: { items: GalleryItem[] }) {
             </section>
           );
         })}
+        {uncategorized.length > 0 && (
+          <section>
+            <div className="flex items-center gap-3 border-b border-[#e2e8f0] pb-4 mb-8">
+              <div className="w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl flex items-center justify-center">
+                <Award size={20} className="text-[#0f172a]" />
+              </div>
+              <h2 className="text-2xl font-serif font-bold text-[#0f172a]">Other Media</h2>
+              <span className="text-xs bg-[#f1f5f9] text-[#64748b] px-2 py-0.5 rounded-full font-medium">{uncategorized.length}</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {uncategorized.map((item) => {
+                const globalIndex = items.findIndex((g) => g._id === item._id);
+                const CardWrapper = item.externalUrl ? 'a' : 'div';
+                const wrapperProps = item.externalUrl ? { href: item.externalUrl, target: '_blank', rel: 'noopener noreferrer' } : {};
+                return (
+                  <CardWrapper key={item._id} {...wrapperProps} className={`bg-white border border-[#e2e8f0] rounded-xl overflow-hidden flex flex-col h-full transition-all duration-200 group ${item.externalUrl ? 'hover:border-[#94a3b8] hover:shadow-md cursor-pointer' : ''}`}>
+                    <button type="button" disabled={!item.imageUrl} className="relative w-full h-48 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden block text-left cursor-pointer disabled:cursor-default" onClick={(e) => { if (!item.imageUrl) return; e.stopPropagation(); e.preventDefault(); setLightboxIndex(globalIndex); }} aria-label={item.imageUrl ? `View ${item.title}` : undefined}>
+                      {item.imageUrl ? <Image src={item.imageUrl} alt={item.title} fill sizes="(max-width: 700px) 100vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-105" /> : <div className="absolute inset-0 flex items-center justify-center text-[#94a3b8]">No Preview Image</div>}
+                    </button>
+                    <div className="p-6 flex flex-col justify-between flex-grow">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="text-xs font-semibold tracking-wide text-[#3b82f6] uppercase">{item.outlet}</span>
+                          <div className="flex items-center gap-1 text-xs text-[#64748b]"><Calendar size={12} /><span>{new Date(item.eventDate).getFullYear()}</span></div>
+                        </div>
+                        <h3 className="text-base font-serif font-bold text-[#0f172a] leading-snug tracking-tight mb-2 group-hover:text-[#3b82f6] transition-colors">{item.title}</h3>
+                        {item.description && <p className="text-xs text-[#64748b] leading-relaxed line-clamp-3 mb-4">{item.description}</p>}
+                      </div>
+                      {item.externalUrl && <div className="mt-4 pt-4 border-t border-[#f1f5f9] flex items-center gap-1 text-xs font-medium text-[#475569] group-hover:text-[#3b82f6] transition-colors"><span>View original post</span><ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></div>}
+                    </div>
+                  </CardWrapper>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </div>
 
       {lightboxIndex !== null && (
