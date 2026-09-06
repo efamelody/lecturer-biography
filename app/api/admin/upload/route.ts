@@ -5,6 +5,10 @@ import { isAuthorized, getRequestPassword } from '@/lib/auth'
 const MAX_BYTES = 5 * 1024 * 1024
 
 export async function POST(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('[upload] Missing BLOB_READ_WRITE_TOKEN')
+    return NextResponse.json({ error: 'Server not configured: missing BLOB_READ_WRITE_TOKEN. Set it in Cloudflare dashboard > Workers > Settings > Variables.' }, { status: 500 })
+  }
   try {
     const formData = await request.formData()
     const formPassword = formData.get('password') as string | null
@@ -13,7 +17,7 @@ export async function POST(request: NextRequest) {
     const password = formPassword || headerPassword
 
     if (!isAuthorized(request, formPassword)) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized - check ADMIN_PASSWORD' }, { status: 401 })
     }
     void password
 

@@ -37,6 +37,10 @@ function parseMember(item: Record<string, unknown>): Member | null {
 }
 
 export async function getMembers(): Promise<Member[]> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('[members] Missing BLOB_READ_WRITE_TOKEN - returning empty members. Set this env var in Cloudflare/Vercel dashboard.')
+    return []
+  }
   try {
     const result = await get('members.json', { access: 'private' })
     if (!result) return []
@@ -66,7 +70,7 @@ export async function getMembers(): Promise<Member[]> {
     return items
   } catch (error) {
     console.error('[members] Failed to fetch members:', error)
-    return []
+    throw error
   }
 }
 

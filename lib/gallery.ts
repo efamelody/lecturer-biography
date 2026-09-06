@@ -37,6 +37,10 @@ function parseGalleryItem(item: Record<string, unknown>): GalleryItem | null {
 }
 
 export async function getGallery(): Promise<GalleryItem[]> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('[gallery] Missing BLOB_READ_WRITE_TOKEN - returning empty gallery. Set this env var in Cloudflare/Vercel dashboard.')
+    return []
+  }
   try {
     const result = await get('gallery.json', { access: 'private' })
 
@@ -64,7 +68,7 @@ export async function getGallery(): Promise<GalleryItem[]> {
     return items
   } catch (error) {
     console.error('Failed to fetch gallery:', error)
-    return []
+    throw error
   }
 }
 

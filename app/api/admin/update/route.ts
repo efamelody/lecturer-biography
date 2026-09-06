@@ -12,12 +12,22 @@ export async function GET(request: NextRequest) {
   if (!isAuthorized(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const { getGallery } = await import('@/lib/gallery')
-  const items = await getGallery()
-  return NextResponse.json({ items })
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN - set in Cloudflare/Vercel env' }, { status: 500 })
+  }
+  try {
+    const { getGallery } = await import('@/lib/gallery')
+    const items = await getGallery()
+    return NextResponse.json({ items })
+  } catch (e) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : 'Failed to load gallery' }, { status: 500 })
+  }
 }
 
 export async function POST(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN - set in Cloudflare/Vercel env' }, { status: 500 })
+  }
   try {
     const body = await request.json()
     const { password, title, type, outlet, eventDate, externalUrl, description, imageUrl } = body
@@ -58,6 +68,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN' }, { status: 500 })
+  }
   try {
     const body = await request.json()
     const { password, _id, title, type, outlet, eventDate, externalUrl, description, imageUrl } = body
@@ -98,6 +111,9 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN' }, { status: 500 })
+  }
   try {
     if (!isAuthorized(request)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

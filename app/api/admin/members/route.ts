@@ -15,11 +15,21 @@ export async function GET(request: NextRequest) {
   if (!isAuthorized(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const members = await getMembers()
-  return NextResponse.json({ members })
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN - set in Cloudflare/Vercel env' }, { status: 500 })
+  }
+  try {
+    const members = await getMembers()
+    return NextResponse.json({ members })
+  } catch (e) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : 'Failed to load members' }, { status: 500 })
+  }
 }
 
 export async function POST(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN - set in Cloudflare/Vercel env' }, { status: 500 })
+  }
   try {
     const body = await request.json()
     const { password, name, role, status, researchTopic, biography, order, imageUrl } = body
@@ -60,6 +70,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN' }, { status: 500 })
+  }
   try {
     const body = await request.json()
     const { password, _id, name, role, status, researchTopic, biography, order, imageUrl } = body
@@ -96,6 +109,9 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return NextResponse.json({ error: 'Missing BLOB_READ_WRITE_TOKEN' }, { status: 500 })
+  }
   try {
     if (!isAuthorized(request)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
