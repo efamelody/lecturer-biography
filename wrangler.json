@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "lecturer-biography", 
-  "main": ".vercel/output/static-worker.js",
+  "name": "lecturer-biography",
+  "main": ".vercel/output/static/_worker.js/index.js",
   "compatibility_date": "2024-11-01",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
