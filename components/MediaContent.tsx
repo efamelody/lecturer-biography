@@ -106,7 +106,6 @@ export default function MediaContent({ items }: { items: GalleryItem[] }) {
     return (
       <div className="py-16 text-center border border-dashed border-[#e2e8f0] rounded-xl bg-[#f8fafc]">
         <p className="text-sm text-[#64748b]">No media entries yet.</p>
-        <p className="text-xs text-[#94a3b8] mt-1">Add entries from /admin → Media tab.</p>
       </div>
     )
   }
