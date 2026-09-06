@@ -1,4 +1,5 @@
 import 'server-only'
+import { unstable_noStore as noStore } from 'next/cache'
 import { put, get, del } from '@vercel/blob'
 import { privateBlobUrlToProxy, extractBlobPathname } from '@/lib/blob'
 
@@ -37,6 +38,7 @@ function parseGalleryItem(item: Record<string, unknown>): GalleryItem | null {
 }
 
 export async function getGallery(): Promise<GalleryItem[]> {
+  noStore()
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     console.error('[gallery] Missing BLOB_READ_WRITE_TOKEN - returning empty gallery. Set this env var in Cloudflare/Vercel dashboard.')
     return []

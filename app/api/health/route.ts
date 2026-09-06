@@ -34,5 +34,5 @@ export async function GET() {
     }
   }
 
-  return NextResponse.json({ ...checks, blob: blobCheck, timestamp: new Date().toISOString() })
+  return NextResponse.json({ ...checks, blob: blobCheck, timestamp: new Date().toISOString() }, { headers: { 'Cache-Control': 'no-store' } })
 }

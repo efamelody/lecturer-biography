@@ -1,4 +1,5 @@
 import 'server-only'
+import { unstable_noStore as noStore } from 'next/cache'
 import { put, get, del } from '@vercel/blob'
 import { privateBlobUrlToProxy, extractBlobPathname, isValidOrder } from '@/lib/blob'
 
@@ -37,6 +38,7 @@ function parseMember(item: Record<string, unknown>): Member | null {
 }
 
 export async function getMembers(): Promise<Member[]> {
+  noStore()
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     console.error('[members] Missing BLOB_READ_WRITE_TOKEN - returning empty members. Set this env var in Cloudflare/Vercel dashboard.')
     return []
