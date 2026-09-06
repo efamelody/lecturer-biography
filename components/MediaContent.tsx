@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
-import { Newspaper, Mic, Video, Award, ExternalLink, Calendar, X } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Newspaper, Mic, Video, Award, ExternalLink, Calendar, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 const getCategoryIcon = (categoryType: string) => {
@@ -36,9 +36,16 @@ type GalleryItem = {
 function Lightbox({ items, index, onClose }: { items: GalleryItem[]; index: number; onClose: () => void }) {
   const [current, setCurrent] = useState(index);
 
+  useEffect(() => { setCurrent(index) }, [index])
+
+  const goPrev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : items.length - 1)), [items.length])
+  const goNext = useCallback(() => setCurrent((c) => (c < items.length - 1 ? c + 1 : 0)), [items.length])
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
     };
     document.addEventListener('keydown', handler);
     document.body.style.overflow = 'hidden';
@@ -46,21 +53,34 @@ function Lightbox({ items, index, onClose }: { items: GalleryItem[]; index: numb
       document.removeEventListener('keydown', handler);
       document.body.style.overflow = '';
     };
-  }, [onClose]);
+  }, [onClose, goPrev, goNext]);
 
   const item = items[current];
   if (!item) return null;
+  if (!item.imageUrl) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
+        <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white z-10" aria-label="Close"><X size={28} /></button>
+        <div className="text-white text-center" onClick={(e) => e.stopPropagation()}><p>No image available</p></div>
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
-      <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white z-10">
+      <button onClick={onClose} className="absolute top-4 right-4 text-white/80 hover:text-white z-10" aria-label="Close">
         <X size={28} />
       </button>
-
+      {items.length > 1 && (
+        <>
+          <button onClick={(e) => { e.stopPropagation(); goPrev() }} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full" aria-label="Previous"><ChevronLeft size={24} /></button>
+          <button onClick={(e) => { e.stopPropagation(); goNext() }} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full" aria-label="Next"><ChevronRight size={24} /></button>
+        </>
+      )}
       <div className="relative max-w-5xl max-h-[90vh] w-full h-full flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
         <div className="relative w-full h-full max-h-[80vh]">
           <Image
-            src={item.imageUrl || ''}
+            src={item.imageUrl}
             alt={item.title}
             fill
             className="object-contain"
@@ -70,7 +90,7 @@ function Lightbox({ items, index, onClose }: { items: GalleryItem[]; index: numb
         <div className="text-white text-center mt-4 max-w-2xl">
           <p className="text-lg font-medium">{item.title}</p>
           {item.description && <p className="text-sm text-white/70 mt-1">{item.description}</p>}
-          <p className="text-xs text-white/50 mt-1">{item.outlet} &middot; {new Date(item.eventDate).getFullYear()}</p>
+          <p className="text-xs text-white/50 mt-1">{item.outlet} &middot; {new Date(item.eventDate).getFullYear()} {items.length > 1 && `· ${current + 1}/${items.length}`}</p>
         </div>
       </div>
     </div>
@@ -105,7 +125,7 @@ export default function MediaContent({ items }: { items: GalleryItem[] }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredItems.map((item) => {
-                  const globalIndex = items.indexOf(item);
+                  const globalIndex = items.findIndex((g) => g._id === item._id);
                   const CardWrapper = item.externalUrl ? 'a' : 'div';
                   const wrapperProps = item.externalUrl
                     ? { href: item.externalUrl, target: '_blank', rel: 'noopener noreferrer' }
@@ -120,12 +140,16 @@ export default function MediaContent({ items }: { items: GalleryItem[] }) {
                       }`}
                     >
                       <button
-                        className="relative w-full h-48 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden block text-left cursor-pointer"
+                        type="button"
+                        disabled={!item.imageUrl}
+                        className="relative w-full h-48 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden block text-left cursor-pointer disabled:cursor-default"
                         onClick={(e) => {
+                          if (!item.imageUrl) return;
                           e.stopPropagation();
                           e.preventDefault();
                           setLightboxIndex(globalIndex);
                         }}
+                        aria-label={item.imageUrl ? `View ${item.title}` : undefined}
                       >
                         {item.imageUrl ? (
                           <Image

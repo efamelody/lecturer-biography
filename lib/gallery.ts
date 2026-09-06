@@ -1,5 +1,6 @@
 import 'server-only'
 import { put, get, del } from '@vercel/blob'
+import { privateBlobUrlToProxy, extractBlobPathname } from '@/lib/blob'
 
 export interface GalleryItem {
   _id: string
@@ -64,29 +65,6 @@ export async function getGallery(): Promise<GalleryItem[]> {
   } catch (error) {
     console.error('Failed to fetch gallery:', error)
     return []
-  }
-}
-
-function privateBlobUrlToProxy(url: string): string {
-  try {
-    const parsed = new URL(url)
-    const pathname = parsed.pathname.replace(/^\//, '')
-    return `/api/blob?pathname=${encodeURIComponent(pathname)}`
-  } catch {
-    return url
-  }
-}
-
-function extractBlobPathname(imageUrl: string): string | undefined {
-  try {
-    if (imageUrl.startsWith('/api/blob?pathname=')) {
-      const qs = imageUrl.split('?')[1]
-      return new URLSearchParams(qs).get('pathname') ?? undefined
-    }
-    const parsed = new URL(imageUrl)
-    return parsed.pathname.replace(/^\//, '')
-  } catch {
-    return undefined
   }
 }
 
@@ -158,7 +136,7 @@ export async function deleteGalleryItem(id: string): Promise<{ success: true }> 
 }
 
 export async function saveGalleryItem(
-  item: Omit<GalleryItem, '_id'> & { password: string }
+  item: Omit<GalleryItem, '_id'>
 ): Promise<{ success: true; id: string }> {
   const existing = await getGallery()
 

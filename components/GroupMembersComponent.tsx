@@ -21,6 +21,9 @@ export default async function GroupMembers() {
             <p className="text-[#64748b]">Current researchers and students in the atmospheric chemistry research group</p>
           </div>
 
+          {currentMembers.length === 0 ? (
+            <p className="text-sm text-[#94a3b8] text-center py-8 mb-20 border border-dashed border-[#e2e8f0] rounded-lg">No current members yet.</p>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
             {currentMembers.map((member) => (
               <div key={member._id} className="bg-white border border-[#e2e8f0] rounded-lg p-6 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200 flex flex-col justify-between">
@@ -62,6 +65,7 @@ export default async function GroupMembers() {
               </div>
             ))}
           </div>
+          )}
 
           <div className="pt-16 border-t border-[#e2e8f0]">
             <div className="max-w-3xl mb-12">
@@ -69,6 +73,9 @@ export default async function GroupMembers() {
               <p className="text-[#64748b]">Former postgraduate students who completed their research under his supervision</p>
             </div>
 
+            {alumni.length === 0 ? (
+              <p className="text-sm text-[#94a3b8] text-center py-6">No alumni records yet.</p>
+            ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {alumni.map((alum) => (
                 <div key={alum._id} className="bg-[#f8fafc] border border-[#e2e8f0] rounded-lg p-6 hover:border-[#94a3b8] hover:shadow-sm transition-all duration-200">
@@ -95,6 +102,7 @@ export default async function GroupMembers() {
                 </div>
               ))}
             </div>
+            )}
           </div>
 
         </div>

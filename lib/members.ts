@@ -1,5 +1,6 @@
 import 'server-only'
 import { put, get, del } from '@vercel/blob'
+import { privateBlobUrlToProxy, extractBlobPathname, isValidOrder } from '@/lib/blob'
 
 export interface Member {
   _id: string
@@ -10,29 +11,6 @@ export interface Member {
   biography?: string
   order?: number
   imageUrl?: string
-}
-
-function privateBlobUrlToProxy(url: string): string {
-  try {
-    const parsed = new URL(url)
-    const pathname = parsed.pathname.replace(/^\//, '')
-    return `/api/blob?pathname=${encodeURIComponent(pathname)}`
-  } catch {
-    return url
-  }
-}
-
-function extractBlobPathname(imageUrl: string): string | undefined {
-  try {
-    if (imageUrl.startsWith('/api/blob?pathname=')) {
-      const qs = imageUrl.split('?')[1]
-      return new URLSearchParams(qs).get('pathname') ?? undefined
-    }
-    const parsed = new URL(imageUrl)
-    return parsed.pathname.replace(/^\//, '')
-  } catch {
-    return undefined
-  }
 }
 
 function parseMember(item: Record<string, unknown>): Member | null {
@@ -53,7 +31,7 @@ function parseMember(item: Record<string, unknown>): Member | null {
     status,
     researchTopic: typeof item.researchTopic === 'string' ? item.researchTopic : undefined,
     biography: typeof item.biography === 'string' ? item.biography : undefined,
-    order: typeof item.order === 'number' ? item.order : undefined,
+    order: isValidOrder(item.order) ? item.order : undefined,
     imageUrl: typeof item.imageUrl === 'string' ? privateBlobUrlToProxy(item.imageUrl) : undefined,
   }
 }
@@ -104,7 +82,7 @@ export async function saveMember(
     status: member.status,
     researchTopic: member.researchTopic || undefined,
     biography: member.biography || undefined,
-    order: typeof member.order === 'number' ? member.order : undefined,
+    order: isValidOrder(member.order) ? member.order : undefined,
     imageUrl: member.imageUrl ? privateBlobUrlToProxy(member.imageUrl) : undefined,
   }
 
@@ -135,7 +113,7 @@ export async function updateMember(
           status: data.status,
           researchTopic: data.researchTopic || undefined,
           biography: data.biography || undefined,
-          order: typeof data.order === 'number' ? data.order : undefined,
+          order: isValidOrder(data.order) ? data.order : undefined,
           imageUrl: data.imageUrl ? privateBlobUrlToProxy(data.imageUrl) : m.imageUrl,
         }
       : m,

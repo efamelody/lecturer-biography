@@ -1,9 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { getMembers, saveMember, updateMember, deleteMember } from '@/lib/members'
+import { isAuthorized } from '@/lib/auth'
+
+function parseOrder(value: unknown): number | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return value
+  if (typeof value === 'string' && value.trim() !== '') {
+    const n = Number(value)
+    if (Number.isFinite(n)) return n
+  }
+  return undefined
+}
 
 export async function GET(request: NextRequest) {
-  const password = request.nextUrl.searchParams.get('password')
-  if (!password || password !== process.env.ADMIN_PASSWORD) {
+  if (!isAuthorized(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const members = await getMembers()
@@ -15,25 +24,31 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { password, name, role, status, researchTopic, biography, order, imageUrl } = body
 
-    if (!password || password !== process.env.ADMIN_PASSWORD) {
+    if (!isAuthorized(request, password)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    if (!name || !role || !status) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    const trimmedName = typeof name === 'string' ? name.trim() : ''
+    const trimmedRole = typeof role === 'string' ? role.trim() : ''
+    if (!trimmedName || !trimmedRole || !status) {
+      return NextResponse.json({ error: 'Name, role and status are required' }, { status: 400 })
     }
 
     if (status !== 'member' && status !== 'alumni') {
       return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
     }
 
+    if (typeof imageUrl === 'string' && imageUrl.length > 0) {
+      try { new URL(imageUrl) } catch { /* allow proxy path */ }
+    }
+
     const result = await saveMember({
-      name,
-      role,
+      name: trimmedName,
+      role: trimmedRole,
       status,
-      researchTopic: typeof researchTopic === 'string' && researchTopic.length > 0 ? researchTopic : undefined,
-      biography: typeof biography === 'string' && biography.length > 0 ? biography : undefined,
-      order: typeof order === 'number' ? order : undefined,
+      researchTopic: typeof researchTopic === 'string' && researchTopic.trim().length > 0 ? researchTopic.trim() : undefined,
+      biography: typeof biography === 'string' && biography.trim().length > 0 ? biography.trim() : undefined,
+      order: parseOrder(order),
       imageUrl: typeof imageUrl === 'string' && imageUrl.length > 0 ? imageUrl : undefined,
     })
 
@@ -49,12 +64,14 @@ export async function PUT(request: NextRequest) {
     const body = await request.json()
     const { password, _id, name, role, status, researchTopic, biography, order, imageUrl } = body
 
-    if (!password || password !== process.env.ADMIN_PASSWORD) {
+    if (!isAuthorized(request, password)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    if (!_id || !name || !role || !status) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    const trimmedName = typeof name === 'string' ? name.trim() : ''
+    const trimmedRole = typeof role === 'string' ? role.trim() : ''
+    if (!_id || !trimmedName || !trimmedRole || !status) {
+      return NextResponse.json({ error: 'Name, role and status are required' }, { status: 400 })
     }
 
     if (status !== 'member' && status !== 'alumni') {
@@ -62,12 +79,12 @@ export async function PUT(request: NextRequest) {
     }
 
     await updateMember(_id, {
-      name,
-      role,
+      name: trimmedName,
+      role: trimmedRole,
       status,
-      researchTopic: typeof researchTopic === 'string' && researchTopic.length > 0 ? researchTopic : undefined,
-      biography: typeof biography === 'string' && biography.length > 0 ? biography : undefined,
-      order: typeof order === 'number' ? order : undefined,
+      researchTopic: typeof researchTopic === 'string' && researchTopic.trim().length > 0 ? researchTopic.trim() : undefined,
+      biography: typeof biography === 'string' && biography.trim().length > 0 ? biography.trim() : undefined,
+      order: parseOrder(order),
       imageUrl: typeof imageUrl === 'string' && imageUrl.length > 0 ? imageUrl : undefined,
     })
 
@@ -80,12 +97,10 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    const password = request.nextUrl.searchParams.get('password')
-    const id = request.nextUrl.searchParams.get('id')
-
-    if (!password || password !== process.env.ADMIN_PASSWORD) {
+    if (!isAuthorized(request)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const id = request.nextUrl.searchParams.get('id')
 
     if (!id) {
       return NextResponse.json({ error: 'Missing member id' }, { status: 400 })
