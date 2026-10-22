@@ -9,7 +9,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/group-members', label: 'Group' },
+    { href: '/members', label: 'Research Team' },
     { href: '/publications', label: 'Publications' },
     { href: '/media', label: 'Media' },
     { href: '/contact', label: 'Contact' },

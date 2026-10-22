@@ -1,0 +1,237 @@
+{
+  "intro": {
+    "eyebrow": "UKM Atmosphere",
+    "heading": "Meet Our Research Team",
+    "description": "Our multidisciplinary research team investigates atmospheric chemistry, air quality, climate processes, and environmental sustainability. Through collaborative research and scientific innovation, we seek to improve understanding of atmospheric processes and their impacts on the environment and society."
+
+  },
+  "staff": [
+    {
+      "id": "staff-liew-ju-neng",
+      "name": "Prof. Madya Dr. Liew Ju Neng",
+      "role": "Associate Professor, Department of Earth Sciences and Environment",
+      "description": "Focuses on climate and ocean modelling, climate-change projections, regional downscaling, and numerical weather prediction.",
+      "interests": [
+        "Climate Modelling",
+        "Ocean Modelling",
+        "Climate Change",
+        "Numerical Weather Prediction"
+      ],
+      "image": "/team/liew-ju-neng.jpg",
+      "scholarUrl": "https://scholar.google.com/citations?user=x-Vy8owAAAAJ&hl=en"
+    },
+    {
+      "id": "staff-mohd-shahrul-mohd-nadzir",
+      "name": "Prof. Dr. Mohd Shahrul Mohd Nadzir",
+      "role": "Associate Professor, Department of Earth Sciences and Environment",
+      "description": "Studies atmospheric chemistry and the composition of atmospheric aerosols, including halocarbons and their environmental behaviour.",
+      "interests": [
+        "Atmospheric Chemistry",
+        "Atmospheric Aerosols",
+        "Halocarbons"
+      ],
+      "image": "/team/mohd-shahrul-mohd-nadzir.jpg",
+      "scholarUrl": "https://scholar.google.com.my/citations?user=Ehq1TcIAAAAJ&hl=en"
+    },
+    {
+      "id": "staff-murnira-othman",
+      "name": "Ts. Dr. Murnira Othman",
+      "role": "Research Fellow, Institute of Environment and Development (LESTARI)",
+      "description": "Researches indoor air pollution, atmospheric composition, biomass burning, and sensor-based air-quality monitoring, including environmental and human-health implications.",
+      "interests": [
+        "Indoor Air Quality",
+        "Atmospheric Composition",
+        "Biomass Burning",
+        "Environmental Assessment",
+        "Air-Quality Sensors"
+      ],
+      "image": "/team/murnira-othman.jpg",
+      "scholarUrl": "https://scholar.google.com/citations?user=HSGijXgAAAAJ&hl=en&oi=ao"
+    },
+    {
+      "id": "staff-norfazrin-mohd-hanif",
+      "name": "Dr. Norfazrin Mohd Hanif",
+      "role": "Senior Lecturer, Department of Earth Sciences and Environment",
+      "description": "Studies atmospheric chemistry, trace-gas emissions and transport, regional air quality, and atmospheric pollutants.",
+      "interests": [
+        "Atmospheric Chemistry",
+        "Trace Gases",
+        "Air Quality",
+        "Atmospheric Microplastics"
+      ],
+      "image": "/team/norfazrin-mohd-hanif.jpg",
+      "scholarUrl": "https://scholar.google.com/citations?user=zIHcB6IAAAAJ&hl=en&oi=ao"
+    },
+    {
+      "id": "staff-ooi-chel-gee",
+      "name": "Dr. Ooi Chel Gee (Maggie)",
+      "role": "Research Fellow, Institute of Climate Change",
+      "description": "Focuses on chemical weather prediction, atmospheric modelling, biomass-burning emissions, and the transport of air pollutants.",
+      "interests": [
+        "Atmospheric Modelling",
+        "WRF-CMAQ",
+        "Biomass Burning",
+        "Urban Climate"
+      ],
+      "image": "/team/ooi-chel-gee.jpg",
+      "scholarUrl": "https://scholar.google.com/citations?user=otAnZ3YAAAAJ&hl=en&oi=ao"
+    },
+    {
+      "id": "staff-haris-hafizal-abd-hamid",
+      "name": "Dr. Haris Hafizal Abd Hamid",
+      "role": "Science Officer, Faculty of Science and Technology",
+      "description": "Researches volatile and semi-volatile organic compounds in ambient air, contributing to the understanding and assessment of atmospheric pollution.",
+      "interests": [
+        "Volatile Organic Compounds (VOCs)",
+        "Semi-Volatile Organic Compounds (SVOCs)",
+        "Air Pollution"
+      ],
+      "image": "/team/haris-hafizal-abd-hamid.jpg"
+    },
+    {
+      "id": "staff-muhammad-ikram-abdul-wahab",
+      "name": "Dr. Muhammad Ikram Abdul Wahab",
+      "role": "Senior Lecturer",
+      "description": "Works in toxicology and environmental health, with a focus on understanding the effects of chemical substances on living organisms.",
+      "interests": [
+        "Toxicology",
+        "Environmental Health"
+      ],
+      "image": "/team/muhammad-ikram-abdul-wahab.jpg"
+    },
+    {
+      "id": "staff-ahmad-fariz-mohamed",
+      "name": "Prof. Dr. Ahmad Fariz Mohamed",
+      "role": "Professor",
+      "description": "Focuses on environmental sustainability, waste management, and urban liveability, connecting environmental research with sustainable urban development.",
+      "interests": [
+        "Environmental Sustainability",
+        "Waste Management",
+        "Urban Liveability"
+      ],
+      "image": "/team/ahmad-fariz-mohamed.jpg"
+    }
+  ],
+  "postgraduates": [
+    {
+      "id": "pg-nur-nadrah-mohd-naim",
+      "name": "Nur Nadrah Mohd Naim",
+      "researchTitle": "Fine Particulate Matter in School Environment: Characterization, Source Apportionment and Health Risk Assessment",
+      "supervisor": "Co-supervisor: Dr Md Firoz Khan",
+      "description": "Investigates fine particulate matter in school environments, focusing on chemical characterisation, source apportionment and health-risk assessment.",
+      "interests": []
+    },
+    {
+      "id": "pg-muhsin-otuyol",
+      "name": "Muhsin Otuyol",
+      "researchTitle": "Study of the Indoor Air Quality (IAQ), Thermal Comfort and Energy Efficiency in Vehicle",
+      "supervisor": "Main supervisor: Assoc. Prof. Dr. Mohd Shahrul Mohd Nadzir",
+      "description": "Examines in-vehicle indoor air quality, thermal comfort and energy use to support healthier and more efficient vehicle environments.",
+      "interests": []
+    },
+    {
+      "id": "pg-najihah-nazima-ghani",
+      "name": "Najihah Nazima Ghani",
+      "researchTitle": "Indoor air quality in car and its effect to human health",
+      "supervisor": "Co-supervisor: Dr Murnira Othman",
+      "description": "Assesses in-vehicle air quality and its potential implications for human health.",
+      "interests": []
+    },
+    {
+      "id": "pg-hartini-mahidin",
+      "name": "Hartini Mahidin",
+      "researchTitle": "The Impact of Land-Use Changes on Biogenic Isoprene Emissions and Surface Ozone Concentration in Malaysian Borneo",
+      "supervisor": "Co-supervisors: Assoc. Prof. Dr. Liew Ju Neng and Dr. Ooi Chel Gee (Maggie)",
+      "description": "Investigates how land-use change influences biogenic isoprene emissions and surface ozone formation in Malaysian Borneo.",
+      "interests": []
+    },
+    {
+      "id": "pg-sharifah-mazrah-syed-mohamed-zain",
+      "name": "Sharifah Mazrah Syed Mohamed Zain",
+      "researchTitle": "Atmospheric Dioxins and Furans in Kuala Lumpur: Levels, Distribution in PM2.5, Source Apportionment and Health Risks",
+      "supervisor": "Co-supervisors: Dr Md Firoz Khan and Dr. Norfazrin Mohd Hanif",
+      "description": "Studies atmospheric dioxins and furans in Kuala Lumpur, including their distribution in PM2.5, sources and associated health risks.",
+      "interests": []
+    },
+    {
+      "id": "pg-nor-syamimi-sufiera-limi-hawari",
+      "name": "Nor Syamimi Sufiera Limi Hawari",
+      "researchTitle": "Variations of VOC concentrations in the different backgrounds in Peninsular Malaysia",
+      "supervisor": "Co-supervisors: Dr. Murnira Othman and Dr. Norfazrin Mohd Hanif",
+      "description": "Examines how volatile organic compound concentrations vary across different environmental backgrounds in Peninsular Malaysia.",
+      "interests": []
+    }
+  ],
+  "alumni": [
+    {
+      "id": "alumni-azliyana-azhari",
+      "name": "Dr. Azliyana Azhari",
+      "previousRole": "Former doctoral researcher",
+      "previousDegree": "PhD (UKM)",
+      "researchTopic": "Vehicular and industrial emissions; sustainable cities",
+      "interests": []
+    },
+    {
+      "id": "alumni-ili-hamizah-mustaffa",
+      "name": "Dr. Ili Hamizah Mustaffa",
+      "previousRole": "Former doctoral researcher",
+      "previousDegree": "PhD (Carl von Ossietzky Universität Oldenburg)",
+      "researchTopic": "Sea-surface microlayer",
+      "interests": []
+    },
+    {
+      "id": "alumni-anis-asma-ahmad-mokhtar",
+      "name": "Anis Asma Ahmad Mokhtar",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Effect of meteorological factors towards long-term air pollutants in Malaysia",
+      "interests": []
+    },
+    {
+      "id": "alumni-nor-hafizah-baharudin",
+      "name": "Nor Hafizah Baharudin",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Air quality modelling and forecasting using Advanced Dispersion Modeling System (ADMS)",
+      "interests": []
+    },
+    {
+      "id": "alumni-anas-ahmad-jamhari",
+      "name": "Anas Ahmad Jamhari",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Toxicity of PAHs in nanoparticles",
+      "interests": []
+    },
+    {
+      "id": "alumni-ahmad-norazhar-mohd-yatim",
+      "name": "Ahmad Norazhar Mohd Yatim",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Investigation of heat wave events in Malaysia",
+      "interests": []
+    },
+    {
+      "id": "alumni-hanashriah-hassan",
+      "name": "Hanashriah Hassan",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Variations of PM2.5 compositions influenced by different monsoon seasons",
+      "interests": []
+    },
+    {
+      "id": "alumni-nor-diana-abdul-halim",
+      "name": "Nor Diana Abdul Halim",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Air pollution and land-use change in the Malaysian Peninsula",
+      "interests": []
+    },
+    {
+      "id": "alumni-nurzawani-md-sofwan",
+      "name": "Nurzawani Md Sofwan",
+      "previousRole": "Former postgraduate researcher",
+      "researchTopic": "Impacts of vehicle emissions on air quality and human health in Kuala Lumpur",
+      "interests": []
+    }
+  ],
+  "contact": {
+    "heading": "Contact and Collaboration",
+    "description": "The group welcomes collaboration with researchers, public agencies and institutions working on atmospheric science, air quality and climate. For research enquiries, postgraduate supervision or partnership opportunities, please contact the group leader.",
+    "note": "The group is based within the Faculty of Science and Technology at Universiti Kebangsaan Malaysia."
+  }
+}
