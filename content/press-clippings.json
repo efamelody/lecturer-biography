@@ -1,0 +1,83 @@
+[
+  {
+    "id": "hm-ipu-rujukan-utama",
+    "image": "/news-image/hm-ipu-rujukan-utama-2026.jpg",
+    "alt": "Harian Metro cutting quoting Prof. Dr. Mohd Talib Latif on why Malaysia's official Air Pollutant Index should be the primary reference instead of the IQAir AQI ranking.",
+    "kind": "clipping",
+    "outlet": "Harian Metro",
+    "headline": "IPU Malaysia wajar jadi rujukan utama",
+    "description": "Membincangkan peranan bacaan rasmi Indeks Pencemar Udara Malaysia sebagai rujukan utama untuk keputusan kesihatan awam setempat.",
+    "publishedOn": "2026-10-09",
+    "url": "https://www.hmetro.com.my/amp/utama/2026/10/1420659/ipu-malaysia-wajar-jadi-rujukan-utama",
+    "relatedMediaId": "hmetro-ipu-rujukan-utama"
+  },
+  {
+    "id": "bh-rencana-cegah-jerebu",
+    "image": "/news-image/bh-rencana-cegah-jerebu-2020.jpg",
+    "alt": "Berita Harian column by Prof. Dr. Mohd Talib Latif on preventing haze episodes and reducing infection risks during the COVID-19 pandemic, 23 June 2020.",
+    "kind": "clipping",
+    "outlet": "Berita Harian",
+    "headline": "Cegah fenomena jerebu, elak risiko penularan COVID-19",
+    "description": "Rencana ini membincangkan langkah mencegah episod jerebu di Asia Tenggara, termasuk kebakaran tanah gambut, pemantauan titik panas dan kerjasama ASEAN, serta risiko kesihatan berganda ketika pandemik COVID-19.",
+    "publishedOn": "2020-06-23",
+    "relatedMediaId": "beritaharian-cegah-jerebu",
+    "note": "Print cutting held in the archive; the original online link has not been located."
+  },
+  {
+    "id": "bh-had-aktiviti-luar",
+    "image": "/news-image/bh-had-aktiviti-luar-jerebu-2020.jpg",
+    "alt": "Berita Harian 'Dari Kaca Mata' column by Prof. Dr. Mohd Talib Latif explaining haze, PM2.5 and the health benefits of limiting outdoor activity, 2020.",
+    "kind": "clipping",
+    "outlet": "Berita Harian",
+    "headline": "Had aktiviti luar kurangkan ancaman jerebu",
+    "description": "Ruangan ini menjelaskan pembentukan jerebu daripada zarah halus PM2.5, kesannya terhadap kesihatan dan jarak penglihatan, serta saranan mengurangkan aktiviti luar dan pendedahan kepada pencemaran.",
+    "publishedYear": "2020",
+    "relatedMediaId": "had-aktiviti-luar-jerebu-2020",
+    "note": "Masthead and exact date are not visible on the cutting; outlet recorded as Berita Harian pending confirmation."
+  },
+  {
+    "id": "page-hutan-simpanan-ozon",
+    "image": "/news-image/page-hutan-simpanan-ozon.jpg",
+    "alt": "Full newspaper page with an article on forest-reserve protection and a report quoting Prof. Dr. Mohd Talib Latif on urban forests, ozone and air quality.",
+    "kind": "page",
+    "headline": "Hutan simpan, kesihatan bandar dan kualiti udara",
+    "description": "Halaman akhbar penuh yang membincangkan perlindungan hutan simpan dan peranan pokok bandar dalam meningkatkan kualiti udara, termasuk ulasan Prof. Latif mengenai ozon dan kesihatan awam.",
+    "note": "Full-page scan covering forest-reserve protection and urban air quality. Masthead and date are not visible."
+  },
+  {
+    "id": "page-jerebu-antarabangsa",
+    "image": "/news-image/page-jerebu-antarabangsa.jpg",
+    "alt": "Full newspaper page with several articles on transboundary haze, legal approaches and air-quality standards, including comments from Prof. Dr. Mohd Talib Latif.",
+    "kind": "page",
+    "headline": "Jerebu rentas sempadan dan piawaian kualiti udara",
+    "description": "Halaman akhbar penuh mengenai jerebu rentas sempadan, tindak balas perundangan dan piawaian kualiti udara serantau, dengan ulasan Prof. Latif.",
+    "note": "Full-page scan on regional haze and air-quality standards. Masthead and date are not visible."
+  },
+  {
+    "id": "portrait-prof-latif",
+    "image": "/news-image/portrait-prof-latif.jpg",
+    "alt": "Prof. Dr Mohd Talib in a RTM Broadcast appearance.",
+    "kind": "clipping",
+    "headline": "Prof. Dr. Mohd Talib Latif on Live TV",
+    "description": "Prof. Dr Mohd Talib in a RTM Broadcast appearance",
+    "note": "Press photograph held in the archive."
+  },
+  {
+    "id": "waspada-gelombang-kedua-2013",
+    "image": "/news-image/berita7.JPG",
+    "alt": "Newspaper clipping from Berita Harian titled 'Waspada gelombang kedua' featuring an interview with Dr. Mohd Talib Latif and Che Gayah Ismail regarding cloud seeding and regional haze.",
+    "kind": "clipping",
+    "headline": "Waspada gelombang kedua",
+    "description": "Artikel akhbar Berita Harian (30 Jun 2013) mengenai ancaman gelombang kedua jerebu rentas sempadan, cabaran pembenihan awan, dan kenyataan daripada Dr. Mohd Talib Latif serta Che Gayah Ismail.",
+    "note": "Published in Berita Harian on 30 June 2013 (Ahad), page Rencana 37."
+  },
+  {
+    "id": "bandar-beracun-ancam-penduduk",
+    "image": "/news-image/berita6.jpg",
+    "alt": "Newspaper clipping with main headlines 'Bandar beracun' ancam penduduk and Masalah udara KL kritikal menjelang 2020 featuring diagrams and expert commentary.",
+    "kind": "clipping",
+    "headline": "'Bandar beracun' ancam penduduk",
+    "description": "Laporan khas mengenai pencemaran udara daripada kenderaan bermotor di kawasan bandar seperti Shah Alam, Putrajaya, Nilai, dan Tanjung Malim, termasuk ulasan Prof. Madya Dr. Mohd. Talib Latif.",
+    "note": "Special report page with diagram 'Bagaimana ia berlaku...' and info box on causes of pollution."
+  }
+]

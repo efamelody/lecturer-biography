@@ -5,7 +5,12 @@ import { isAuthorized } from '@/lib/auth'
 const validTypes = ['news-interview', 'newspaper', 'conference', 'media-coverage'] as const
 
 function isValidUrl(value: string): boolean {
-  try { new URL(value); return true } catch { return false }
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  } catch {
+    return false
+  }
 }
 
 export async function GET(request: NextRequest) {

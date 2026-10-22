@@ -44,7 +44,7 @@ export async function getMembers(): Promise<Member[]> {
     return []
   }
   try {
-    const result = await get('members.json', { access: 'private' })
+    const result = await get('members.json', { access: 'private', useCache: false })
     if (!result) return []
 
     const text = await new Response(result.stream).text()

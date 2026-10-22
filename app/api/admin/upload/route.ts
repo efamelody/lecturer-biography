@@ -1,6 +1,6 @@
 import { put } from '@vercel/blob'
 import { type NextRequest, NextResponse } from 'next/server'
-import { isAuthorized, getRequestPassword } from '@/lib/auth'
+import { isAuthorized } from '@/lib/auth'
 
 const MAX_BYTES = 5 * 1024 * 1024
 
@@ -13,13 +13,10 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData()
     const formPassword = formData.get('password') as string | null
     const file = formData.get('file') as File | null
-    const headerPassword = getRequestPassword(request, null)
-    const password = formPassword || headerPassword
 
     if (!isAuthorized(request, formPassword)) {
       return NextResponse.json({ error: 'Unauthorized - check ADMIN_PASSWORD' }, { status: 401 })
     }
-    void password
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })

@@ -44,7 +44,7 @@ export async function getGallery(): Promise<GalleryItem[]> {
     return []
   }
   try {
-    const result = await get('gallery.json', { access: 'private' })
+    const result = await get('gallery.json', { access: 'private', useCache: false })
 
     if (!result) return []
 

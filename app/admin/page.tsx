@@ -65,11 +65,12 @@ function Select({ label, required, id, error, children, ...props }: { label: str
         id={id}
         {...props}
         aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
         className={`w-full px-4 py-2.5 bg-white border rounded-lg text-sm text-[#0f172a] focus:outline-none focus:ring-2 transition-colors ${error ? 'border-red-300 focus:ring-red-200' : 'border-[#e2e8f0] focus:ring-[#94a3b8]/30 focus:border-[#64748b]'}`}
       >
         {children}
       </select>
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      {error && <p id={`${id}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   )
 }
@@ -84,15 +85,25 @@ function TextArea({ label, required, id, error, ...props }: { label: string; req
         id={id}
         {...props}
         aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
         className={`w-full px-4 py-2.5 bg-white border rounded-lg text-sm text-[#0f172a] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 transition-colors resize-y ${error ? 'border-red-300 focus:ring-red-200' : 'border-[#e2e8f0] focus:ring-[#94a3b8]/30 focus:border-[#64748b]'}`}
       />
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      {error && <p id={`${id}-error`} className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   )
 }
 
 function authHeaders(password: string): HeadersInit {
   return { Authorization: `Bearer ${password}` }
+}
+
+function isHttpUrl(value: string): boolean {
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  } catch {
+    return false
+  }
 }
 
 export default function AdminPage() {
@@ -138,13 +149,19 @@ export default function AdminPage() {
   const memberFileRef = useRef<HTMLInputElement>(null)
 
   const handleUnlock = async () => {
-    if (!gatePassword) return
+    const candidate = gatePassword.trim()
+    if (!candidate) return
     setGateStatus('checking')
     setGateError('')
     try {
-      const res = await fetch('/api/admin/members', { headers: authHeaders(gatePassword) })
-      if (!res.ok) throw new Error('Incorrect password')
-      setPassword(gatePassword)
+      const res = await fetch('/api/admin/members', { headers: authHeaders(candidate) })
+      if (res.status === 401) throw new Error('Incorrect password')
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || `Server error (${res.status})`)
+      }
+      setPassword(candidate)
+      setGatePassword(candidate)
       setAuthenticated(true)
       setGateStatus('idle')
     } catch (err: unknown) {
@@ -176,8 +193,8 @@ export default function AdminPage() {
     if (!mediaEditingId && !file) errors.file = 'Photo is required'
     if (file && file.size > 5 * 1024 * 1024) errors.file = 'Image must be under 5MB'
     if (file && !file.type.startsWith('image/')) errors.file = 'Only images allowed'
-    if (externalUrl && externalUrl.trim()) {
-      try { new URL(externalUrl) } catch { errors.externalUrl = 'Must be a valid URL (https://...)' }
+    if (externalUrl && externalUrl.trim() && !isHttpUrl(externalUrl.trim())) {
+      errors.externalUrl = 'Enter a full URL starting with https://'
     }
     setMediaFieldErrors(errors)
     return Object.keys(errors).length === 0
@@ -234,10 +251,11 @@ export default function AdminPage() {
         const err = await saveRes.json().catch(() => ({}))
         throw new Error(err.error || 'Save failed')
       }
-      setStatus('success')
-      setMessage(isEditing ? 'Media entry updated!' : 'Media entry published successfully!')
+      const successMessage = isEditing ? 'Media entry updated!' : 'Media entry published successfully!'
       resetMediaForm()
       await loadMedia()
+      setStatus('success')
+      setMessage(successMessage)
     } catch (err: unknown) {
       setStatus('error')
       setMessage(err instanceof Error ? err.message : 'Something went wrong')
@@ -247,6 +265,8 @@ export default function AdminPage() {
   const loadMedia = async () => {
     if (!password) return
     setLoadingMedia(true)
+    setStatus('idle')
+    setMessage('')
     try {
       const res = await fetch('/api/admin/update', { headers: authHeaders(password) })
       if (!res.ok) {
@@ -256,7 +276,6 @@ export default function AdminPage() {
       const data = await res.json()
       setMediaItems(data.items)
       setMediaLoaded(true)
-      setStatus('idle'); setMessage('')
     } catch (err: unknown) {
       setStatus('error')
       setMessage(err instanceof Error ? err.message : 'Failed to load media')
@@ -318,6 +337,8 @@ export default function AdminPage() {
   const loadMembers = async () => {
     if (!password) return
     setLoadingMembers(true)
+    setMemberStatus('idle')
+    setMemberMsg('')
     try {
       const res = await fetch('/api/admin/members', { headers: authHeaders(password) })
       if (!res.ok) {
@@ -327,7 +348,6 @@ export default function AdminPage() {
       const data = await res.json()
       setMembers(data.members)
       setMembersLoaded(true)
-      setMemberStatus('idle'); setMemberMsg('')
     } catch (err: unknown) {
       setMemberStatus('error')
       setMemberMsg(err instanceof Error ? err.message : 'Failed to load members')
@@ -391,8 +411,11 @@ export default function AdminPage() {
         const err = await res.json().catch(() => ({}))
         throw new Error(err.error || 'Failed to save member')
       }
-      setMemberStatus('success'); setMemberMsg(isEditing ? 'Member updated successfully!' : 'Member added successfully!')
-      resetMemberForm(); await loadMembers()
+      const successMessage = isEditing ? 'Member updated successfully!' : 'Member added successfully!'
+      resetMemberForm()
+      await loadMembers()
+      setMemberStatus('success')
+      setMemberMsg(successMessage)
     } catch (err: unknown) {
       setMemberStatus('error'); setMemberMsg(err instanceof Error ? err.message : 'Failed to save member')
     }
@@ -428,7 +451,7 @@ export default function AdminPage() {
             <p className="text-sm text-[#64748b]">Enter the admin password to access the dashboard.</p>
           </div>
           {gateStatus === 'error' && (
-            <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            <div role="alert" className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
               <XCircle size={18} /><span className="text-sm font-medium">{gateError}</span>
             </div>
           )}
@@ -462,10 +485,10 @@ export default function AdminPage() {
         </div>
 
         <div className="flex gap-1 bg-[#f1f5f9] rounded-xl p-1 mb-8">
-          <button onClick={() => setTab('media')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${tab === 'media' ? 'bg-white text-[#0f172a] shadow-sm' : 'text-[#64748b] hover:text-[#0f172a]'}`}>
+          <button type="button" onClick={() => setTab('media')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${tab === 'media' ? 'bg-white text-[#0f172a] shadow-sm' : 'text-[#64748b] hover:text-[#0f172a]'}`}>
             <FileText size={16} /> Media
           </button>
-          <button onClick={() => setTab('members')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${tab === 'members' ? 'bg-white text-[#0f172a] shadow-sm' : 'text-[#64748b] hover:text-[#0f172a]'}`}>
+          <button type="button" onClick={() => setTab('members')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${tab === 'members' ? 'bg-white text-[#0f172a] shadow-sm' : 'text-[#64748b] hover:text-[#0f172a]'}`}>
             <Users size={16} /> Group Members
           </button>
         </div>
@@ -473,7 +496,7 @@ export default function AdminPage() {
         {tab === 'media' && (
           <div className="space-y-8">
             {status !== 'idle' && (
-              <div className={`flex items-center gap-2 px-4 py-3 rounded-lg ${status === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : status === 'error' ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-blue-50 border border-blue-200 text-blue-700'}`}>
+              <div role="status" aria-live="polite" className={`flex items-center gap-2 px-4 py-3 rounded-lg ${status === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : status === 'error' ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-blue-50 border border-blue-200 text-blue-700'}`}>
                 {status === 'success' ? <CheckCircle size={18} /> : status === 'error' ? <XCircle size={18} /> : <Loader2 size={18} className="animate-spin" />}
                 <span className="text-sm font-medium">{message}</span>
               </div>
@@ -574,7 +597,7 @@ export default function AdminPage() {
               </div>
 
               {memberStatus !== 'idle' && (
-                <div className={`flex items-center gap-2 px-4 py-3 rounded-lg ${memberStatus === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : memberStatus === 'error' ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-blue-50 border border-blue-200 text-blue-700'}`}>
+                <div role="status" aria-live="polite" className={`flex items-center gap-2 px-4 py-3 rounded-lg ${memberStatus === 'success' ? 'bg-emerald-50 border border-emerald-200 text-emerald-700' : memberStatus === 'error' ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-blue-50 border border-blue-200 text-blue-700'}`}>
                   {memberStatus === 'success' ? <CheckCircle size={18} /> : memberStatus === 'error' ? <XCircle size={18} /> : <Loader2 size={18} className="animate-spin" />}
                   <span className="text-sm font-medium">{memberMsg}</span>
                 </div>
