@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import MediaComponent from '@/components/MediaComponent'
 import EngagementSections from '@/components/media/EngagementSections'
-import FeaturedMedia from '@/components/media/FeaturedMedia'
 import MediaArchive from '@/components/media/MediaArchive'
 import MediaHero from '@/components/media/MediaHero'
 import PressClippings from '@/components/media/PressClippings'
@@ -53,7 +52,7 @@ export default function MediaPage() {
         reportCount={reports.length}
       />
 
-      <FeaturedMedia items={featured} />
+      {/* <FeaturedMedia items={featured} /> */}
 
       <section
         aria-labelledby="archive-heading"
