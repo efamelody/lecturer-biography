@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Info } from "lucide-react";
 import type { Publication, PublicationAuthor } from "@/lib/academic";
 import { formatCitationCount } from "@/lib/academic";
 
@@ -169,14 +169,31 @@ export default function PublicationsPageContent({
       <div className="flex-1 min-w-0">
         <div className="mb-6">
           <h2 className="text-2xl font-serif font-bold text-[#0f172a] tracking-tight">{header}</h2>
-          <p className="text-sm text-[#64748b] mt-1">
-            {activeTab === "most-cited"
-              ? "Highest impact works ranked by citation count"
-              : `${grouped[activeTab]?.length || 0} publications from ${activeTab}`}
-          </p>
-          <p className="text-xs text-[#94a3b8] mt-2">
-            Verified against Scopus and ORCID. Google Scholar may include additional works.
-          </p>
+          <div className="mt-1 flex items-center gap-2">
+            <p className="text-sm text-[#64748b]">
+              {activeTab === "most-cited"
+                ? "Highest impact works ranked by citation count"
+                : `${grouped[activeTab]?.length || 0} publications from ${activeTab}`}
+            </p>
+            <span className="relative group inline-flex items-center">
+              <span
+                tabIndex={0}
+                role="note"
+                aria-label="Verified against Scopus and ORCID"
+                aria-describedby="verification-note"
+                className="inline-flex cursor-help items-center justify-center rounded-full p-0.5 text-[#94a3b8] transition-colors hover:bg-[#f1f5f9] hover:text-[#64748b] focus:outline-none focus-visible:text-[#0f172a]"
+              >
+                <Info size={14} aria-hidden="true" />
+              </span>
+              <div
+                id="verification-note"
+                role="tooltip"
+                className="pointer-events-none absolute left-0 top-6 z-20 w-max max-w-[260px] rounded-md bg-[#0f172a] px-3 py-2 text-xs leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+              >
+                Verified against Scopus and ORCID
+              </div>
+            </span>
+          </div>
         </div>
 
         <div className="space-y-0">
