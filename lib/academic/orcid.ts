@@ -53,13 +53,14 @@ export async function fetchOrcidWorks(): Promise<OrcidFetchResult> {
       }
     }
 
-    for (const g of groups) {
+    for (let index = 0; index < groups.length; index++) {
+      const g = groups[index];
       const ss = g['work-summary'] || [];
       if (ss.length === 0) continue;
 
       const w0 = ss[0];
       const title = w0.title?.title?.value || 'Untitled';
-      const year = parseInt(w0['publication-date']?.year?.value || '0', 10) || 2020;
+      const year = parseInt(w0['publication-date']?.year?.value || '0', 10);
       const type = mapOrcidType(w0.type || '');
       const journal = w0['journal-title']?.value || null;
 
@@ -73,7 +74,11 @@ export async function fetchOrcidWorks(): Promise<OrcidFetchResult> {
           const idVal = String(eid['external-id-value'] || '').trim();
 
           if (idType === 'doi' && !doi && idVal) {
-            doi = idVal.replace(/^https?:\/\/(dx\.)?doi\.org\//i, '').toLowerCase();
+            doi =
+              idVal
+                .replace(/^https?:\/\/(dx\.)?doi\.org\//i, '')
+                .toLowerCase()
+                .replace(/\/+$/, '') || null;
           }
           if (idType === 'url' && !url && idVal) {
             url = idVal;
@@ -82,7 +87,7 @@ export async function fetchOrcidWorks(): Promise<OrcidFetchResult> {
       }
 
       works.push({
-        putCode: String(g['work-summary']?.[0]?.['put-code'] || Math.random()),
+        putCode: String(g['work-summary']?.[0]?.['put-code'] || `${title}-${year}-${index}`),
         title,
         year,
         type,

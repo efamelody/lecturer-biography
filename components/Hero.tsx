@@ -91,7 +91,7 @@ export default async function Hero() {
             <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.hIndex}</div>
           </div>
           <div className="bg-white py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Publications</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">Publications (Scopus)</p>
             <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.worksCount}</div>
           </div>
         </div>

@@ -2,10 +2,73 @@
 
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
-import type { Publication } from "@/lib/academic";
+import type { Publication, PublicationAuthor } from "@/lib/academic";
 import { formatCitationCount } from "@/lib/academic";
 
 const DOI_BASE = "https://doi.org";
+const COLLAPSED_AUTHOR_COUNT = 6;
+
+function AuthorName({ author }: { author: PublicationAuthor }) {
+  return (
+    <span
+      className={
+        author.isProfileAuthor
+          ? "font-semibold text-[#0f172a] bg-[#f1f5f9] px-1 rounded"
+          : undefined
+      }
+    >
+      {author.name}
+    </span>
+  );
+}
+
+function AuthorList({ authors }: { authors: PublicationAuthor[] }) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!authors || authors.length === 0) return null;
+
+  if (authors.length <= COLLAPSED_AUTHOR_COUNT) {
+    return (
+      <span>
+        {authors.map((author, index) => (
+          <span key={`${author.name}-${index}`}>
+            {index > 0 && ", "}
+            <AuthorName author={author} />
+          </span>
+        ))}
+      </span>
+    );
+  }
+
+  const profileIndex = authors.findIndex((author) => author.isProfileAuthor);
+  const profileAuthor = profileIndex >= 0 ? authors[profileIndex] : null;
+  const visible = expanded ? authors : authors.slice(0, COLLAPSED_AUTHOR_COUNT);
+  const showProfileSeparately = !expanded && profileIndex >= COLLAPSED_AUTHOR_COUNT;
+
+  return (
+    <span>
+      {visible.map((author, index) => (
+        <span key={`${author.name}-${index}`}>
+          {index > 0 && ", "}
+          <AuthorName author={author} />
+        </span>
+      ))}
+      {showProfileSeparately && profileAuthor && (
+        <>
+          , … <AuthorName author={profileAuthor} />
+        </>
+      )}
+      {!expanded && <span> et al. ({authors.length} authors)</span>}
+      <button
+        type="button"
+        onClick={() => setExpanded((value) => !value)}
+        className="ml-2 text-[11px] font-medium text-[#0f172a] underline underline-offset-2 hover:text-[#475569]"
+      >
+        {expanded ? "Show fewer" : "Show all authors"}
+      </button>
+    </span>
+  );
+}
 
 function PubRow({ pub, showCitations = true }: { pub: Publication; showCitations?: boolean }) {
   return (
@@ -29,11 +92,15 @@ function PubRow({ pub, showCitations = true }: { pub: Publication; showCitations
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#64748b]">
           {pub.journal && <span className="italic">{pub.journal}</span>}
           <span className="text-[#cbd5e1]">/</span>
-          <span>{pub.authors}</span>
+          {pub.authorList?.length ? (
+            <AuthorList authors={pub.authorList} />
+          ) : (
+            <span>{pub.authors}</span>
+          )}
         </div>
       </div>
       <div className="flex-shrink-0 flex items-center gap-2">
-        {showCitations && (
+        {showCitations && pub.citedByCount != null && (
           <span className="text-[10px] font-semibold text-[#64748b] bg-[#f1f5f9] px-2 py-1 rounded">
             {formatCitationCount(pub.citedByCount)} cites
           </span>
@@ -107,6 +174,9 @@ export default function PublicationsPageContent({
               ? "Highest impact works ranked by citation count"
               : `${grouped[activeTab]?.length || 0} publications from ${activeTab}`}
           </p>
+          <p className="text-xs text-[#94a3b8] mt-2">
+            Verified against Scopus and ORCID. Google Scholar may include additional works.
+          </p>
         </div>
 
         <div className="space-y-0">
@@ -118,11 +188,13 @@ export default function PublicationsPageContent({
         </div>
 
         <div className="mt-12 p-6 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-center">
-          <p className="text-sm text-[#64748b] mb-2">For a complete list of publications, please visit:</p>
-          <div className="flex justify-center gap-4 text-sm font-medium text-[#0f172a]">
-            <a href="https://www.researchgate.net/profile/Mohd-Talib-Latif" className="hover:text-[#64748b] transition-colors">ResearchGate</a>
+          <p className="text-sm text-[#64748b] mb-2">For the full profiles, please visit:</p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-[#0f172a]">
+            <a href="https://www.scopus.com/authid/detail.uri?authorId=57218373467" className="hover:text-[#64748b] transition-colors">Scopus</a>
             <span className="text-[#cbd5e1]">•</span>
             <a href="https://orcid.org/0000-0003-2339-3321" className="hover:text-[#64748b] transition-colors">ORCID</a>
+            <span className="text-[#cbd5e1]">•</span>
+            <a href="https://www.researchgate.net/profile/Mohd-Talib-Latif" className="hover:text-[#64748b] transition-colors">ResearchGate</a>
             <span className="text-[#cbd5e1]">•</span>
             <a href="https://scholar.google.com/citations?user=dfDhReYAAAAJ&hl=en" className="hover:text-[#64748b] transition-colors">Google Scholar</a>
           </div>
