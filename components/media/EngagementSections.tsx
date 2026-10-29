@@ -1,4 +1,4 @@
-import { ExternalLink, FileText, Mic, Presentation } from 'lucide-react'
+import { ExternalLink, FileText, Presentation } from 'lucide-react'
 import {
   formatMediaDate,
   getMediaLinkLabel,
@@ -8,14 +8,6 @@ import {
 } from '@/lib/media'
 
 const SECTION_DEFINITIONS = [
-  // {
-  //   id: 'broadcasts',
-  //   title: 'Broadcasts & Interviews',
-  //   description:
-  //     'Television, radio and recorded discussions, including verified audiovisual resources.',
-  //   types: ['video', 'interview'] as MediaType[],
-  //   Icon: Mic,
-  // },
   {
     id: 'lectures',
     title: 'Highlighted Conferences & Events',

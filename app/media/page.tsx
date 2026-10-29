@@ -4,7 +4,8 @@ import EngagementSections from '@/components/media/EngagementSections'
 import MediaArchive from '@/components/media/MediaArchive'
 import MediaHero from '@/components/media/MediaHero'
 import PressClippings from '@/components/media/PressClippings'
-import { getPublishedMediaItems } from '@/lib/media'
+import WatchListen from '@/components/media/WatchListen'
+import { getPublishedMediaItems, type MediaItem } from '@/lib/media'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -38,21 +39,23 @@ export const metadata: Metadata = {
 export default function MediaPage() {
   const items = getPublishedMediaItems()
   const news = items.filter((item) => item.type === 'news')
-  const broadcasts = items.filter((item) => item.type === 'video' || item.type === 'interview')
-  const events = items.filter((item) => item.type === 'event')
-  const reports = items.filter((item) => item.type === 'report')
   const featured = items.filter((item) => item.featured && item.type === 'news').slice(0, 3)
+  const watchListen = [
+    'rtm-10-minit-respon-jerebu',
+    'scholarjam-podcast-jerebu',
+  ]
+    .map((id) => items.find((item) => item.id === id))
+    .filter((item): item is MediaItem => Boolean(item))
 
   return (
     <main className="bg-[#f8fafc]">
-      <MediaHero
-        newsCount={news.length}
-        broadcastCount={broadcasts.length}
-        eventCount={events.length}
-        reportCount={reports.length}
-      />
+      <MediaHero />
+
+      {watchListen.length > 0 && <WatchListen items={watchListen} />}
 
       {/* <FeaturedMedia items={featured} /> */}
+
+      <PressClippings />
 
       <section
         aria-labelledby="archive-heading"
@@ -78,8 +81,6 @@ export default function MediaPage() {
           <MediaArchive items={news} />
         </div>
       </section>
-
-      <PressClippings />
 
       <EngagementSections items={items} />
 

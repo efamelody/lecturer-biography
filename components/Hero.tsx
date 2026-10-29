@@ -77,7 +77,7 @@ export default async function Hero() {
         </div>
       </div>
 
-      {/* Impact Ribbon — combined sources (Scopus count, OpenAlex citations/h-index) */}
+      {/* Impact Ribbon — Scopus metrics, with a verified snapshot fallback */}
       <div className="max-w-5xl mx-auto px-6 mt-16">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[#e2e8f0] rounded-lg overflow-hidden shadow-sm">
           <div className="bg-white py-8 px-6 text-center">
@@ -87,7 +87,7 @@ export default async function Hero() {
             </div>
           </div>
           <div className="bg-white py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">h-index</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#94a3b8] font-bold mb-1">h-index (Scopus)</p>
             <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.hIndex}</div>
           </div>
           <div className="bg-white py-8 px-6 text-center">

@@ -279,5 +279,38 @@
     "formatLabel": "Public education video",
     "status": "draft",
     "note": "Video URL has not been verified. Publish only after the recording is confirmed."
+  },
+  {
+    "id": "rtm-10-minit-respon-jerebu",
+    "title": "10 Minit Respon: Jerebu... Sampai Bila",
+    "outlet": "Berita RTM",
+    "publishedOn": "2015-10-05",
+    "language": "ms",
+    "type": "video",
+    "topics": ["Transboundary Haze"],
+    "primaryTopic": "Transboundary Haze",
+    "summary": "Television interview segment on the recurring Southeast Asian haze, its causes, and the response needed from authorities and the public.",
+    "url": "https://www.youtube.com/watch?v=-CLBJ3l2324",
+    "attribution": "interviewed",
+    "formatLabel": "TV news interview",
+    "linkLabel": "Watch on YouTube",
+    "thumbnailQuality": "sddefault",
+    "featured": true,
+    "verified": true
+  },
+  {
+    "id": "scholarjam-podcast-jerebu",
+    "title": "Scholarjam Podcast #8: Jerebu — Pakar Dedah Apa Sebenarnya Yang Berlaku",
+    "outlet": "Scholarjam",
+    "language": "ms",
+    "type": "interview",
+    "topics": ["Transboundary Haze", "Air Quality & Public Health"],
+    "primaryTopic": "Transboundary Haze",
+    "summary": "Podcast episode on the causes and realities of the haze in Southeast Asia, with Prof. Latif explaining the atmospheric science behind the recurring episodes.",
+    "url": "https://www.youtube.com/watch?v=p7By0JPWsjg",
+    "attribution": "interviewed",
+    "formatLabel": "Podcast episode",
+    "linkLabel": "Watch the podcast",
+    "verified": true
   }
 ]

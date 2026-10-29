@@ -14,6 +14,15 @@ export type MediaTopic = (typeof MEDIA_TOPICS)[number]
 export const MEDIA_TYPES = ['news', 'interview', 'video', 'report', 'event'] as const
 export type MediaType = (typeof MEDIA_TYPES)[number]
 
+export const MEDIA_THUMBNAIL_QUALITIES = [
+  'default',
+  'mqdefault',
+  'hqdefault',
+  'sddefault',
+  'maxresdefault',
+] as const
+export type MediaThumbnailQuality = (typeof MEDIA_THUMBNAIL_QUALITIES)[number]
+
 export type MediaLanguage = 'en' | 'ms'
 
 export type MediaAttribution =
@@ -41,6 +50,10 @@ export interface MediaItem {
   primaryTopic: MediaTopic
   summary: string
   url?: string
+  /** YouTube video ID derived from `url`, when the link is a YouTube video. */
+  videoId?: string
+  /** Preferred YouTube thumbnail size; falls back to smaller sizes if unavailable. */
+  thumbnailQuality?: MediaThumbnailQuality
   attribution: MediaAttribution
   featured?: boolean
   verified?: boolean
@@ -110,6 +123,41 @@ export function isSafeExternalUrl(value: unknown): value is string {
   }
 }
 
+const YOUTUBE_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/
+
+export function isMediaThumbnailQuality(value: unknown): value is MediaThumbnailQuality {
+  return (
+    typeof value === 'string' &&
+    (MEDIA_THUMBNAIL_QUALITIES as readonly string[]).includes(value)
+  )
+}
+
+export function getYouTubeVideoId(value: unknown): string | undefined {
+  if (!isSafeExternalUrl(value)) return undefined
+
+  let parsed: URL
+  try {
+    parsed = new URL(value)
+  } catch {
+    return undefined
+  }
+
+  const host = parsed.hostname.toLowerCase().replace(/^(www\.|m\.|music\.)/, '')
+  let candidate = ''
+
+  if (host === 'youtu.be') {
+    candidate = parsed.pathname.split('/').filter(Boolean)[0] ?? ''
+  } else if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
+    if (parsed.pathname === '/watch') {
+      candidate = parsed.searchParams.get('v') ?? ''
+    } else {
+      candidate = parsed.pathname.match(/^\/(?:embed|shorts|live|v)\/([^/?#]+)/)?.[1] ?? ''
+    }
+  }
+
+  return YOUTUBE_ID_PATTERN.test(candidate) ? candidate : undefined
+}
+
 function parseMediaItem(value: unknown): MediaItem | null {
   if (!isRecord(value)) return null
 
@@ -144,6 +192,7 @@ function parseMediaItem(value: unknown): MediaItem | null {
   if (!attribution) return null
 
   const uniqueTopics = Array.from(new Set<MediaTopic>([primaryTopic, ...topics]))
+  const url = isSafeExternalUrl(value.url) ? value.url : undefined
 
   return {
     id,
@@ -157,7 +206,11 @@ function parseMediaItem(value: unknown): MediaItem | null {
     topics: uniqueTopics,
     primaryTopic,
     summary,
-    url: isSafeExternalUrl(value.url) ? value.url : undefined,
+    url,
+    videoId: getYouTubeVideoId(url),
+    thumbnailQuality: isMediaThumbnailQuality(value.thumbnailQuality)
+      ? value.thumbnailQuality
+      : undefined,
     attribution,
     featured: value.featured === true,
     verified: value.verified === true,

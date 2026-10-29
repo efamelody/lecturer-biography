@@ -11,14 +11,51 @@ import {
 } from '@/lib/media'
 
 const clippings = getPressClippings()
+const MIN_ZOOM = 25
+const MAX_ZOOM = 300
+const DEFAULT_ZOOM = 100
 
 function getActionLabel(clipping: PressClipping): string {
   return clipping.kind === 'photograph' ? 'View photograph' : 'View clipping'
 }
 
+function getFitZoom(container: HTMLElement | null, width: number): number | null {
+  if (!container || width === 0) return null
+
+  const available = container.clientWidth - 48
+  if (available <= 0) return null
+
+  const fit = Math.floor((available / width) * 100)
+  return Math.min(DEFAULT_ZOOM, Math.max(MIN_ZOOM, fit))
+}
+
 export default function PressClippings() {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<PressClipping | null>(null)
+  const [zoom, setZoom] = useState(DEFAULT_ZOOM)
+  const [naturalWidth, setNaturalWidth] = useState(0)
+
+  useEffect(() => {
+    setZoom(DEFAULT_ZOOM)
+    setNaturalWidth(0)
+  }, [active?.id])
+
+  function handleImageLoad(event: React.SyntheticEvent<HTMLImageElement>) {
+    const width = event.currentTarget.naturalWidth
+    setNaturalWidth(width)
+    const fit = getFitZoom(scrollRef.current, width)
+    if (fit !== null) setZoom(fit)
+  }
+
+  useEffect(() => {
+    if (!active || naturalWidth === 0) return
+    const frame = requestAnimationFrame(() => {
+      const fit = getFitZoom(scrollRef.current, naturalWidth)
+      if (fit !== null) setZoom(fit)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [active, naturalWidth])
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -132,12 +169,12 @@ export default function PressClippings() {
         onClick={(event) => {
           if (event.target === event.currentTarget) event.currentTarget.close()
         }}
-        className="m-auto max-h-[92vh] w-[min(94vw,68rem)] max-w-none rounded-lg border border-[#e2e8f0] bg-white p-0 text-left shadow-2xl backdrop:bg-[#0f172a]/75"
+        className="m-0 h-[100dvh] w-full max-w-none max-h-none overflow-hidden border-0 bg-white p-0 text-left backdrop:bg-[#0f172a]/80"
       >
         {active && (
-          <div className="flex max-h-[92vh] flex-col">
-            <header className="flex items-start justify-between gap-4 border-b border-[#e2e8f0] px-5 py-4 sm:px-6">
-              <div>
+          <div className="flex h-full flex-col">
+            <header className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3 border-b border-[#e2e8f0] px-4 py-3 sm:px-6">
+              <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.12em]">
                   <span className="font-semibold text-[#3b82f6]">
                     {active.outlet ?? 'From the archive'}
@@ -148,56 +185,99 @@ export default function PressClippings() {
                 </div>
                 <h3
                   id="clipping-dialog-title"
-                  className="mt-1.5 font-serif text-lg font-bold leading-snug tracking-tight text-[#0f172a] sm:text-xl"
+                  className="mt-1 font-serif text-base font-bold leading-snug tracking-tight text-[#0f172a] sm:text-lg"
                 >
                   {active.headline}
                 </h3>
                 {activeDate && (
                   <time
                     dateTime={activeDateTime}
-                    className="mt-1 block text-[11px] text-[#94a3b8]"
+                    className="mt-0.5 block text-[11px] text-[#94a3b8]"
                   >
                     {activeDate}
                   </time>
                 )}
               </div>
-              <button
-                type="button"
-                onClick={() => dialogRef.current?.close()}
-                aria-label="Close clipping"
-                className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded border border-[#e2e8f0] bg-white text-[#475569] transition-colors hover:border-[#cbd5e1] hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#64748b] focus-visible:ring-offset-2 motion-reduce:transition-none"
-              >
-                <X size={18} aria-hidden="true" />
-              </button>
+
+              <div className="flex shrink-0 flex-wrap items-center justify-end gap-3">
+                <label className="flex items-center gap-2">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#64748b]">
+                    Zoom
+                  </span>
+                  <input
+                    type="range"
+                    min={MIN_ZOOM}
+                    max={MAX_ZOOM}
+                    step={5}
+                    value={zoom}
+                    onChange={(event) => setZoom(Number(event.target.value))}
+                    aria-label="Zoom level"
+                    className="w-28 cursor-pointer accent-[#475569] sm:w-44"
+                  />
+                  <span className="w-10 text-right text-[11px] font-medium tabular-nums text-[#64748b]">
+                    {zoom}%
+                  </span>
+                </label>
+
+                <a
+                  href={active.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 items-center gap-1 rounded border border-[#e2e8f0] bg-white px-2.5 text-xs font-medium text-[#475569] transition-colors hover:border-[#cbd5e1] hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#64748b] focus-visible:ring-offset-2 motion-reduce:transition-none"
+                >
+                  <span className="hidden sm:inline">View full image</span>
+                  <ExternalLink size={13} aria-hidden="true" />
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => dialogRef.current?.close()}
+                  aria-label="Close clipping"
+                  className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded border border-[#e2e8f0] bg-white text-[#475569] transition-colors hover:border-[#cbd5e1] hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#64748b] focus-visible:ring-offset-2 motion-reduce:transition-none"
+                >
+                  <X size={18} aria-hidden="true" />
+                </button>
+              </div>
             </header>
 
-            <div className="grid min-h-0 flex-1 overflow-y-auto lg:grid-cols-[minmax(0,1fr)_22rem]">
-              <div className="relative h-[52vh] min-h-[260px] bg-[#f1f5f9] lg:h-[60vh] lg:min-h-[440px]">
-                <Image
+            <div
+              ref={scrollRef}
+              key={active.id}
+              className="min-h-0 flex-1 overflow-auto overscroll-contain bg-[#eef2f6]"
+            >
+              <div className="min-h-full p-3 sm:p-6">
+                <img
                   src={active.image}
                   alt={active.alt}
-                  fill
-                  sizes="(min-width: 1024px) 70vw, 94vw"
-                  className="object-contain p-3 sm:p-5"
+                  draggable={false}
+                  onLoad={handleImageLoad}
+                  className="mx-auto block h-auto max-w-none"
+                  style={
+                    naturalWidth > 0
+                      ? { width: `${(naturalWidth * zoom) / 100}px` }
+                      : undefined
+                  }
                 />
               </div>
-
-              <div className="border-t border-[#e2e8f0] p-5 sm:p-6 lg:border-l lg:border-t-0">
-                <p className="text-sm leading-relaxed text-[#475569]">{active.description}</p>
-
-                {active.url && (
-                  <a
-                    href={active.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-[#475569] transition-colors hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#64748b] focus-visible:ring-offset-2 motion-reduce:transition-none"
-                  >
-                    Read the article
-                    <ExternalLink size={11} aria-hidden="true" />
-                  </a>
-                )}
-              </div>
             </div>
+
+            <footer className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2 border-t border-[#e2e8f0] px-4 py-3 sm:px-6">
+              <p className="max-w-4xl text-xs leading-relaxed text-[#475569]">
+                {active.description}
+              </p>
+
+              {active.url && (
+                <a
+                  href={active.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-[#475569] transition-colors hover:text-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#64748b] focus-visible:ring-offset-2 motion-reduce:transition-none"
+                >
+                  Read the article
+                  <ExternalLink size={11} aria-hidden="true" />
+                </a>
+              )}
+            </footer>
           </div>
         )}
       </dialog>

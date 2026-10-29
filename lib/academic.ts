@@ -8,48 +8,169 @@ const EXCLUDED_FILTER = EXCLUDED_DOIS.map((d) => `doi:!${d}`).join(",");
 const API_KEY = process.env.OPENALEX_API_KEY || "";
 const SCOPUS_API_KEY = process.env.SCOPUS_API_KEY || "";
 const SCOPUS_PAGE_SIZE = 25;
+const SCOPUS_MAX_RETRIES = 3;
+const SCOPUS_RETRY_BASE_MS = 1000;
+const SCOPUS_REQUEST_DELAY_MS = 350;
+const SCOPUS_RESULT_WINDOW = 5000;
 
-async function getScopusStats(): Promise<{ documentCount: number; totalCitations: number; hIndex: number } | null> {
-  if (!SCOPUS_API_KEY) return null;
-  try {
-    const baseUrl = `https://api.elsevier.com/content/search/scopus?query=au-id(${SCOPUS_AUTHOR_ID})&apiKey=${SCOPUS_API_KEY}`;
-    const fetchOpts = {
-      headers: { Accept: "application/json" as const },
-      next: { revalidate: 86400 },
-    };
+// Last verified from the Scopus API on 2026-10-29:
+// 377 documents, 10,668 citations, h-index 54.
+const SCOPUS_FALLBACK = {
+  hIndex: 54,
+  citedByCount: 10668,
+  worksCount: 377,
+} as const;
 
-    const firstRes = await fetch(`${baseUrl}&count=${SCOPUS_PAGE_SIZE}&start=0`, fetchOpts);
-    if (!firstRes.ok) throw new Error("Scopus API returned " + firstRes.status);
-    const firstData = await firstRes.json();
-    const total = parseInt(firstData?.["search-results"]?.["opensearch:totalResults"] || "0");
-    if (!total) return null;
+interface ScopusStats {
+  documentCount: number;
+  totalCitations: number;
+  hIndex: number;
+}
 
-    const pages = Math.ceil(total / SCOPUS_PAGE_SIZE);
-    const pagePromises = [];
-    for (let i = 1; i < pages; i++) {
-      const url = `${baseUrl}&count=${SCOPUS_PAGE_SIZE}&start=${i * SCOPUS_PAGE_SIZE}`;
-      pagePromises.push(fetch(url, fetchOpts).then(r => r.json()));
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function calculateHIndex(citations: number[]): number {
+  const sorted = [...citations].sort((a, b) => b - a);
+  let h = 0;
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] >= i + 1) h = i + 1;
+    else break;
+  }
+  return h;
+}
+
+function normalizeEntries(results: any): any[] {
+  const entry = results?.entry;
+  if (!entry) return [];
+  return Array.isArray(entry) ? entry : [entry];
+}
+
+async function waitBeforeRetry(attempt: number) {
+  if (attempt < SCOPUS_MAX_RETRIES - 1) {
+    await sleep(SCOPUS_RETRY_BASE_MS * 2 ** attempt);
+  }
+}
+
+async function fetchScopusPage(start: number): Promise<{ entries: any[]; total: number }> {
+  const params = new URLSearchParams({
+    query: `au-id(${SCOPUS_AUTHOR_ID})`,
+    count: String(SCOPUS_PAGE_SIZE),
+    start: String(start),
+    sort: "citedby-count",
+  });
+  const url = `https://api.elsevier.com/content/search/scopus?${params.toString()}`;
+
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt < SCOPUS_MAX_RETRIES; attempt++) {
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "X-ELS-APIKey": SCOPUS_API_KEY,
+        },
+        next: { revalidate: 86400 },
+      });
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error("Scopus API request failed");
+      await waitBeforeRetry(attempt);
+      continue;
     }
-    const pageData = await Promise.all(pagePromises);
 
-    const allEntries = [...firstData["search-results"]["entry"]];
-    for (const pd of pageData) {
-      allEntries.push(...(pd?.["search-results"]?.entry || []));
+    if (res.status === 429 || res.status >= 500) {
+      lastError = new Error(`Scopus API returned ${res.status}`);
+      await waitBeforeRetry(attempt);
+      continue;
     }
 
-    const cites: number[] = allEntries.map(e => parseInt(e["citedby-count"] || "0", 10));
-    cites.sort((a, b) => b - a);
+    if (!res.ok) {
+      throw new Error(`Scopus API returned ${res.status}`);
+    }
 
-    let h = 0;
-    for (let i = 0; i < cites.length; i++) {
-      if (cites[i] >= i + 1) h = i + 1;
-      else break;
+    let data: any;
+    try {
+      data = await res.json();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error("Scopus API returned invalid JSON");
+      await waitBeforeRetry(attempt);
+      continue;
+    }
+
+    const results = data?.["search-results"];
+    if (!results) {
+      lastError = new Error("Scopus API returned an unexpected response");
+      await waitBeforeRetry(attempt);
+      continue;
     }
 
     return {
+      entries: normalizeEntries(results),
+      total: parseInt(results["opensearch:totalResults"] || "0", 10),
+    };
+  }
+
+  throw lastError ?? new Error("Scopus API request failed");
+}
+
+async function getScopusStats(): Promise<ScopusStats | null> {
+  if (!SCOPUS_API_KEY) return null;
+
+  try {
+    const firstPage = await fetchScopusPage(0);
+    const total = firstPage.total;
+    if (!total) return null;
+
+    if (total > SCOPUS_RESULT_WINDOW) {
+      throw new Error(
+        `Scopus profile has ${total} documents, which exceeds the API result window (${SCOPUS_RESULT_WINDOW})`
+      );
+    }
+
+    const documents = new Map<string, any>();
+    const addEntries = (entries: any[]) => {
+      for (const entry of entries) {
+        const key =
+          entry?.eid ||
+          entry?.["dc:identifier"] ||
+          `entry-${documents.size}`;
+        if (!documents.has(key)) documents.set(key, entry);
+      }
+    };
+
+    if (firstPage.entries.length !== Math.min(SCOPUS_PAGE_SIZE, total)) {
+      throw new Error(
+        `Scopus returned an incomplete first page: ${firstPage.entries.length}/${Math.min(SCOPUS_PAGE_SIZE, total)} documents`
+      );
+    }
+    addEntries(firstPage.entries);
+
+    for (let start = SCOPUS_PAGE_SIZE; start < total; start += SCOPUS_PAGE_SIZE) {
+      await sleep(SCOPUS_REQUEST_DELAY_MS);
+      const page = await fetchScopusPage(start);
+      const expected = Math.min(SCOPUS_PAGE_SIZE, total - start);
+      if (page.entries.length !== expected) {
+        throw new Error(
+          `Scopus returned an incomplete page at ${start}: ${page.entries.length}/${expected} documents`
+        );
+      }
+      addEntries(page.entries);
+    }
+
+    if (documents.size !== total) {
+      throw new Error(
+        `Scopus pagination incomplete: fetched ${documents.size}/${total} documents`
+      );
+    }
+
+    const citations = Array.from(documents.values()).map((entry) =>
+      parseInt(entry["citedby-count"] || "0", 10)
+    );
+
+    return {
       documentCount: total,
-      totalCitations: cites.reduce((a, b) => a + b, 0),
-      hIndex: h,
+      totalCitations: citations.reduce((sum, count) => sum + count, 0),
+      hIndex: calculateHIndex(citations),
     };
   } catch (error) {
     console.error("Error in getScopusStats:", error);
@@ -65,26 +186,15 @@ export async function getAuthorProfile() {
       hIndex: scopusStats.hIndex,
       citedByCount: scopusStats.totalCitations,
       worksCount: scopusStats.documentCount,
+      source: "scopus-live" as const,
     };
   }
 
-  try {
-    const res = await fetch(
-      `https://api.openalex.org/authors/orcid:${ORCID_ID}?api_key=${API_KEY}`,
-      { next: { revalidate: 86400 } }
-    );
-    if (!res.ok) throw new Error("Failed to fetch author stats");
-    const data = await res.json();
-
-    return {
-      hIndex: data.summary_stats.h_index,
-      citedByCount: data.cited_by_count,
-      worksCount: data.works_count,
-    };
-  } catch (error) {
-    console.error("Error in getAuthorProfile:", error);
-    return { hIndex: 52, citedByCount: 12500, worksCount: 500 };
-  }
+  console.warn("Using the last verified Scopus snapshot for author metrics");
+  return {
+    ...SCOPUS_FALLBACK,
+    source: "scopus-snapshot" as const,
+  };
 }
 
 export interface Publication {

@@ -1,5 +1,11 @@
 [
   {
+    "icon": "Building2",
+    "name": "IPI UKM",
+    "fullName": "Institute of Climate Change (Institut Perubahan Iklim), Universiti Kebangsaan Malaysia",
+    "role": "Director"
+  },
+  {
     "icon": "Globe",
     "name": "IPCC",
     "fullName": "Intergovernmental Panel on Climate Change",
