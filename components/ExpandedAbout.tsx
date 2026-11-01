@@ -33,7 +33,6 @@ const researchInterests = [
 
 const awards = [
   { year: "2022 – 2025", title: "World's Top 2% Scientist", organization: "Stanford University & Elsevier"},
-  { year: '2020', title: 'Excellence in Environmental Research', organization: 'Malaysian Institute of Chemistry' },
   { year: '2019', title: 'UKM Bitara Award', organization: 'Universiti Kebangsaan Malaysia' },
   { year: '2018', title: 'Top Research Scientist Malaysia', organization: 'Academy of Sciences Malaysia' },
 ];
