@@ -1,0 +1,357 @@
+﻿{
+    "intro":  {
+                  "eyebrow":  "Research Group",
+                  "heading":  "Supervision, researchers and collaborators",
+                  "description":  "Current and completed PhD and MSc researchers supervised by Prof. Dr. Mohd Talib Latif, with the full supervision record transcribed from the CV."
+              },
+    "completedPhdMain":  [
+                             {
+                                 "id":  "phd-main-nor-syamimi",
+                                 "name":  "Nor Syamimi Sufiera Binti Limi Hawari",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Volatile organic compounds (VOCs) in ambient air and its effect on the environment and human health",
+                                 "yearCompleted":  2026,
+                                 "yearStarted":  2019,
+                                 "role":  "Main supervisor",
+                                 "note":  "Registered 2019; completed 2026."
+                             },
+                             {
+                                 "id":  "phd-main-ahmad-norazhar",
+                                 "name":  "Ahmad Norazhar Mohd Yatim",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Investigation of heat wave events in Malaysia",
+                                 "yearCompleted":  2024,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-nurzawani",
+                                 "name":  "Nurzawani Md Sofwan",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Influence of motor vehicle emissions towards air pollutants in Kuala Lumpur city centre",
+                                 "yearCompleted":  2023,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-hanashriah",
+                                 "name":  "Hanashriah Hassan",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Variations of PM2.5 compositions influenced by different monsoon seasons",
+                                 "yearCompleted":  2022,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-haris",
+                                 "name":  "Haris Hafizal Abd. Hamid",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Comprehensive Assessment of VOCs and SVOCs in Ambient Air of Malaysia",
+                                 "yearCompleted":  2021,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-nor-diana",
+                                 "name":  "Nor Diana Abdul Halim",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Air pollution and land use changes in the Malaysian Peninsula",
+                                 "yearCompleted":  2021,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-royston",
+                                 "name":  "Royston Uning",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Volatile organic compounds from sea surface microlayer",
+                                 "yearCompleted":  2021,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-mohd-famey",
+                                 "name":  "Mohd Famey Yusoff",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Long term trend of nocturnal surface ozone and its potential sources in Malaysia",
+                                 "yearCompleted":  2021,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-azwani",
+                                 "name":  "Azwani Alias",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Indoor air quality in school environment",
+                                 "yearCompleted":  2020,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-suhaily",
+                                 "name":  "Suhaily Amran",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Evaluation of direct and indirect sampling method for respirable crystalline silica compliance monitoring",
+                                 "yearCompleted":  2019,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-norazura",
+                                 "name":  "Norazura Sulong",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Composition, source apportionment, health risk assessment and toxicity testing of fine particulate matter in Kuala Lumpur city center",
+                                 "yearCompleted":  2018,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-negar",
+                                 "name":  "Negar Banan",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Correlation of surface ozone and its pre-cursors around the Klang Valley, Malaysia",
+                                 "yearCompleted":  2016,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-fatimah",
+                                 "name":  "Fatimah Ahmad",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Development of a model to assess variations in ozone concentration at different land use areas in Malaysia",
+                                 "yearCompleted":  2015,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-norlin",
+                                 "name":  "Norlin Mohamad",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Indoor and outdoor relationships of air pollutants in selected schools",
+                                 "yearCompleted":  2015,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-norhaniza",
+                                 "name":  "Norhaniza Amil",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Apportionment and composition of atmospheric aerosols",
+                                 "yearCompleted":  2015,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-nurul-bahiyah",
+                                 "name":  "Nurul Bahiyah Binti Abd Wahid",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Composition and flux of surfactants in urban and suburban areas",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-murad",
+                                 "name":  "Murad Ali Amin Alsalahi",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Composition of surfactants and the movement of surfactants in the coastal areas",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "phd-main-sahel",
+                                 "name":  "Sahel (Mohammad-Rateb) Amer Al-Batayneh",
+                                 "degree":  "PhD",
+                                 "thesisTitle":  "Influence of meteorological factor to the composition of atmospheric aerosols",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             }
+                         ],
+    "completedPhdCo":  [
+                           {
+                               "id":  "phd-co-nur-nazmi",
+                               "name":  "Nur Nazmi Liyana Binti Mohd Napi",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Development of a Numerical Chemical Weather Prediction Model (WRF-CMAQ) to Simulate PM2.5 and O3 Concentration During Transboundary Smoke Event in Peninsular Malaysia",
+                               "yearCompleted":  2026,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-ezahtulsyahreen",
+                               "name":  "Ezahtulsyahreen Binti Ab Rahman",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Penilaian Permodelan Ramalan Ke Atas Parameter Zarah Terampai Halus PM2.5 Di Malaysia",
+                               "yearCompleted":  2024,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-anas-jamhari",
+                               "name":  "Anas Ahmad Jamhari",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Polyaromatic hydrocarbons in nano particles",
+                               "yearCompleted":  2023,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-radin",
+                               "name":  "Radin Zulhazmi Bin Radin Abdul Halim",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Pendekatan Keinstitusian Terhadap Peralihan Tenaga Berkarbon Rendah di Semenanjung Malaysia",
+                               "yearCompleted":  2022,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-azliyana",
+                               "name":  "Azliyana Azhari",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Air pollution in industrial area from vehicular emission: Towards sustainable industry",
+                               "yearCompleted":  2018,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-murnira",
+                               "name":  "Murnira Othman",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Determination of carbon emission and particulate matter in building environment: Case study in Seremban Town",
+                               "yearCompleted":  2017,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-nasser",
+                               "name":  "Nasser Salem Mohamed Alrawiq",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Determination of heavy metals and pesticides content in the paddy plants, soils and water from field area in MADA, Kedah",
+                               "yearCompleted":  2015,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-ipung",
+                               "name":  "Ipung Fitri Purwanti",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Phytoremediation of hydrocarbon from sludge using aquatic plants",
+                               "yearCompleted":  2013,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "phd-co-rahelah",
+                               "name":  "Rahelah Farzanmanesh",
+                               "degree":  "PhD",
+                               "thesisTitle":  "Evaluation of PM10 concentration using mesoscale model in Klang Valley",
+                               "yearCompleted":  2012,
+                               "role":  "Co-supervisor"
+                           }
+                       ],
+    "currentPhd":  [
+                       {
+                           "id":  "phd-current-zahirah",
+                           "name":  "Zahirah Mohd Yusof",
+                           "degree":  "PhD",
+                           "thesisTitle":  "PCN in different backgrounds in Peninsular Malaysia",
+                           "yearStarted":  2024,
+                           "role":  "Main supervisor"
+                       },
+                       {
+                           "id":  "phd-current-jivantiran",
+                           "name":  "Jivantiran Myilravanan",
+                           "degree":  "PhD",
+                           "thesisTitle":  "Occurrence of PCDDs and PCDFs toxicity among workers at landfill in Malaysia",
+                           "yearStarted":  2022,
+                           "role":  "Main supervisor"
+                       },
+                       {
+                           "id":  "phd-current-nur-ismah",
+                           "name":  "Nur Ismah Izzati Ismail",
+                           "degree":  "PhD",
+                           "thesisTitle":  "Harm profiling of smoke from tobacco cigarettes and commercially available non-combustible nicotine products (vapes and HTPs) in Malaysia",
+                           "yearStarted":  2022,
+                           "role":  "Main supervisor"
+                       },
+                       {
+                           "id":  "phd-current-pauziyah",
+                           "name":  "Pauziyah Mohammad Salim",
+                           "degree":  "PhD",
+                           "thesisTitle":  "NO2 concentrations based on satellite images",
+                           "yearStarted":  2021,
+                           "role":  "Main supervisor"
+                       },
+                       {
+                           "id":  "phd-current-hartini",
+                           "name":  "Hartini Mahidin",
+                           "degree":  "PhD",
+                           "thesisTitle":  "The impact of land-use changes on biogenic isoprene emissions and surface ozone concentration in Malaysian Borneo",
+                           "yearStarted":  2019,
+                           "role":  "Main supervisor"
+                       },
+                       {
+                           "id":  "phd-current-nor-hafizah",
+                           "name":  "Nor Hafizah Baharudin",
+                           "degree":  "PhD",
+                           "thesisTitle":  "Prediction of air pollutants in Kuala Lumpur based on Atmospheric Dispersion Modelling System model",
+                           "yearStarted":  2018,
+                           "role":  "Main supervisor"
+                       }
+                   ],
+    "completedMscMain":  [
+                             {
+                                 "id":  "msc-main-nuraleesha",
+                                 "name":  "Nuraleesha Abdullah",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "Variation of aerosols in tropical Danum Valley, Sabah",
+                                 "yearCompleted":  2022,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "msc-main-shoffian",
+                                 "name":  "Shoffian Amin Jaafar",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "The influence of meteorological factors to the composition of surfactants around the coastal areas",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "msc-main-nor-ili",
+                                 "name":  "Nor Ili Hamizah Mustaffa",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "Composition of surfactants from sea surface microlayer",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "msc-main-intan",
+                                 "name":  "Intan Suraya Abdul Razak",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "Composition and flux of surfactants around Chini Lake",
+                                 "yearCompleted":  2014,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "msc-main-faridah",
+                                 "name":  "Faridah Ahmad Azam",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "A comprehensive assessment of the carbon stocks and fluxes in natural forest and planted forest in Peninsular Malaysia",
+                                 "yearCompleted":  2013,
+                                 "role":  "Main supervisor"
+                             },
+                             {
+                                 "id":  "msc-main-nor-hafizah",
+                                 "name":  "Nor Hafizah Baharudin",
+                                 "degree":  "MSc",
+                                 "thesisTitle":  "Composition of heavy metal and organic substances around school environments",
+                                 "yearCompleted":  2013,
+                                 "role":  "Main supervisor"
+                             }
+                         ],
+    "completedMscCo":  [
+                           {
+                               "id":  "msc-co-anas",
+                               "name":  "Anas Bin Ahmad Jamhari",
+                               "degree":  "MSc",
+                               "thesisTitle":  "Risk assessment of pollutants from motor vehicles in Klang Valley",
+                               "yearCompleted":  2016,
+                               "role":  "Co-supervisor"
+                           },
+                           {
+                               "id":  "msc-co-nurul-asikin",
+                               "name":  "Nurul Asikin Zainon",
+                               "degree":  "MSc",
+                               "thesisTitle":  "Impact of haze towards daily mortality in Klang Valley",
+                               "yearCompleted":  2015,
+                               "role":  "Co-supervisor"
+                           }
+                       ],
+    "currentMsc":  [
+                       {
+                           "id":  "msc-current-nor-azura",
+                           "name":  "Nor Azura Zakaria",
+                           "degree":  "MSc",
+                           "thesisTitle":  "Temporal variability and seasonal variation of GHG concentration in the tropical rainforest",
+                           "yearStarted":  2019,
+                           "role":  "Main supervisor"
+                       }
+                   ]
+}

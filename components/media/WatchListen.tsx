@@ -68,17 +68,17 @@ export default function WatchListen({ items }: { items: MediaItem[] }) {
           </p>
         </div>
 
-        <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+        <ul className="divide-y divide-[#e2e8f0] border-y border-[#e2e8f0]">
           {playable.map((item) => (
-            <li key={item.id}>
-              <article className="flex h-full flex-col">
+            <li key={item.id} className="py-8 first:pt-0 last:pb-0">
+              <article className="grid gap-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start md:gap-10">
                 <VideoEmbed
                   videoId={item.videoId}
                   title={item.title}
                   thumbnailQuality={item.thumbnailQuality}
                 />
 
-                <div className="mt-4">
+                <div className="min-w-0">
                   <MetaLine item={item} />
                   <h3 className="mt-2 font-serif text-xl font-bold leading-snug tracking-tight text-[#0f172a]">
                     {item.title}

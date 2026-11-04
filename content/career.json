@@ -1,0 +1,104 @@
+{
+  "academic": [
+    {
+      "period": "2 December 2013 – present",
+      "role": "Professor",
+      "organisation": "School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": true
+    },
+    {
+      "period": "13 August 2009 – 11 December 2013",
+      "role": "Associate Professor",
+      "organisation": "School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "22 December 2006 – 12 August 2009",
+      "role": "Senior Lecturer",
+      "organisation": "School of Environmental and Natural Resource Sciences, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "18 March 1999 – 12 August 2009",
+      "role": "Lecturer",
+      "organisation": "School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "1 September 1995 – 17 March 1999",
+      "role": "Tutor",
+      "organisation": "Matriculation Centre, Universiti Kebangsaan Malaysia / Department of Environmental Science, Faculty of Sciences and Natural Resources, Universiti Kebangsaan Malaysia",
+      "current": false
+    }
+  ],
+  "administrative": [
+    {
+      "period": "1 August 2026 – present",
+      "role": "Director",
+      "organisation": "Institute of Climate Change (Institut Perubahan Iklim), Universiti Kebangsaan Malaysia",
+      "current": true
+    },
+    {
+      "period": "26 March 2023 – 2026",
+      "role": "Chairman",
+      "organisation": "Department of Earth Sciences and Environment, Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "1 April 2020 – 25 March 2023",
+      "role": "Chairman",
+      "organisation": "Sustainable Resources, Environment and Smart Living Research Cluster, Centre of IDEA, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "1 January 2018 – 26 March 2020",
+      "role": "Deputy Dean (Postgraduate)",
+      "organisation": "Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "1 May 2015 – 31 December 2018",
+      "role": "Deputy Director",
+      "organisation": "Institute for Environment and Development (LESTARI), Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "12 December 2013 – July 2014",
+      "role": "Head",
+      "organisation": "Centre of Tropical Climate Change System (IKLIM), Institute for Climate Change, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "16 July – 12 December 2013",
+      "role": "Head",
+      "organisation": "Centre of Tropical Climate Change System (IKLIM), Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "15 January 2010 – 14 January 2013",
+      "role": "Head of Environmental Science Programme",
+      "organisation": "School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia",
+      "current": false
+    },
+    {
+      "period": "1 March 2009 – 14 January 2010",
+      "role": "Coordinator for Research and Publication",
+      "organisation": "Centre for Student Advancement, Universiti Kebangsaan Malaysia",
+      "current": false
+    }
+  ],
+  "otherAppointments": [
+    {
+      "period": "2020 – 2023",
+      "role": "Adjunct Professor",
+      "organisation": "Universitas Airlangga, Indonesia",
+      "current": false
+    },
+    {
+      "period": "2014",
+      "role": "Sabbatical leave",
+      "organisation": "Centre for Atmospheric Science, Department of Chemistry, University of Cambridge, United Kingdom",
+      "current": false
+    }
+  ]
+}

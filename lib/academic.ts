@@ -109,6 +109,58 @@ export interface Publication {
   authorList: PublicationAuthor[];
 }
 
+export interface HighlightPublication {
+  id: string;
+  title: string;
+  year: number;
+  citedByCount: number | null;
+  doi: string | null;
+  journal: string | null;
+}
+
+const HIGHLIGHT_FALLBACK: HighlightPublication[] = [
+  {
+    id: "fallback-ozone-trends",
+    title: "Tropospheric ozone trends and attributions over East and Southeast Asia in 1995–2019",
+    year: 2025,
+    citedByCount: null,
+    doi: null,
+    journal: "Atmospheric Chemistry and Physics",
+  },
+  {
+    id: "fallback-covid-monzon",
+    title: "In-depth analysis of ambient air pollution changes due to the COVID-19 pandemic in the Asian Monsoon region",
+    year: 2024,
+    citedByCount: null,
+    doi: null,
+    journal: "Science of the Total Environment",
+  },
+  {
+    id: "fallback-ozone-climate",
+    title: "A synergistic ozone-climate control to address emerging ozone pollution challenges",
+    year: 2023,
+    citedByCount: null,
+    doi: null,
+    journal: "One Earth",
+  },
+  {
+    id: "fallback-surfactants",
+    title: "Surfactants in atmospheric aerosols",
+    year: 2004,
+    citedByCount: null,
+    doi: null,
+    journal: "Environmental Science & Technology",
+  },
+  {
+    id: "fallback-pm10-malaysia",
+    title: "Spatio-temporal characteristics of PM10 concentration across Malaysia",
+    year: 2009,
+    citedByCount: null,
+    doi: null,
+    journal: "Atmospheric Environment",
+  },
+];
+
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function cleanTitle(value: string): string {
@@ -653,6 +705,42 @@ function toPublication(draft: PublicationDraft): Publication {
       .join(", "),
     authorList,
   };
+}
+
+export async function getHighlightPublications(limit = 5): Promise<HighlightPublication[]> {
+  if (!SCOPUS_API_KEY) return HIGHLIGHT_FALLBACK.slice(0, limit);
+
+  try {
+    const page = await fetchScopusPage(0);
+    const highlights: HighlightPublication[] = [];
+
+    for (const entry of page.entries) {
+      const document = mapScopusEntry(entry);
+      if (
+        !document ||
+        !SCOPUS_PUBLICATION_SUBTYPES.has(document.subtype) ||
+        isNonPublication(document.title)
+      ) {
+        continue;
+      }
+
+      highlights.push({
+        id: document.id,
+        title: document.title,
+        year: document.year,
+        citedByCount: document.citedByCount,
+        doi: document.doi,
+        journal: document.journal,
+      });
+
+      if (highlights.length >= limit) break;
+    }
+
+    return highlights.length > 0 ? highlights : HIGHLIGHT_FALLBACK.slice(0, limit);
+  } catch (error) {
+    console.error("Error fetching highlight publications:", error);
+    return HIGHLIGHT_FALLBACK.slice(0, limit);
+  }
 }
 
 export async function getAuthorProfile() {

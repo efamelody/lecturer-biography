@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -289,7 +289,13 @@ function SectionHeading({
   )
 }
 
-export default function ResearchTeam({ content }: { content: TeamPageContent }) {
+export default function ResearchTeam({
+  content,
+  subnav,
+}: {
+  content: TeamPageContent
+  subnav?: ReactNode
+}) {
   const { intro,  staff, postgraduates, alumni, contact } = content
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<FilterCategory>('all')
@@ -414,6 +420,8 @@ export default function ResearchTeam({ content }: { content: TeamPageContent }) 
          
         </div>
       </section>
+
+      {subnav}
 
       {/* <section
         aria-labelledby="filters-heading"

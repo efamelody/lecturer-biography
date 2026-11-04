@@ -14,12 +14,32 @@
       "url": "https://ukm-atmosphere.com"
     },
     {
-      "label": "UKM Atmosphere Facebook",
-      "url": "https://www.facebook.com/UKMAtmosphere"
+      "label": "ORCID",
+      "url": "https://orcid.org/0000-0003-2339-3321"
     },
     {
-      "label": "ResearchGate Profile",
+      "label": "Scopus",
+      "url": "https://www.scopus.com/authid/detail.uri?authorId=57218373467"
+    },
+    {
+      "label": "Web of Science",
+      "url": "https://www.webofscience.com/wos/author/record/E-9560-2010"
+    },
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=dfDhReYAAAAJ&hl=en"
+    },
+    {
+      "label": "ResearchGate",
       "url": "https://www.researchgate.net/profile/Mohd-Talib-Latif"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mohd-talib-latif-18915073/"
+    },
+    {
+      "label": "UKM Atmosphere Facebook",
+      "url": "https://www.facebook.com/UKMAtmosphere"
     }
   ],
   "officeHours": "Prof. Dr. Mohd Talib Latif is generally available for meetings by appointment. For inquiries regarding research collaborations, academic matters, or consultation, please reach out via email or phone to schedule a meeting.",

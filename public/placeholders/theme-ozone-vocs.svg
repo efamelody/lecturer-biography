@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Illustrative placeholder for surface ozone and volatile organic compounds research">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="28%" r="55%">
+      <stop offset="0" stop-color="#93c5fd" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <g fill="none" stroke="#bfdbfe" stroke-opacity="0.2">
+    <path d="M0 620 C 260 520, 430 720, 690 610 S 1130 470, 1600 560"/>
+    <path d="M0 680 C 260 580, 430 780, 690 670 S 1130 530, 1600 620"/>
+    <path d="M0 740 C 260 640, 430 840, 690 730 S 1130 590, 1600 680"/>
+  </g>
+  <g fill="#bfdbfe" fill-opacity="0.35">
+    <circle cx="1220" cy="250" r="8"/><circle cx="1320" cy="330" r="5"/><circle cx="1080" cy="380" r="4"/>
+    <circle cx="1380" cy="220" r="3"/><circle cx="1150" cy="170" r="6"/>
+  </g>
+  <rect x="90" y="770" width="1420" height="1" fill="#bfdbfe" fill-opacity="0.25"/>
+  <text x="90" y="650" fill="#eff6ff" font-family="Georgia, serif" font-size="64" font-weight="700">Surface Ozone &amp; VOCs</text>
+  <text x="90" y="705" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="22" letter-spacing="2">GASES · PRECURSORS · ATMOSPHERIC CHEMISTRY</text>
+  <text x="90" y="880" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="15" letter-spacing="3">ILLUSTRATIVE PLACEHOLDER</text>
+</svg>

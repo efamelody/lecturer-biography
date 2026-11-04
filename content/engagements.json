@@ -1,0 +1,256 @@
+{
+  "invited": [
+    {
+      "id": "talk-nust-2025",
+      "year": 2025,
+      "date": "25–26 February 2025",
+      "title": "Assessment of dioxins-furans and polycyclic aromatic hydrocarbons in ambient air of the Kuala Lumpur urban environment",
+      "event": "1st International Conference on Climate Change and Sustainable Development",
+      "location": "National University of Sciences and Technology (NUST), Islamabad, Pakistan",
+      "format": "Online",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-pmac-2025",
+      "year": 2025,
+      "date": "29 January 2025",
+      "title": "Agricultural peat burning and its impact to PM2.5 concentration in Malaysia",
+      "event": "Prince Mahidol Awards Conference 2025 (PMAC 2025)",
+      "location": "Institute of Research and Development on Health of Southern, Bangkok, Thailand",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-kosae-2024",
+      "year": 2024,
+      "date": "23 October 2024",
+      "title": "Assessment of major air pollutants in the urban environment of Kuala Lumpur",
+      "event": "Korean Society for Atmospheric Environment (KOSAE) Annual Conference",
+      "location": "Seoul, Korea",
+      "format": "Online",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-tt-iaa-2024",
+      "year": 2024,
+      "date": "2–4 August 2024",
+      "title": "Polychlorinated dibenzo-p-dioxins, dibenzofurans and polycyclic aromatic hydrocarbons in the urban air of Kuala Lumpur",
+      "event": "The 10th Theory & Technique and the 1st Indonesian Aerosol Association Conference 2024",
+      "location": "Institute of Technology, Bandung, Indonesia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-7raqm",
+      "year": 2024,
+      "date": "",
+      "title": "Biomass burning in Southeast Asia and its potential effects on human health and climate change",
+      "event": "The 7th International Workshop on Regional Air Quality Management in Rapidly Developing Economic Regions and the 1st Greater Bay Area Climate Forum (7RAQM)",
+      "location": "Hong Kong University of Science and Technology, Guangzhou, China",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-tt-tfose-2024",
+      "year": 2024,
+      "date": "28–29 March 2024",
+      "title": "Atmospheric polychlorinated dibenzo-p-dioxins and dibenzofurans in Kuala Lumpur urban environment and their potential risk to human health",
+      "event": "2024 T&T TFOSE: Theory and Technique Taiwan Forum on Sustainable Environment",
+      "location": "Taiwan Association for Aerosol Research, Taipei, Taiwan",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-biomass-cooking-2023",
+      "year": 2023,
+      "date": "20 October 2023",
+      "title": "The concentration of particulate matter with different sizes (PM10, PM2.5, PM1) from cooking activities",
+      "event": "International Forum on Biomass Cooking and Heating",
+      "location": "Beijing University of Chemical Technology Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-mycot-2022",
+      "year": 2022,
+      "date": "16–17 November 2022",
+      "title": "Polycyclic aromatic hydrocarbon in Kuala Lumpur urban environment and its effect on human health",
+      "event": "The 4th Malaysian Congress of Toxicology 2022 (MyCOT2022)",
+      "location": "International Islamic University, Kuantan, Pahang, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-wceh-2022",
+      "year": 2022,
+      "date": "25 August 2022",
+      "title": "The concentration of major air pollutants during the different phases of Movement Control Orders due to the COVID-19 pandemic in Malaysia",
+      "event": "16th IFEH World Congress on Environmental Health (WCEH 2022)",
+      "location": "World Trade Centre, Kuala Lumpur, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-kosae-2021",
+      "year": 2021,
+      "date": "20–22 October 2021",
+      "title": "Concentration of major air pollutants during the Movement Control Order due to the COVID-19 pandemic in Malaysia",
+      "event": "64th Annual Meeting of the Korean Society of Atmospheric Environment 2021",
+      "location": "Jeju Shinhwa World Landing Convention Centre, Korea",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-moisture-buildings-2021",
+      "year": 2021,
+      "date": "28–29 June 2021",
+      "title": "Study on the population of airborne bacteria and antibiotic resistance from a hospital environment",
+      "event": "1st International Conference on Moisture in Buildings",
+      "location": "University College London, United Kingdom",
+      "format": "Online",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-sri-2021",
+      "year": 2021,
+      "date": "12–16 June 2021",
+      "title": "Characteristics and spatial-temporal variability of PM10, PM2.5 and PM1 during a 2019–2020 biomass burning event in Southeast Asia",
+      "event": "Sustainability Research & Innovation Congress 2021",
+      "location": "Future Earth, Brisbane, Australia",
+      "format": "Online",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-psu-kanazawa-2021",
+      "year": 2021,
+      "date": "24–25 March 2021",
+      "title": "Seasonal variation of water-soluble inorganic ions, carbonaceous components and polycyclic aromatic hydrocarbons of size-fractioned urban air particles in Kuala Lumpur, Malaysia",
+      "event": "Prince of Songkla University–Kanazawa University Joint Workshop",
+      "location": "Prince of Songkla University, Thailand",
+      "format": "Online",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-baq-2018",
+      "year": 2018,
+      "date": "14–16 October 2018",
+      "title": "Long-term record of air quality in Malaysia",
+      "event": "Better Air Quality Conference 2018",
+      "location": "Borneo Convention Centre, Sarawak, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-icaccc-2018",
+      "year": 2018,
+      "date": "27–28 March 2018",
+      "title": "Sources and health risk of PM2.5-bound polycyclic aromatic hydrocarbons and biomass burning tracers in Kuala Lumpur urban environment",
+      "event": "International Conference on Atmospheric Composition and Climate Change in Asia",
+      "location": "Universiti Kebangsaan Malaysia, Bangi, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-esem-2018",
+      "year": 2018,
+      "date": "22 June 2018",
+      "title": "Impact of regional haze episode towards air quality in Malaysia",
+      "event": "International Conference on Energy Systems and Environmental Management (ESEM 2018)",
+      "location": "Siam Oriental Hotel, Hadyai, Songkhla, Thailand",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-inchina-2017",
+      "year": 2017,
+      "date": "7–8 December 2017",
+      "title": "Status of air quality in Kuala Lumpur urban environment",
+      "event": "INCHINA Forum (ICF): Mutual Cooperation among Asian Cities on the Environment and Energy",
+      "location": "Incheon, Korea",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-regional-haze-2017",
+      "year": 2017,
+      "date": "10 November 2017",
+      "title": "Impact of regional haze towards air quality in Malaysia",
+      "event": "Conference on Regional Haze and Climate Change Management",
+      "location": "Chiang Mai, Thailand",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-mycot-2017",
+      "year": 2017,
+      "date": "5–6 December 2017",
+      "title": "Source apportionment and health risk assessment of PM2.5 during haze and non-haze days in Kuala Lumpur urban environment",
+      "event": "3rd Malaysian Congress of Toxicology (MyCOT 2017)",
+      "location": "Pusat Siswazah, Universiti Kebangsaan Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-icert-2017",
+      "year": 2017,
+      "date": "23–25 August 2017",
+      "title": "The composition of air pollutants during haze and non-haze episodes in Southeast Asia",
+      "event": "5th International Conference on Environmental Research and Technology (ICERT 2017)",
+      "location": "Jen Hotel, Penang, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-staclim-2016",
+      "year": 2016,
+      "date": "11–12 August 2016",
+      "title": "The composition of air pollutants during haze and non-haze episodes in Southeast Asia",
+      "event": "2016 International Conference on Science and Technology Applications in Climate Change (STACLIM 2016)",
+      "location": "The Pacific Sutera Hotel, Kota Kinabalu, Sabah, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    },
+    {
+      "id": "talk-environment-occupational-health-2016",
+      "year": 2016,
+      "date": "12 March 2016",
+      "title": "Seasonal variability and compositions of particulate matter during haze and non-haze episodes in Malaysia",
+      "event": "International Conference on Environment and Occupational Health 2016",
+      "location": "Putrajaya, Malaysia",
+      "format": "In person",
+      "type": "Invited"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "presentation-tt-iac-2025",
+      "year": 2025,
+      "date": "2025",
+      "title": "Investigating polychlorinated naphthalenes (PCNs) in Asia Pacific regions: A review of sources, occurrences and health impacts",
+      "event": "The 11th 2025 Theory and Technique International Aerosol Conference (11th 2025 T&T IAC)",
+      "location": "Universiti Kebangsaan Malaysia, Bangi, Malaysia",
+      "format": "Poster",
+      "type": "Poster"
+    },
+    {
+      "id": "presentation-solas-2022",
+      "year": 2022,
+      "date": "26–29 September 2022",
+      "title": "Ocean biogeochemical control on atmospheric chemistry",
+      "event": "8th Hybrid SOLAS Open Science Conference",
+      "location": "Surface Ocean Lower Atmosphere Study, South Africa",
+      "format": "Hybrid",
+      "type": "Presenter"
+    },
+    {
+      "id": "presentation-igac-2022",
+      "year": 2022,
+      "date": "10–19 September 2022",
+      "title": "Seasonal variations and compositions of size-fractioned urban atmospheric particulate matter in Kuala Lumpur, Malaysia",
+      "event": "iCACGP/IGAC Joint International Atmospheric Chemistry Conference",
+      "location": "Manchester, United Kingdom",
+      "format": "In person",
+      "type": "Presenter"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Mail, MapPin } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Download, Mail, MapPin } from 'lucide-react';
 import { getAuthorProfile, formatCitationCount } from '@/lib/academic';
 import { getContent } from '@/lib/content';
 
@@ -56,6 +57,29 @@ export default async function Hero() {
             </div>
           </div>
 
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <Link
+              href="/research"
+              className="inline-flex items-center gap-2 bg-[#0f172a] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1e293b]"
+            >
+              Explore research
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+            <Link
+              href="/publications"
+              className="inline-flex items-center gap-2 border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-medium text-[#0f172a] transition-colors hover:border-[#64748b]"
+            >
+              View publications
+            </Link>
+            <Link
+              href="/cv"
+              className="inline-flex items-center gap-2 border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-medium text-[#0f172a] transition-colors hover:border-[#64748b]"
+            >
+              <Download size={15} aria-hidden="true" />
+              Curriculum vitae
+            </Link>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-6 pt-6 border-t border-[#e2e8f0] w-full max-w-lg">
             <a href={`mailto:${profileData.email}`} className="flex items-center gap-2 text-[#64748b] hover:text-[#0f172a] transition-colors text-sm">
               <Mail size={16} />
@@ -95,6 +119,10 @@ export default async function Hero() {
             <div className="text-3xl font-serif font-bold text-[#0f172a]">{profile.worksCount}</div>
           </div>
         </div>
+        <p className="mt-3 text-center text-[11px] leading-relaxed text-[#94a3b8]">
+          Scopus metrics are shown from the live profile where available, with a verified snapshot fallback.
+          H-index values from other databases are reported separately and are not combined.
+        </p>
       </div>
     </section>
   );

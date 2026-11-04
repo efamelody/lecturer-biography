@@ -1,17 +1,62 @@
 [
   {
+    "year": "2025",
+    "title": "UKM Merit Award",
+    "organization": "Universiti Kebangsaan Malaysia",
+    "category": "University recognition"
+  },
+  {
+    "year": "2022 – 2025",
+    "title": "World's Top 2% Scientist",
+    "organization": "Stanford University & Elsevier",
+    "category": "International recognition"
+  },
+  {
     "year": "2021",
     "title": "Distinguished Scholar Award",
-    "organization": "ASEAN Academy of Sciences"
+    "organization": "ASEAN Academy of Sciences",
+    "category": "International recognition"
+  },
+  {
+    "year": "2020",
+    "title": "UKM Merit Award",
+    "organization": "Universiti Kebangsaan Malaysia",
+    "category": "University recognition"
   },
   {
     "year": "2019",
     "title": "UKM Bitara Award",
-    "organization": "Universiti Kebangsaan Malaysia"
+    "organization": "Universiti Kebangsaan Malaysia",
+    "category": "University recognition"
   },
   {
     "year": "2018",
-    "title": "Top Research Scientist Malaysia",
-    "organization": "Academy of Sciences Malaysia"
+    "title": "Top Research Scientist Malaysia (TRSM)",
+    "organization": "Academy of Sciences Malaysia",
+    "category": "National research award"
+  },
+  {
+    "year": "2016",
+    "title": "Best Poster Award",
+    "organization": "JSPS-ACP Conference, Kyoto University, Japan",
+    "category": "Conference award"
+  },
+  {
+    "year": "2013",
+    "title": "UKM Merit Award",
+    "organization": "Universiti Kebangsaan Malaysia",
+    "category": "University recognition"
+  },
+  {
+    "year": "2012",
+    "title": "Gold Medal, International Engineering Invention & Innovation Exhibition (i-ENVEX) and Malaysian International Young Inventors Olympiad (MIYIO)",
+    "organization": "As supervisor",
+    "category": "Innovation award"
+  },
+  {
+    "year": "2009",
+    "title": "UKM Merit Award",
+    "organization": "Universiti Kebangsaan Malaysia",
+    "category": "University recognition"
   }
 ]

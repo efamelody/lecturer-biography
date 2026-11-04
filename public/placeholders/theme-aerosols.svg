@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Illustrative placeholder for atmospheric aerosols and surfactants research">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#115e59"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="30%" r="55%">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <g fill="none" stroke="#99f6e4" stroke-opacity="0.2">
+    <circle cx="1180" cy="300" r="90"/>
+    <circle cx="1180" cy="300" r="170"/>
+    <circle cx="1180" cy="300" r="260"/>
+    <circle cx="1180" cy="300" r="360"/>
+    <circle cx="1180" cy="300" r="470"/>
+  </g>
+  <g fill="#99f6e4" fill-opacity="0.35">
+    <circle cx="220" cy="760" r="4"/><circle cx="290" cy="720" r="6"/><circle cx="360" cy="785" r="3"/>
+    <circle cx="430" cy="735" r="5"/><circle cx="500" cy="790" r="4"/><circle cx="570" cy="745" r="6"/>
+    <circle cx="640" cy="800" r="3"/><circle cx="710" cy="750" r="5"/><circle cx="780" cy="805" r="4"/>
+  </g>
+  <rect x="90" y="770" width="1420" height="1" fill="#99f6e4" fill-opacity="0.25"/>
+  <text x="90" y="650" fill="#f0fdfa" font-family="Georgia, serif" font-size="64" font-weight="700">Atmospheric Aerosols</text>
+  <text x="90" y="705" fill="#99f6e4" font-family="Arial, sans-serif" font-size="22" letter-spacing="2">COMPOSITION · SOURCES · SEA-SURFACE MICROLAYER</text>
+  <text x="90" y="880" fill="#99f6e4" font-family="Arial, sans-serif" font-size="15" letter-spacing="3">ILLUSTRATIVE PLACEHOLDER</text>
+</svg>

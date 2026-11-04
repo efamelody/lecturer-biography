@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Illustrative placeholder for the South and Southeast Asian haze project">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#9a3412"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="76%" cy="28%" r="56%">
+      <stop offset="0" stop-color="#fdba74" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g fill="none" stroke="#fed7aa" stroke-opacity="0.22">
+    <path d="M0 430 C 260 380, 430 500, 700 440 S 1120 330, 1600 400"/>
+    <path d="M0 510 C 260 460, 430 580, 700 520 S 1120 410, 1600 480"/>
+    <path d="M0 590 C 260 540, 430 660, 700 600 S 1120 490, 1600 560"/>
+    <path d="M0 670 C 260 620, 430 740, 700 680 S 1120 570, 1600 640"/>
+  </g>
+  <rect x="90" y="700" width="1420" height="1" fill="#fed7aa" fill-opacity="0.25"/>
+  <text x="90" y="590" fill="#fff7ed" font-family="Georgia, serif" font-size="58" font-weight="700">Haze in Three Dimensions</text>
+  <text x="90" y="640" fill="#fed7aa" font-family="Arial, sans-serif" font-size="20" letter-spacing="2">SOURCE · TRANSPORT · HEALTH IMPACTS</text>
+  <text x="90" y="800" fill="#fed7aa" font-family="Arial, sans-serif" font-size="14" letter-spacing="3">ILLUSTRATIVE PLACEHOLDER</text>
+</svg>

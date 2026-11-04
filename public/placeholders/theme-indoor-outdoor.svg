@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Illustrative placeholder for indoor and outdoor air quality research">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="74%" cy="26%" r="55%">
+      <stop offset="0" stop-color="#cbd5e1" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <g fill="none" stroke="#e2e8f0" stroke-opacity="0.18">
+    <rect x="860" y="180" width="520" height="430"/>
+    <rect x="910" y="230" width="180" height="150"/>
+    <rect x="1140" y="230" width="180" height="150"/>
+    <rect x="910" y="420" width="410" height="140"/>
+    <path d="M860 610 L1380 610"/>
+  </g>
+  <g fill="#e2e8f0" fill-opacity="0.32">
+    <circle cx="180" cy="780" r="5"/><circle cx="260" cy="735" r="4"/><circle cx="340" cy="795" r="6"/>
+    <circle cx="420" cy="745" r="3"/><circle cx="500" cy="805" r="5"/><circle cx="580" cy="750" r="4"/>
+  </g>
+  <rect x="90" y="770" width="1420" height="1" fill="#e2e8f0" fill-opacity="0.25"/>
+  <text x="90" y="650" fill="#f8fafc" font-family="Georgia, serif" font-size="64" font-weight="700">Indoor &amp; Outdoor Air Quality</text>
+  <text x="90" y="705" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="22" letter-spacing="2">SCHOOLS · HOMES · VEHICLES · EXPOSURE</text>
+  <text x="90" y="880" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="15" letter-spacing="3">ILLUSTRATIVE PLACEHOLDER</text>
+</svg>

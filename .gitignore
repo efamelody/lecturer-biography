@@ -47,3 +47,6 @@ dist/
 
 # TypeScript
 tsconfig.tsbuildinfo
+
+# Source CV (contains personal details; do not commit)
+FULL CV DR MOHD TALIB LATIF - April 2026.doc

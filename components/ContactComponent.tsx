@@ -10,7 +10,11 @@ export default async function Contact() {
           <div className="max-w-3xl mb-16">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#64748b] mb-3">Get in Touch</p>
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#0f172a] tracking-tight mb-4">Contact Information</h1>
-            <p className="text-[#64748b]">Reach out for research collaborations, academic inquiries, or consultation</p>
+            <p className="text-[#64748b]">
+              Reach out for research collaborations, academic inquiries, postgraduate supervision or
+              consultation. Please include a clear subject line and a short description of your
+              enquiry.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

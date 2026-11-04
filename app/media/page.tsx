@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import MediaComponent from '@/components/MediaComponent'
 import EngagementSections from '@/components/media/EngagementSections'
 import MediaArchive from '@/components/media/MediaArchive'
 import MediaHero from '@/components/media/MediaHero'
@@ -39,7 +38,6 @@ export const metadata: Metadata = {
 export default function MediaPage() {
   const items = getPublishedMediaItems()
   const news = items.filter((item) => item.type === 'news')
-  const featured = items.filter((item) => item.featured && item.type === 'news').slice(0, 3)
   const watchListen = [
     'rtm-10-minit-respon-jerebu',
     'scholarjam-podcast-jerebu',
@@ -54,8 +52,6 @@ export default function MediaPage() {
       {watchListen.length > 0 && <WatchListen items={watchListen} />}
 
       {/* <FeaturedMedia items={featured} /> */}
-
-      <PressClippings />
 
       <section
         aria-labelledby="archive-heading"
@@ -81,6 +77,8 @@ export default function MediaPage() {
           <MediaArchive items={news} />
         </div>
       </section>
+
+      <PressClippings />
 
       <EngagementSections items={items} />
 

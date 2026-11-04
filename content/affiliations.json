@@ -3,36 +3,104 @@
     "icon": "Building2",
     "name": "IPI UKM",
     "fullName": "Institute of Climate Change (Institut Perubahan Iklim), Universiti Kebangsaan Malaysia",
-    "role": "Director"
+    "role": "Director",
+    "period": "2026 – present",
+    "category": "Leadership"
   },
   {
-    "icon": "Globe",
-    "name": "IPCC",
-    "fullName": "Intergovernmental Panel on Climate Change",
-    "role": "Lead Author"
+    "icon": "GraduationCap",
+    "name": "UKM",
+    "fullName": "Universiti Kebangsaan Malaysia",
+    "role": "Professor",
+    "period": "2013 – present",
+    "category": "Academic"
   },
   {
     "icon": "Users",
     "name": "MAAQR",
     "fullName": "Malaysian Association for Aerosol and Air Quality Research",
-    "role": "President"
+    "role": "President",
+    "period": "2023 – present",
+    "category": "Professional body"
   },
   {
-    "icon": "Building2",
-    "name": "DOE Malaysia",
-    "fullName": "Department of Environment Malaysia",
-    "role": "Scientific Advisor"
+    "icon": "Award",
+    "name": "ASM",
+    "fullName": "Academy of Sciences Malaysia",
+    "role": "Fellow",
+    "period": "2019 – present",
+    "category": "Professional body"
   },
   {
-    "icon": "Briefcase",
-    "name": "MetMalaysia",
-    "fullName": "Malaysian Meteorological Department",
-    "role": "Research Collaborator"
+    "icon": "Globe",
+    "name": "IPCC",
+    "fullName": "Intergovernmental Panel on Climate Change",
+    "role": "Member, Task Force Bureau on National Greenhouse Gas Inventories (TFI)",
+    "period": "2023 – present",
+    "category": "International"
   },
   {
     "icon": "Globe",
     "name": "IGAC-MANGO",
-    "fullName": "International Global Atmospheric Chemistry – Marine Aerosol Network as a Ground-based Observatory",
-    "role": "Member"
+    "fullName": "International Global Atmospheric Chemistry – Monsoon Asia and Oceania Networking Group",
+    "role": "Committee Member",
+    "period": "2025 – present",
+    "category": "International"
+  },
+  {
+    "icon": "Waves",
+    "name": "SOLAS",
+    "fullName": "Surface Ocean Lower Atmosphere Study",
+    "role": "Scientific Steering Committee Member",
+    "period": "2018 – 2023",
+    "category": "International"
+  },
+  {
+    "icon": "Network",
+    "name": "ANCST",
+    "fullName": "Asian Network on Climate Science and Technology",
+    "role": "Head, Special Topic Group 2: Atmospheric Chemistry and Climate Change",
+    "period": "2017 – present",
+    "category": "International"
+  },
+  {
+    "icon": "ShieldCheck",
+    "name": "DOE Malaysia",
+    "fullName": "Malaysian Department of Environment",
+    "role": "Subject Specialist (Air Pollution), CEP-SS0124",
+    "period": "2011 – present",
+    "category": "National"
+  },
+  {
+    "icon": "CloudSun",
+    "name": "MetMalaysia",
+    "fullName": "Malaysian Meteorological Department",
+    "role": "Research collaborator",
+    "period": "",
+    "category": "National"
+  },
+  {
+    "icon": "FlaskConical",
+    "name": "IKM",
+    "fullName": "Malaysian Institute of Chemistry",
+    "role": "Associate Fellow",
+    "period": "2011 – present",
+    "category": "Professional body"
+  },
+  {
+    "icon": "Wind",
+    "name": "MCAS",
+    "fullName": "Malaysian Clean Air Society",
+    "role": "Member",
+    "period": "2022 – present",
+    "category": "Professional body"
+  },
+  {
+    "icon": "Landmark",
+    "name": "UNAIR",
+    "fullName": "Universitas Airlangga, Indonesia",
+    "role": "Adjunct Professor",
+    "period": "2020 – 2023",
+    "category": "Academic"
   }
 ]

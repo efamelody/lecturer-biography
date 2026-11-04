@@ -1,44 +1,109 @@
 {
   "name": "Prof. Dr. Mohd Talib Latif",
-  "title": "Professor of Atmospheric Chemistry",
-  "tagline": "Advancing the understanding of atmospheric aerosols, air quality dynamics, and environmental sustainability in Southeast Asia",
+  "title": "Professor of Atmospheric Chemistry and Air Pollution",
+  "tagline": "Atmospheric chemistry, air quality and climate research from Malaysia to the international research community.",
   "email": "talib@ukm.edu.my",
   "location": "Bangi, Selangor, Malaysia",
   "image": "/profile.jpg",
   "roles": [
-    "Professor at UKM",
+    "Professor at Universiti Kebangsaan Malaysia",
     "Director, Institute of Climate Change (IPI), UKM",
-    "IPCC Member of Task Force Bureau (TFB)",
-    "President of MAAQR"
+    "President, Malaysian Association for Aerosol and Air Quality Research (MAAQR)",
+    "Member, IPCC Task Force Bureau on National Greenhouse Gas Inventories"
   ],
   "tags": [
     "Atmospheric Aerosols",
-    "Air Quality",
-    "Environmental Chemistry"
+    "Surface Ozone & VOCs",
+    "Indoor & Outdoor Air Quality",
+    "Regional Air Pollution"
+  ],
+  "fields": [
+    "Atmospheric chemistry and air pollution",
+    "Surfactants and humic-like substances (HULIS) in the atmosphere",
+    "Outdoor and indoor air quality",
+    "Inorganic and organic composition of atmospheric aerosols",
+    "Environmental analytical chemistry"
   ],
   "bio": [
-    "Prof. Dr. Mohd Talib Latif is a distinguished atmospheric scientist and Professor of Atmospheric Chemistry at Universiti Kebangsaan Malaysia (UKM). He earned his PhD from the University of East Anglia, United Kingdom, specializing in atmospheric chemistry and air pollution studies.",
-    "Throughout his illustrious career, he has held numerous leadership positions including Director of the Institute of Climate Change (IPI) at UKM, serving as a Lead Author for the Intergovernmental Panel on Climate Change (IPCC), President of the Malaysian Association for Aerosol and Air Quality Research (MAAQR), and key academic roles at UKM including Dean and Deputy Dean positions.",
-    "His research has significantly contributed to understanding air quality dynamics, atmospheric processes, and environmental sustainability in Southeast Asia. He has published extensively in high-impact journals and continues to mentor the next generation of environmental scientists."
+    "Prof. Dr. Mohd Talib Latif is a professor of atmospheric chemistry and air pollution at the Department of Earth Sciences and Environment, Faculty of Science and Technology, Universiti Kebangsaan Malaysia, and a fellow of the Academy of Sciences Malaysia. He completed his BSc in Chemistry and MSc in Environmental Sciences (Air Pollution) at Universiti Kebangsaan Malaysia, and his PhD in Environmental Sciences at the School of Environmental Sciences, University of East Anglia, United Kingdom.",
+    "He currently serves as Director of the Institute of Climate Change at Universiti Kebangsaan Malaysia and President of the Malaysian Association for Aerosol and Air Quality Research (MAAQR). He previously served as Chairman of the Department of Earth Sciences and Environment at UKM, Chairman of the Sustainable Resources, Environment and Smart Living Research Cluster at the IDEA Centre (2020–2023), Deputy Dean (Postgraduate) at the Faculty of Science and Technology (2018–2020), Deputy Director at the Institute for Environment and Development (LESTARI, 2015–2018), Head of the Centre for Tropical Climate Change System (IKLIM, 2013–2014) and Head of the Environmental Science Programme (2010–2013). In 2014, he undertook a sabbatical at the Centre for Atmospheric Science, Department of Chemistry, University of Cambridge.",
+    "His research focuses on the composition of atmospheric aerosols from a range of sources, including the sea-surface microlayer, as well as the composition of atmospheric gases, particularly surface ozone and volatile organic compounds (VOCs). His group collaborates closely with Malaysian government agencies including the Department of Environment (DOE) and the Malaysian Meteorological Department (MetMalaysia). At the international level, he is active in the International Global Atmospheric Chemistry – Monsoon Asia and Oceania Networking Group (IGAC-MANGO) and served on the scientific steering committee of the Surface Ocean Lower Atmosphere Study (SOLAS) from 2018 to 2023. He is a member of the IPCC Task Force Bureau on National Greenhouse Gas Inventories.",
+    "In 2018, he received the Top Research Scientist Malaysia award from the Academy of Sciences Malaysia for his research and publications. His work spans atmospheric aerosol composition, surface ozone and VOCs, indoor and outdoor air quality, transboundary haze, persistent organic pollutants and the development of monitoring and modelling methods for air-quality assessment in Malaysia and Southeast Asia."
   ],
   "education": [
     {
-      "degree": "Ph.D.",
+      "degree": "PhD",
       "year": "2006",
-      "field": "Atmospheric Chemistry",
-      "institution": "University of East Anglia, UK"
+      "field": "Environmental Sciences",
+      "institution": "University of East Anglia, United Kingdom"
     },
     {
-      "degree": "M.Sc.",
+      "degree": "MSc",
       "year": "1999",
-      "field": "Environmental Science",
+      "field": "Environmental Sciences (Air Pollution)",
       "institution": "Universiti Kebangsaan Malaysia"
     },
     {
-      "degree": "B.Sc.",
-      "year": "2003",
+      "degree": "BSc (Hons)",
+      "year": "1995",
       "field": "Chemistry",
       "institution": "Universiti Kebangsaan Malaysia"
+    }
+  ],
+  "metrics": [
+    {
+      "source": "Web of Science",
+      "hIndex": 48,
+      "date": "April 2026",
+      "identifier": "ResearcherID: E-9560-2010"
+    },
+    {
+      "source": "Scopus",
+      "hIndex": 54,
+      "date": "April 2026; live data also shown",
+      "identifier": "Author ID: 57218373467"
+    },
+    {
+      "source": "Google Scholar",
+      "hIndex": 66,
+      "date": "April 2026",
+      "identifier": ""
+    },
+    {
+      "source": "ResearchGate",
+      "hIndex": 59,
+      "date": "April 2026",
+      "identifier": ""
+    }
+  ],
+  "profiles": [
+    {
+      "label": "ORCID",
+      "url": "https://orcid.org/0000-0003-2339-3321"
+    },
+    {
+      "label": "Scopus",
+      "url": "https://www.scopus.com/authid/detail.uri?authorId=57218373467"
+    },
+    {
+      "label": "Web of Science",
+      "url": "https://www.webofscience.com/wos/author/record/E-9560-2010"
+    },
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=dfDhReYAAAAJ&hl=en"
+    },
+    {
+      "label": "ResearchGate",
+      "url": "https://www.researchgate.net/profile/Mohd-Talib-Latif"
+    },
+    {
+      "label": "UKM Atmosphere",
+      "url": "https://ukm-atmosphere.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mohd-talib-latif-18915073/"
     }
   ]
 }
