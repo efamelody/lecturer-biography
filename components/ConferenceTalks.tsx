@@ -10,8 +10,7 @@ interface Talk {
   badge?: string
   chip: string
   sortKey: string
-  url?: string
-  linkLabel?: string
+  links?: { label: string; url: string }[]
 }
 
 const invitedTalks = [
@@ -24,8 +23,12 @@ const invitedTalks = [
     badge: 'Keynote Presentation',
     chip: 'NOV 2026',
     sortKey: '2026-11-18',
-    url: 'https://www.ilmexhibitions.com/cemasia/conference-programme-2026/',
-    linkLabel: 'View official conference programme',
+    links: [
+      {
+        label: 'Official conference programme',
+        url: 'https://www.ilmexhibitions.com/cemasia/conference-programme-2026/',
+      },
+    ],
   },
   {
     id: 'icccsd-nust-2025',
@@ -37,6 +40,10 @@ const invitedTalks = [
     badge: 'Online Presentation',
     chip: 'FEB 2025',
     sortKey: '2025-02-25',
+    links: [
+      { label: 'ICCCSD 2025 official website', url: 'https://icccsd.nust.edu.pk/authors/' },
+      { label: 'NUST conferences directory', url: 'https://nust.edu.pk/event-category/conferences/' },
+    ],
   },
   {
     id: 'pmac-2025',
@@ -46,6 +53,13 @@ const invitedTalks = [
     venue: 'Bangkok, Thailand',
     chip: 'JAN 2025',
     sortKey: '2025-01-29',
+    links: [
+      { label: 'PMAC 2025 schedule', url: 'https://pmac-2025.com/schedule' },
+      {
+        label: 'Event details (DNDi)',
+        url: 'https://dndi.org/events/2025/prince-mahidol-award-conference-2025/',
+      },
+    ],
   },
   {
     id: 'kosae-2024',
@@ -56,6 +70,12 @@ const invitedTalks = [
     badge: 'Online Presentation',
     chip: 'OCT 2024',
     sortKey: '2024-10-23',
+    links: [
+      {
+        label: '67th KOSAE conference overview',
+        url: 'https://mitrap-project.eu/mi-trap-participates-in-the-67th-annual-conference-of-the-korean-society-for-atmospheric-environment/',
+      },
+    ],
   },
   {
     id: 'indonesian-aerosol-2024',
@@ -66,6 +86,12 @@ const invitedTalks = [
     venue: 'Institute of Technology, Bandung, Indonesia',
     chip: 'AUG 2024',
     sortKey: '2024-08-02',
+    links: [
+      {
+        label: 'T&T and 1st IAAC 2024 portal',
+        url: 'https://2024-tat-iaac.taar.org.tw/',
+      },
+    ],
   },
   {
     id: '7raqm-2024',
@@ -76,6 +102,10 @@ const invitedTalks = [
     venue: 'The Hong Kong University of Science and Technology (Guangzhou), China',
     chip: 'MAY 2024',
     sortKey: '2024-05-29',
+    links: [
+      { label: 'Official 7RAQM website', url: 'https://raqm.hkust.edu.hk/home' },
+      { label: '7RAQM summary (HKIQEP)', url: 'https://hkiqep.org/7raqm-youthsummit/' },
+    ],
   },
   {
     id: 'ttfose-2024',
@@ -86,6 +116,12 @@ const invitedTalks = [
     venue: 'Taiwan Association for Aerosol Research, Taipei, Taiwan',
     chip: 'MAR 2024',
     sortKey: '2024-03-28',
+    links: [
+      {
+        label: 'TAAR TFOSE event page',
+        url: 'https://www.taar.org.tw/theory-and-technique-taiwan-forum-on-sustainable-environment',
+      },
+    ],
   },
   {
     id: 'biomass-cooking-2023',
@@ -252,6 +288,7 @@ const presenterTalks = [
     badge: 'Poster Presentation',
     chip: '2025',
     sortKey: '2025',
+    links: [{ label: 'TAAR conference portal', url: 'https://www.taar.org.tw/' }],
   },
   {
     id: 'solas-2022',
@@ -329,16 +366,21 @@ function TalkCard({ talk, hollowDot }: { talk: Talk; hollowDot: boolean }) {
             <span>{talk.venue}</span>
           </p>
         </div>
-        {talk.url && (
-          <a
-            href={talk.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 border-t border-[#f1f5f9] pt-4 text-sm font-semibold text-[#0f766e] transition-colors hover:text-[#115e59] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f766e] focus-visible:ring-offset-2 motion-reduce:transition-none"
-          >
-            {talk.linkLabel ?? 'View conference details'}
-            <ExternalLink size={14} aria-hidden="true" />
-          </a>
+        {talk.links && talk.links.length > 0 && (
+          <nav aria-label={`${talk.conference} links`} className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-[#f1f5f9] pt-4">
+            {talk.links.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0f766e] transition-colors hover:text-[#115e59] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f766e] focus-visible:ring-offset-2 motion-reduce:transition-none"
+              >
+                {link.label}
+                <ExternalLink size={13} aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
         )}
       </article>
     </li>
