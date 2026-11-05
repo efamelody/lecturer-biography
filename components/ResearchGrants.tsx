@@ -1,3 +1,5 @@
+import ResearchGrantsSidebar from '@/components/ResearchGrantsSidebar'
+
 interface Grant {
   name: string
   code?: string
@@ -218,26 +220,36 @@ export default function ResearchGrants() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl space-y-14 px-6 py-12 md:space-y-16 md:py-16">
-        {grantGroups.map((group) => (
-          <section key={group.id} aria-labelledby={`${group.id}-heading`}>
-            <div className="mb-6 flex items-start gap-4">
-              <span className="mt-1 shrink-0 border border-[#cbd5e1] px-2.5 py-1 font-mono text-xs font-medium text-[#64748b]">
-                {group.index}
-              </span>
-              <div>
-                <h2
-                  id={`${group.id}-heading`}
-                  className="font-serif text-2xl font-bold tracking-tight text-[#0f172a] md:text-3xl"
-                >
-                  {group.title}
-                </h2>
-                <p className="mt-1 text-sm text-[#64748b]">As Project Leader</p>
-              </div>
-            </div>
-            <GrantTable grants={group.grants} />
-          </section>
-        ))}
+      <div className="mx-auto max-w-7xl px-6 pb-16 pt-8 lg:pb-20 lg:pt-16">
+        <div className="flex flex-col gap-12 lg:flex-row">
+          <ResearchGrantsSidebar />
+          <div className="min-w-0 flex-1 space-y-14 md:space-y-16">
+            {grantGroups.map((group) => (
+              <section
+                key={group.id}
+                id={group.id}
+                aria-labelledby={`${group.id}-heading`}
+                className="scroll-mt-24"
+              >
+                <div className="mb-6 flex items-start gap-4">
+                  <span className="mt-1 shrink-0 border border-[#cbd5e1] px-2.5 py-1 font-mono text-xs font-medium text-[#64748b]">
+                    {group.index}
+                  </span>
+                  <div>
+                    <h2
+                      id={`${group.id}-heading`}
+                      className="font-serif text-2xl font-bold tracking-tight text-[#0f172a] md:text-3xl"
+                    >
+                      {group.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-[#64748b]">As Project Leader</p>
+                  </div>
+                </div>
+                <GrantTable grants={group.grants} />
+              </section>
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   );
