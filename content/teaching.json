@@ -1,0 +1,329 @@
+{
+  "taughtCourses": [
+    {
+      "level": "1st Year Undergraduate",
+      "courses": [
+        {
+          "code": "STAE 1423",
+          "title": "Quantitative Analysis and Instrumentation",
+          "period": "2017-Present"
+        }
+      ]
+    },
+    {
+      "level": "2nd Year Undergraduate",
+      "courses": [
+        {
+          "code": "STAE 2413",
+          "title": "Atmospheric Chemistry",
+          "period": "2013-2018"
+        },
+        {
+          "code": "STAE 2422",
+          "title": "Water Chemistry",
+          "period": "2013-Present"
+        },
+        {
+          "code": "STAE 2423",
+          "title": "Analysis of Water and Air Quality",
+          "period": "2013-Present"
+        },
+        {
+          "code": "STAE 2022",
+          "title": "Environmental Safety and Health",
+          "period": "2013-2015"
+        }
+      ]
+    },
+    {
+      "level": "Postgraduate",
+      "courses": [
+        {
+          "code": "STAE 6423",
+          "title": "Water and Air Quality Monitoring and Assessment",
+          "period": "2013-Present"
+        },
+        {
+          "code": "STAE 6013",
+          "title": "Lake and Wetland Management",
+          "period": "2013-Present"
+        },
+        {
+          "code": "STPD 6014",
+          "title": "Research Methodology",
+          "period": "2013-Present"
+        }
+      ]
+    }
+  ],
+  "phdCompletedMain": [
+    {
+      "no": 18,
+      "title": "Volatile organic compounds (VOCs) in ambient air and its effect on the environment and human health",
+      "student": "Nor Syamimi Sufiera Binti Limi Hawari",
+      "year": "2026"
+    },
+    {
+      "no": 17,
+      "title": "Investigation of heat wave events in Malaysia",
+      "student": "Ahmad Norazhar Mohd Yatim",
+      "year": "2024"
+    },
+    {
+      "no": 16,
+      "title": "Influence of motor vehicle emissions towards air pollutants in Kuala Lumpur city centre",
+      "student": "Nurzawani Md Sofwan",
+      "year": "2023"
+    },
+    {
+      "no": 15,
+      "title": "Variations of PM2.5 compositions influenced by different monsoon seasons",
+      "student": "Hanashriah Hassan",
+      "year": "2022"
+    },
+    {
+      "no": 14,
+      "title": "Comprehensive Assessment of VOCs and SVOCs in Ambient Air of Malaysia",
+      "student": "Haris Hafizal Abd. Hamid",
+      "year": "2021"
+    },
+    {
+      "no": 13,
+      "title": "Air pollution and land use changes in the Malaysian Peninsula",
+      "student": "Nor Diana Abdul Halim",
+      "year": "2021"
+    },
+    {
+      "no": 12,
+      "title": "Volatile organic compounds from sea surface microlayer",
+      "student": "Royston Uning",
+      "year": "2021"
+    },
+    {
+      "no": 11,
+      "title": "Long term trend of nocturnal surface ozone and its potential sources in Malaysia",
+      "student": "Mohd Famey Yusoff",
+      "year": "2021"
+    },
+    {
+      "no": 10,
+      "title": "Indoor air quality in school environment",
+      "student": "Azwani Alias",
+      "year": "2020"
+    },
+    {
+      "no": 9,
+      "title": "Evaluation of direct and indirect sampling method for respirable crystalline silica compliance monitoring",
+      "student": "Suhaily Amran",
+      "year": "2019"
+    },
+    {
+      "no": 8,
+      "title": "Composition, source apportionment, health risk assessment and toxicity testing of fine particulate matter in Kuala Lumpur city centre",
+      "student": "Norazura Sulong",
+      "year": "2018"
+    },
+    {
+      "no": 7,
+      "title": "Development of a model to assess variations in ozone concentration at different land use areas in Malaysia",
+      "student": "Fatimah Ahmad",
+      "year": "2015"
+    },
+    {
+      "no": 6,
+      "title": "Correlation of surface ozone and its pre-cursors around the Klang Valley, Malaysia",
+      "student": "Negar Banan",
+      "year": "2016"
+    },
+    {
+      "no": 5,
+      "title": "Indoor and outdoor relationships of air pollutants in selected schools",
+      "student": "Norlin Mohamad",
+      "year": "2015"
+    },
+    {
+      "no": 4,
+      "title": "Composition and flux of surfactants in urban and suburban areas",
+      "student": "Nurul Bahiyah Binti Abd Wahid",
+      "year": "2014"
+    },
+    {
+      "no": 3,
+      "title": "Composition of surfactants and the movement of surfactants in the coastal areas",
+      "student": "Murad Ali Amin Alsalahi",
+      "year": "2014"
+    },
+    {
+      "no": 2,
+      "title": "Apportionment and composition of atmospheric aerosols",
+      "student": "Norhaniza Amil",
+      "year": "2015"
+    },
+    {
+      "no": 1,
+      "title": "Influence of meteorological factor to the composition of atmospheric aerosols",
+      "student": "Sahel (Mohammad-Rateb) Amer Al-Batayneh",
+      "year": "2014"
+    }
+  ],
+  "phdCompletedCo": [
+    {
+      "no": 9,
+      "title": "Development of a Numerical Chemical Weather Prediction Model (WRF-CMAQ) to Simulate PM2.5 and O3 Concentration During Transboundary Smoke Event in Peninsular Malaysia",
+      "student": "Nur Nazmi Liyana Binti Mohd Napi",
+      "year": "2026"
+    },
+    {
+      "no": 8,
+      "title": "Penilaian Permodelan Ramalan Ke Atas Parameter Zarah Terampai Halus PM2.5 Di Malaysia",
+      "student": "Ezahtulsyahreen Binti Ab Rahman",
+      "year": "2024"
+    },
+    {
+      "no": 7,
+      "title": "Pendekatan Keinstitusian Terhadap Peralihan Tenaga Berkarbon Rendah di Semenanjung Malaysia",
+      "student": "Radin Zulhazmi Bin Radin Abdul Halim",
+      "year": "2022"
+    },
+    {
+      "no": 6,
+      "title": "Polyaromatic hydrocarbons in nano particles",
+      "student": "Anas Ahmad Jamhari",
+      "year": "2023"
+    },
+    {
+      "no": 5,
+      "title": "Air Pollution in Industrial Area From Vehicular Emission: Towards Sustainable Industry",
+      "student": "Azliyana Azhari",
+      "year": "2018"
+    },
+    {
+      "no": 4,
+      "title": "Determination of carbon emission and particulate matter in building environment: Case study in Seremban Town",
+      "student": "Murnira Othman",
+      "year": "2017"
+    },
+    {
+      "no": 3,
+      "title": "Determination of heavy metals and pesticides content in the Paddy Plants, Soils and water from field area in MADA, Kedah",
+      "student": "Nasser Salem Mohamed Alrawiq",
+      "year": "2015"
+    },
+    {
+      "no": 2,
+      "title": "Phytoremediation of Hydrocarbon From Sludge Using Aquatic Plants",
+      "student": "Ipung Fitri Purwanti",
+      "year": "2013"
+    },
+    {
+      "no": 1,
+      "title": "Evaluation of PM10 Concentration using mesoscale model in Klang Valley",
+      "student": "Rahelah Farzanmanesh",
+      "year": "2012"
+    }
+  ],
+  "phdInProgress": [
+    {
+      "no": 7,
+      "title": "PCN in different backgrounds in Peninsular Malaysia",
+      "student": "Zahirah Mohd Yusof",
+      "year": "2024"
+    },
+    {
+      "no": 6,
+      "title": "Occurrence of PCDDs and PCDFs toxicity among workers at landfill in Malaysia",
+      "student": "Jivantiran Myilravanan",
+      "year": "2022"
+    },
+    {
+      "no": 5,
+      "title": "Harm Profiling of Smoke from Tobacco Cigarettes and Commercially Available Non-combustible Nicotine Products (Vapes and HTPs) in Malaysia",
+      "student": "Nur Ismah Izzati Ismail",
+      "year": "2022"
+    },
+    {
+      "no": 4,
+      "title": "NO2 concentrations based on satellite images",
+      "student": "Pauziyah Mohammad Salim",
+      "year": "2021"
+    },
+    {
+      "no": 3,
+      "title": "Variations of VOC concentrations in the different backgrounds in Peninsular Malaysia",
+      "student": "Nor Syamimi Sufiera Limi Hawari",
+      "year": "2019"
+    },
+    {
+      "no": 2,
+      "title": "The Impact of Land-Use Changes on Biogenic Isoprene Emissions and Surface Ozone Concentration in Malaysian Borneo",
+      "student": "Hartini Mahidin",
+      "year": "2019"
+    },
+    {
+      "no": 1,
+      "title": "Prediction of air pollutants in Kuala Lumpur based on Atmospheric Dispersion Modelling System Model",
+      "student": "Nor Hafizah Baharudin",
+      "year": "2018"
+    }
+  ],
+  "mscCompletedMain": [
+    {
+      "no": 6,
+      "title": "Variation of aerosols in tropical of Danum Valley, Sabah",
+      "student": "Nuraleesha Abdullah",
+      "year": "2022"
+    },
+    {
+      "no": 5,
+      "title": "The influence of meteorological factors to the composition of surfactants around the coastal areas",
+      "student": "Shoffian Amin Jaafar",
+      "year": "2014"
+    },
+    {
+      "no": 4,
+      "title": "Composition of surfactants from sea surface microlayer",
+      "student": "Nor Ili Hamizah Mustaffa",
+      "year": "2014"
+    },
+    {
+      "no": 3,
+      "title": "Composition and Flux of Surfactants around Chini Lake",
+      "student": "Intan Suraya Abdul Razak",
+      "year": "2014"
+    },
+    {
+      "no": 2,
+      "title": "A comprehensive assessment of the carbon stocks and fluxes in natural forest and planted forest in Peninsular Malaysia",
+      "student": "Faridah Ahmad Azam",
+      "year": "2013"
+    },
+    {
+      "no": 1,
+      "title": "Composition of heavy metal and organic substances around school environments",
+      "student": "Norhafizah Baharudin",
+      "year": "2013"
+    }
+  ],
+  "mscCompletedCo": [
+    {
+      "no": 2,
+      "title": "Risk Assessment of Pollutants from Motor Vehicles in Klang Valley",
+      "student": "Anas Bin Ahmad Jamhari",
+      "year": "2016"
+    },
+    {
+      "no": 1,
+      "title": "Impact of Haze towards Daily Mortality in Klang Valley",
+      "student": "Nurul Asikin Zainon",
+      "year": "2015"
+    }
+  ],
+  "mscInProgress": [
+    {
+      "no": 1,
+      "title": "Temporal Variability and Seasonal Variation of GHG Concentration in the Tropical Rainforest",
+      "student": "Nor Azura Zakaria",
+      "year": "2019"
+    }
+  ]
+}
