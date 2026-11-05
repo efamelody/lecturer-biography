@@ -101,7 +101,7 @@ export default function Navbar() {
             <div ref={aboutRef} className="relative">
               <button
                 type="button"
-                aria-haspopup="true"
+                aria-haspopup="menu"
                 aria-expanded={aboutOpen}
                 onClick={() => setAboutOpen((value) => !value)}
                 className={`inline-flex items-center gap-1 whitespace-nowrap text-[12px] transition-colors xl:text-[13px] ${

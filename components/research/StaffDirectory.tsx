@@ -107,7 +107,7 @@ export default function StaffDirectory({ team }: { team: TeamPageContent }) {
               id="staff-heading"
               className="mt-2 font-serif text-3xl font-bold tracking-tight text-[#0f172a]"
             >
-              Faculty and research staff
+              Staff directory
             </h2>
           </div>
           <p className="text-xs font-medium uppercase tracking-[0.14em] text-[#94a3b8]">
