@@ -34,6 +34,11 @@ const researchLinks = [
     label: 'Research Grants',
     description: 'Research funding led by Prof. Dr. Mohd Talib Latif',
   },
+  {
+    href: '/research/conference',
+    label: 'Conference Talks',
+    description: 'Plenary, invited talks and conference presentations',
+  },
 ];
 
 const navLinks = [
