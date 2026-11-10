@@ -3,11 +3,13 @@
 import { useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ResearchFacebookFeed from '@/components/ResearchFacebookFeed'
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
   ExternalLink,
+  Facebook,
   Mail,
   MapPin,
   RotateCcw,
@@ -25,6 +27,9 @@ const CATEGORY_OPTIONS: { value: FilterCategory; label: string }[] = [
   { value: 'postgraduate', label: 'Postgraduate' },
   { value: 'alumni', label: 'Alumni' },
 ]
+
+// Keep postgraduate and alumni profiles in content/team.json for future use.
+const SHOW_RESEARCH_TRAINING = false
 
 const TITLE_WORDS = new Set([
   'prof.',
@@ -355,12 +360,16 @@ export default function ResearchTeam({ content }: { content: TeamPageContent }) 
   const showAlumni = category === 'all' || category === 'alumni'
 
   const visibleStaff = showStaff ? filteredStaff : []
-  const visiblePostgraduates = showPostgraduates ? filteredPostgraduates : []
-  const visibleAlumni = showAlumni ? filteredAlumni : []
+  const visiblePostgraduates =
+    SHOW_RESEARCH_TRAINING && showPostgraduates ? filteredPostgraduates : []
+  const visibleAlumni =
+    SHOW_RESEARCH_TRAINING && showAlumni ? filteredAlumni : []
 
   const visibleTotal =
     visibleStaff.length + visiblePostgraduates.length + visibleAlumni.length
-  const directoryTotal = staff.length + postgraduates.length + alumni.length
+  const directoryTotal =
+    staff.length +
+    (SHOW_RESEARCH_TRAINING ? postgraduates.length + alumni.length : 0)
 
   function resetFilters() {
     setQuery('')
@@ -409,9 +418,31 @@ export default function ResearchTeam({ content }: { content: TeamPageContent }) 
               Contact the group
               <ArrowRight size={15} aria-hidden="true" />
             </a>
+            <a
+              href="https://www.facebook.com/UKMAtmosphere"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-medium text-[#475569] transition-colors hover:text-[#0f172a]"
+            >
+              <Facebook size={15} aria-hidden="true" />
+              Follow on Facebook
+            </a>
           </div>
 
-         
+          <figure className="mt-10 max-w-6xl overflow-hidden border border-[#e2e8f0] bg-[#f8fafc]">
+            <Image
+              src="/career/ukm-atmosphere.jpg"
+              alt="Members of the UKM Atmosphere research group gathered for a group photograph"
+              width={1024}
+              height={288}
+              priority
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              className="h-auto w-full object-cover"
+            />
+            <figcaption className="border-t border-[#e2e8f0] px-4 py-3 text-xs text-[#64748b]">
+              UKM Atmosphere research group
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -653,80 +684,97 @@ export default function ResearchTeam({ content }: { content: TeamPageContent }) 
         className="scroll-mt-24 bg-white py-16 md:py-20"
       >
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-8 border-t border-[#e2e8f0] pt-10 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0f766e]">
-                Collaboration
-              </p>
-              <h2
-                id="contact-heading"
-                className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#0f172a] md:text-4xl"
-              >
-                {contact.heading}
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
-                {contact.description}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {contact.email && (
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="inline-flex items-center gap-2 bg-[#0f172a] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1e293b]"
-                  >
-                    <Mail size={15} aria-hidden="true" />
-                    Email the group
-                  </a>
-                )}
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-medium text-[#0f172a] transition-colors hover:border-[#64748b]"
-                >
-                  Contact page
-                  <ArrowRight size={15} aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
+          <div className="border-t border-[#e2e8f0] pt-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0f766e]">
+              Get in touch
+            </p>
+            <h2
+              id="contact-heading"
+              className="mt-3 font-serif text-3xl font-bold tracking-tight text-[#0f172a] md:text-4xl"
+            >
+              {contact.heading}
+            </h2>
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#475569]">
+              {contact.description}
+            </p>
 
-            <div className="border border-[#e2e8f0] bg-[#f8fafc] p-6">
-              <h3 className="font-serif text-lg font-bold text-[#0f172a]">
-                Group contact
-              </h3>
-              <div className="mt-4 space-y-3 text-sm text-[#475569]">
-                {contact.email && (
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="flex items-start gap-2.5 transition-colors hover:text-[#0f172a]"
-                  >
-                    <Mail
-                      size={15}
-                      aria-hidden="true"
-                      className="mt-0.5 shrink-0 text-[#0f766e]"
-                    />
-                    <span className="break-all">{contact.email}</span>
-                  </a>
-                )}
-                {contact.addressLines.length > 0 && (
-                  <div className="flex items-start gap-2.5">
-                    <MapPin
-                      size={15}
-                      aria-hidden="true"
-                      className="mt-0.5 shrink-0 text-[#0f766e]"
-                    />
-                    <address className="not-italic leading-relaxed">
-                      {contact.addressLines.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </address>
+            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-stretch lg:gap-12">
+              <div className="order-1 flex flex-col gap-5 lg:order-2">
+                <div className="border border-[#e2e8f0] bg-[#f8fafc] p-6">
+                  <h3 className="font-serif text-lg font-bold text-[#0f172a]">
+                    Group contact
+                  </h3>
+                  <div className="mt-4 space-y-3 text-sm text-[#475569]">
+                    {contact.email && (
+                      <a
+                        href={`mailto:${contact.email}`}
+                        className="flex items-start gap-2.5 transition-colors hover:text-[#0f172a]"
+                      >
+                        <Mail
+                          size={15}
+                          aria-hidden="true"
+                          className="mt-0.5 shrink-0 text-[#0f766e]"
+                        />
+                        <span className="break-all">{contact.email}</span>
+                      </a>
+                    )}
+                    {contact.addressLines.length > 0 && (
+                      <div className="flex items-start gap-2.5">
+                        <MapPin
+                          size={15}
+                          aria-hidden="true"
+                          className="mt-0.5 shrink-0 text-[#0f766e]"
+                        />
+                        <address className="not-italic leading-relaxed">
+                          {contact.addressLines.map((line) => (
+                            <span key={line} className="block">
+                              {line}
+                            </span>
+                          ))}
+                        </address>
+                      </div>
+                    )}
                   </div>
-                )}
+                  {contact.note && (
+                    <p className="mt-5 border-t border-[#e2e8f0] pt-4 text-xs leading-relaxed text-[#64748b]">
+                      {contact.note}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  {contact.email && (
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="inline-flex items-center gap-2 bg-[#0f172a] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1e293b]"
+                    >
+                      <Mail size={15} aria-hidden="true" />
+                      Email the group
+                    </a>
+                  )}
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-medium text-[#0f172a] transition-colors hover:border-[#64748b]"
+                  >
+                    Contact page
+                    <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                  <a
+                    href="https://www.facebook.com/UKMAtmosphere"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-[#cbd5e1] bg-white px-5 py-2.5 text-sm font-medium text-[#0f172a] transition-colors hover:border-[#64748b]"
+                  >
+                    <Facebook size={15} aria-hidden="true" />
+                    Follow Facebook page
+                    <ExternalLink size={13} aria-hidden="true" />
+                  </a>
+                </div>
               </div>
-              {contact.note && (
-                <p className="mt-5 border-t border-[#e2e8f0] pt-4 text-xs leading-relaxed text-[#64748b]">
-                  {contact.note}
-                </p>
-              )}
+
+              <div className="order-2 lg:order-1">
+                <ResearchFacebookFeed />
+              </div>
             </div>
           </div>
         </div>

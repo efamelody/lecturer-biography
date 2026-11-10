@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { GraduationCap, Mail, MapPin } from 'lucide-react';
+import CareerTimeline from '@/components/about/CareerTimeline';
 
 const educationData = [
   {
@@ -44,9 +45,48 @@ const affiliations = [
   { name: 'IGAC-MANGO', fullName: 'International Global Atmospheric Chemistry – Marine Aerosol Network', role: 'Member' },
 ];
 
+const careerHistory = [
+  {
+    year: '2013',
+    period: '2 Dec 2013 – Present',
+    role: 'Professor',
+    org: 'School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia',
+    current: true,
+  },
+  {
+    year: '2009',
+    period: '13 Aug 2009 – 11 Dec 2013',
+    role: 'Associate Professor',
+    org: 'School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia',
+    current: false,
+  },
+  {
+    year: '2006',
+    period: '22 Dec 2006 – 12 Aug 2009',
+    role: 'Senior Lecturer',
+    org: 'School of Environmental and Natural Resource Sciences, Universiti Kebangsaan Malaysia',
+    current: false,
+  },
+  {
+    year: '1999',
+    period: '18 Mar 1999 – 11 Aug 2009',
+    role: 'Lecturer',
+    org: 'School of Environmental and Natural Resource Sciences, Faculty of Science and Technology, Universiti Kebangsaan Malaysia',
+    current: false,
+  },
+  {
+    year: '1995',
+    period: '1 Sep 1995 – 17 Mar 1999',
+    role: 'Tutor',
+    org: 'Matriculation Centre, UKM / Department of Environmental Science, Faculty of Sciences and Natural Resources, Universiti Kebangsaan Malaysia',
+    current: false,
+  },
+];
+
 const sections = [
   { id: 'background', label: 'Background' },
   { id: 'affiliations', label: 'Affiliations' },
+  { id: 'career', label: 'Career' },
   { id: 'research', label: 'Research' },
 ];
 
@@ -219,6 +259,21 @@ export default function ExpandedAbout() {
                   </div>
                 ))}
               </div>
+            </section>
+
+            {/* Career History */}
+            <section id="career" className="scroll-mt-24 border-t border-[#e2e8f0] pt-12">
+              <h2 className="text-xs uppercase tracking-[0.2em] text-[#64748b] font-bold mb-8">
+                Career History
+              </h2>
+              <CareerTimeline
+                entries={careerHistory.map((job) => ({
+                  period: job.period,
+                  role: job.role,
+                  organisation: job.org,
+                  current: job.current,
+                }))}
+              />
             </section>
 
             {/* Research Interests */}

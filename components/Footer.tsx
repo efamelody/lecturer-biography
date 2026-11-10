@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Mail, Linkedin } from 'lucide-react';
 
 export default function Footer() {
@@ -10,6 +11,14 @@ export default function Footer() {
             <div className="flex items-center gap-3 text-[#cbd5e1] text-sm">
               <Mail size={16} className="text-[#64748b]" />
               <span>talib@ukm.edu.my</span>
+            </div>
+            <div className="mt-5 space-y-2 text-sm">
+              <Link href="/about" className="block text-[#cbd5e1] transition-colors hover:text-white">
+                Profile
+              </Link>
+              <Link href="/about/career" className="block text-[#cbd5e1] transition-colors hover:text-white">
+                Career &amp; Recognition
+              </Link>
             </div>
           </div>
           <div>
