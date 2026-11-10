@@ -1,0 +1,77 @@
+$ node scripts/scan-conference-photos.mjs
+[scan-conference-photos] wrote C:\Users\Nur Izfarwiza\lecturer-biography\content\conference-photos.json (australia: 0, china: 3, indonesia: 1, italy: 1, korea: 2, malaysia: 1, pakistan: 0, south-africa: 0, taiwan: 1, thailand: 2, united-kingdom: 2)
+$ next dev
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3001
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 5.9s
+ ○ Compiling /research/conference ...
+ ✓ Compiled /research/conference in 10.4s (1060 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1417ms (664 modules)
+ ⨯ Error: Cannot find module 'C:\Users\Nur Izfarwiza\lecturer-biography\.next\server\middleware-manifest.json'
+Require stack:
+- C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next-server.js
+- C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\dev\next-dev-server.js
+- C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next.js
+- C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\lib\start-server.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16)
+    at DevServer.getMiddlewareManifest (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next-server.js:933:26)
+    at DevServer.getEdgeFunctionsPages (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next-server.js:949:31)
+    at DevServer.renderErrorToResponseImpl (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next-server.js:908:22)
+    at async DevServer.pipeImpl (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\next-server.js:231:21)
+    at async DevServer.handleRequestImpl (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\Nur Izfarwiza\lecturer-biography\node_modules\.pnpm\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Nur Izfarwiza\\lecturer-biography\\node_modules\\.pnpm\\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\Nur Izfarwiza\\lecturer-biography\\node_modules\\.pnpm\\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\\node_modules\\next\\dist\\server\\dev\\next-dev-server.js',
+    'C:\\Users\\Nur Izfarwiza\\lecturer-biography\\node_modules\\.pnpm\\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\Nur Izfarwiza\\lecturer-biography\\node_modules\\.pnpm\\next@14.2.5_@babel+core@7.2_7ba1065250bc689b5e647dd17393a2f7\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1644ms (891 modules)
+Could not find files for /_error in .next/build-manifest.json
+Each child in a list should have a unique "key" prop.
+
+Check the render method of `Head`. See https://react.dev/link/warning-keys for more information.
+Could not find files for /_error in .next/build-manifest.json
+ GET /research/conference 500 in 14837ms
+ GET /research/conference 200 in 1191ms
+ ✓ Compiled in 3.2s (1235 modules)
+ ✓ Compiled in 1193ms (1235 modules)
+ ✓ Compiled in 972ms (1235 modules)
+ ✓ Compiled in 1049ms (1235 modules)
+ ✓ Compiled in 877ms (1235 modules)
+ ✓ Compiled in 591ms (1235 modules)
+ GET /research/conference 200 in 668ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\Users\Nur Izfarwiza\lecturer-biography\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\Nur Izfarwiza\lecturer-biography\.next\cache\webpack\client-development\1.pack.gz'
+ ✓ Compiled in 1319ms (1235 modules)
+ ✓ Compiled in 916ms (1235 modules)
+ GET /research/conference 200 in 1304ms
+ ✓ Compiled in 1128ms (1235 modules)
+ ✓ Compiled in 733ms (1235 modules)
+ ✓ Compiled in 1450ms (1283 modules)
+ ✓ Compiled in 549ms (1235 modules)
+ GET /research/conference 200 in 682ms
+ ✓ Compiled in 1291ms (1235 modules)

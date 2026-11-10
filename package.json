@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "scan:conference": "node scripts/scan-conference-photos.mjs",
+    "predev": "node scripts/scan-conference-photos.mjs",
+    "prebuild": "node scripts/scan-conference-photos.mjs"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
@@ -20,6 +23,7 @@
     "postcss": "^8.5.8",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "react-globe.gl": "^2.38.0",
     "sanity": "^5.27.0",
     "styled-components": "^6.4.2",
     "tailwindcss": "^4.2.2"
