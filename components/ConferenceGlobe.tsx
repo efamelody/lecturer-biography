@@ -1,14 +1,26 @@
 'use client'
 
-import { Component, useEffect, useRef, useState } from 'react'
+import {
+  Component,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import type { ReactNode } from 'react'
-import dynamic from 'next/dynamic'
 import type { ComponentType } from 'react'
-import { X, MapPin, CalendarDays, Globe2, MousePointerClick, Image as ImageIcon } from 'lucide-react'
+import {
+  X,
+  MapPin,
+  Globe2,
+  MousePointerClick,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Plus,
+} from 'lucide-react'
 
-const Globe = dynamic(() => import('react-globe.gl'), {
-  ssr: false,
-}) as ComponentType<any>
+const GlobeLazy = () => import('react-globe.gl').then((mod) => mod.default)
 
 interface GlobeTalk {
   id: string
@@ -18,6 +30,7 @@ interface GlobeTalk {
   venue: string
   badge?: string
   chip: string
+  links?: { label: string; url: string }[]
 }
 
 interface GlobeLocation {
@@ -38,7 +51,11 @@ function supportsWebGL(): boolean {
   if (typeof window === 'undefined') return false
   try {
     const canvas = document.createElement('canvas')
-    return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    return !!(
+      canvas.getContext('webgl2') ||
+      canvas.getContext('webgl') ||
+      canvas.getContext('experimental-webgl')
+    )
   } catch {
     return false
   }
@@ -111,12 +128,11 @@ function FallbackMap({
           </button>
         )
       })}
-      <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-lg bg-white/90 px-3 py-2 shadow backdrop-blur">
-        <span className="text-xs text-[#64748b]">3D globe unavailable</span>
+      <div className="absolute bottom-3 left-3">
         <button
           type="button"
           onClick={onRetry}
-          className="text-xs font-semibold text-[#0f766e] transition-colors hover:text-[#115e59]"
+          className="rounded-lg bg-white/90 px-2.5 py-1.5 text-xs font-medium text-[#334155] shadow backdrop-blur transition-colors hover:bg-white hover:text-[#0f172a]"
         >
           Retry
         </button>
@@ -125,7 +141,184 @@ function FallbackMap({
   )
 }
 
-function LocationDetails({
+function PhotoLightbox({
+  photos,
+  index,
+  onClose,
+  onNavigate,
+}: {
+  photos: string[]
+  index: number
+  onClose: () => void
+  onNavigate: (nextIndex: number) => void
+}) {
+  const go = (delta: number) => {
+    onNavigate((index + delta + photos.length) % photos.length)
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${index + 1} of ${photos.length} photos`}
+    >
+      <button
+        type="button"
+        aria-label="Close photo"
+        className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+        onClick={onClose}
+      >
+        <X size={22} aria-hidden="true" />
+      </button>
+      {photos.length > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous photo"
+            className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+            onClick={(e) => {
+              e.stopPropagation()
+              go(-1)
+            }}
+          >
+            <ChevronLeft size={26} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next photo"
+            className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+            onClick={(e) => {
+              e.stopPropagation()
+              go(1)
+            }}
+          >
+            <ChevronRight size={26} aria-hidden="true" />
+          </button>
+        </>
+      )}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={photos[index]}
+        alt={`Conference photo ${index + 1}`}
+        className="max-h-[85vh] max-w-full rounded-lg shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <p className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
+        {index + 1} / {photos.length}
+      </p>
+    </div>
+  )
+}
+
+function PhotoCollage({
+  photos,
+  onOpen,
+}: {
+  photos: string[]
+  onOpen: (index: number) => void
+}) {
+  const shown = photos.slice(0, 3)
+  const extra = photos.length - shown.length
+
+  const tile =
+    'group relative overflow-hidden bg-[#e2e8f0] transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f766e] focus-visible:ring-offset-2'
+
+  return (
+    <div className="relative grid aspect-[4/3] w-full grid-cols-2 grid-rows-2 overflow-hidden sm:aspect-[16/9]">
+      {shown.map((photo, index) => {
+        const layout =
+          shown.length === 1
+            ? 'col-span-2 row-span-2'
+            : shown.length === 2
+              ? 'row-span-2'
+              : index === 0
+                ? 'row-span-2'
+                : ''
+        return (
+          <button
+            key={photo}
+            type="button"
+            onClick={() => onOpen(index)}
+            aria-label={`View conference photo ${index + 1}`}
+            className={`${tile} ${layout}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo}
+              alt={`Conference in — photo ${index + 1}`}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </button>
+        )
+      })}
+      {extra > 0 && (
+        <button
+          type="button"
+          onClick={() => onOpen(shown.length - 1)}
+          aria-label={`View ${extra} more photos`}
+          className={`${tile} absolute bottom-0 right-0 flex h-1/2 w-1/2 items-center justify-center bg-[#0f172a]/70`}
+        >
+          <span className="flex items-center gap-1.5 text-2xl font-semibold text-white">
+            <Plus size={20} aria-hidden="true" />
+            {extra}
+          </span>
+        </button>
+      )}
+    </div>
+  )
+}
+
+function TalkEntry({ talk }: { talk: GlobeTalk }) {
+  return (
+    <article className="py-4 first:pt-0">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="border border-[#cbd5e1] bg-white px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#0f172a]">
+          {talk.chip}
+        </span>
+        {talk.badge && (
+          <span className="rounded-sm bg-[#f0fdfa] px-2 py-0.5 text-[11px] font-semibold text-[#0f766e]">
+            {talk.badge}
+          </span>
+        )}
+      </div>
+      <h5 className="mt-2 font-serif text-base font-semibold leading-snug text-[#0f172a]">
+        {talk.presentation}
+      </h5>
+      <p className="mt-1 text-sm font-medium text-[#334155]">{talk.conference}</p>
+      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#64748b]">
+        <span className="inline-flex items-center gap-1.5">
+          <CalendarDays size={13} aria-hidden="true" className="text-[#94a3b8]" />
+          {talk.dates}
+        </span>
+        <span className="inline-flex items-start gap-1.5">
+          <MapPin size={13} aria-hidden="true" className="mt-0.5 shrink-0 text-[#94a3b8]" />
+          {talk.venue}
+        </span>
+      </div>
+      {talk.links && talk.links.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+          {talk.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#0f766e] transition-colors hover:text-[#115e59] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f766e] focus-visible:ring-offset-2"
+            >
+              {link.label}
+              <ExternalLink size={11} aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      )}
+    </article>
+  )
+}
+
+function LocationPost({
   location,
   photos,
   onClose,
@@ -134,22 +327,26 @@ function LocationDetails({
   photos: string[]
   onClose: () => void
 }) {
-  const [lightbox, setLightbox] = useState<string | null>(null)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [photoSrcs] = useState<string[]>(() =>
+    photos.map((file) => `/conference/${location.folder}/${file}`),
+  )
+
+  const talks = location.talks
 
   return (
-    <div className="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-sm md:p-8">
-      <div className="flex items-start justify-between gap-4 border-b border-[#f1f5f9] pb-5">
-        <div>
-          <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0f766e]">
-            <MapPin size={13} aria-hidden="true" />
-            Conference location
-          </p>
-          <h3 className="mt-2 font-serif text-3xl font-bold tracking-tight text-[#0f172a] md:text-4xl">
+    <div className="overflow-hidden rounded-2xl border border-[#e2e8f0] bg-white shadow-sm">
+      <div className="flex items-center gap-3 px-5 py-4 md:px-6">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-600 to-blue-600 text-white shadow-sm">
+          <Globe2 size={20} aria-hidden="true" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-serif text-lg font-bold leading-tight text-[#0f172a]">
             {location.name}
-          </h3>
-          <p className="mt-1 text-sm text-[#64748b]">
-            {location.talks.length} {location.talks.length === 1 ? 'presentation' : 'presentations'}
-            {photos.length > 0 && ` · ${photos.length} ${photos.length === 1 ? 'photo' : 'photos'}`}
+          </p>
+          <p className="mt-0.5 inline-flex items-center gap-1.5 text-xs text-[#64748b]">
+            <MapPin size={12} aria-hidden="true" className="text-[#0f766e]" />
+            {location.talks[0]?.venue ?? 'Conference presentations'}
           </p>
         </div>
         <button
@@ -162,98 +359,31 @@ function LocationDetails({
         </button>
       </div>
 
-      {photos.length > 0 && (
-        <div className="mt-6">
-          <h4 className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#94a3b8]">
-            <ImageIcon size={13} aria-hidden="true" />
-            Photos
-          </h4>
-          <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {photos.map((file) => {
-              const src = `/conference/${location.folder}/${file}`
-              return (
-                <button
-                  key={file}
-                  type="button"
-                  onClick={() => setLightbox(src)}
-                  aria-label={`View photo ${file}`}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-[#e2e8f0] bg-[#f1f5f9]"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={src}
-                    alt={`${location.name} — ${file}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </button>
-              )
-            })}
-          </div>
-        </div>
+      {photoSrcs.length > 0 && (
+        <PhotoCollage
+          photos={photoSrcs}
+          onOpen={(index) => setLightboxIndex(index)}
+        />
       )}
 
-      <div className="mt-8">
-        <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-[#94a3b8]">
-          Presentations
-        </h4>
-        <div className="mt-4 space-y-4">
-          {location.talks.map((talk) => (
-            <article
-              key={talk.id}
-              className="rounded-lg border border-[#e2e8f0] bg-[#f8fafc] p-4 md:p-5"
-            >
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="border border-[#cbd5e1] bg-white px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#0f172a]">
-                  {talk.chip}
-                </span>
-                {talk.badge && (
-                  <span className="rounded-sm bg-[#f0fdfa] px-2 py-0.5 text-[11px] font-semibold text-[#0f766e]">
-                    {talk.badge}
-                  </span>
-                )}
-              </div>
-              <h5 className="mt-2 font-serif text-base font-semibold leading-snug text-[#0f172a] md:text-lg">
-                {talk.presentation}
-              </h5>
-              <p className="mt-1 text-sm font-medium text-[#334155]">{talk.conference}</p>
-              <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-[13px] text-[#64748b]">
-                <span className="inline-flex items-center gap-1.5">
-                  <CalendarDays size={14} aria-hidden="true" className="text-[#94a3b8]" />
-                  {talk.dates}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin size={14} aria-hidden="true" className="text-[#94a3b8]" />
-                  {talk.venue}
-                </span>
-              </div>
-            </article>
+      <div className="px-5 py-4 md:px-6">
+        <div className="border-b border-[#f1f5f9] pb-4">
+          {talks.map((talk) => (
+            <TalkEntry key={talk.id} talk={talk} />
           ))}
         </div>
+        <p className="pt-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#94a3b8]">
+          Conference travels · {location.name}
+        </p>
       </div>
 
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setLightbox(null)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <button
-            type="button"
-            aria-label="Close photo"
-            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
-            onClick={() => setLightbox(null)}
-          >
-            <X size={22} aria-hidden="true" />
-          </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={lightbox}
-            alt={`${location.name} photo`}
-            className="max-h-[90vh] max-w-full rounded-lg"
-          />
-        </div>
+      {lightboxIndex !== null && photoSrcs.length > 0 && (
+        <PhotoLightbox
+          photos={photoSrcs}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={setLightboxIndex}
+        />
       )}
     </div>
   )
@@ -267,6 +397,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
   const [selected, setSelected] = useState<GlobeLocation | null>(null)
   const [webglSupported, setWebglSupported] = useState<boolean | null>(null)
   const [glError, setGlError] = useState(false)
+  const [Globe, setGlobe] = useState<ComponentType<any> | null>(null)
 
   const height = Math.max(360, Math.min(560, Math.round(width * 0.85)))
 
@@ -282,16 +413,57 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
 
   useEffect(() => {
     setWebglSupported(supportsWebGL())
+    let cancelled = false
+    GlobeLazy()
+      .then((Comp) => {
+        if (!cancelled) setGlobe(() => Comp)
+      })
+      .catch(() => {
+        if (!cancelled) setGlError(true)
+      })
+    return () => {
+      cancelled = true
+    }
   }, [])
+
+  useEffect(() => {
+    if (selected && ready) {
+      globeRef.current?.pointOfView(
+        { lat: selected.lat * 0.6, lng: selected.lng, altitude: 1.9 },
+        900,
+      )
+    }
+  }, [selected, ready])
 
   const retryGlobe = () => {
     setReady(false)
     setGlError(false)
     setWebglSupported(supportsWebGL())
+    GlobeLazy()
+      .then((Comp) => setGlobe(() => Comp))
+      .catch(() => setGlError(true))
   }
 
-  const selectedPhotos = selected ? (photos[selected.folder] ?? []) : []
+  const selectedPhotos = selected ? photos[selected.folder] || [] : []
   const useFallback = glError || webglSupported === false
+
+  const handleSelect = (loc: GlobeLocation) => {
+    setSelected(loc)
+    if (!useFallback) {
+      try {
+        const controls = globeRef.current?.controls?.()
+        if (controls) controls.autoRotate = false
+      } catch {}
+    }
+  }
+
+  const deselect = () => {
+    setSelected(null)
+    try {
+      const controls = globeRef.current?.controls?.()
+      if (controls) controls.autoRotate = true
+    } catch {}
+  }
 
   return (
     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
@@ -301,7 +473,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
             <FallbackMap
               locations={locations}
               selected={selected}
-              onSelect={setSelected}
+              onSelect={handleSelect}
               onRetry={retryGlobe}
             />
           ) : (
@@ -309,7 +481,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
               ref={containerRef}
               className="relative min-h-[420px] w-full overflow-hidden rounded-2xl border border-[#e2e8f0] bg-gradient-to-b from-[#f8fafc] to-[#eef2f7]"
             >
-              {webglSupported === true && width > 0 && (
+              {webglSupported === true && Globe && width > 0 && (
                 <GlobeErrorBoundary onError={() => setGlError(true)}>
                   <Globe
                     ref={globeRef}
@@ -327,7 +499,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
                     pointAltitude={0.04}
                     pointRadius={0.7}
                     pointResolution={16}
-                    onPointClick={(d: GlobeLocation) => setSelected(d)}
+                    onPointClick={(d: GlobeLocation) => handleSelect(d)}
                     onPointHover={(d: GlobeLocation | null) => {
                       if (containerRef.current) {
                         containerRef.current.style.cursor = d ? 'pointer' : 'grab'
@@ -353,7 +525,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
                     onGlobeReady={() => {
                       const controls = globeRef.current?.controls()
                       if (controls) {
-                        controls.autoRotate = true
+                        controls.autoRotate = !selected
                         controls.autoRotateSpeed = 0.45
                       }
                       setReady(true)
@@ -385,7 +557,7 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
               <button
                 key={loc.key}
                 type="button"
-                onClick={() => setSelected(loc)}
+                onClick={() => (selected?.key === loc.key ? deselect() : handleSelect(loc))}
                 aria-pressed={selected?.key === loc.key}
                 className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
                   selected?.key === loc.key
@@ -402,21 +574,22 @@ export default function ConferenceGlobe({ locations, photos }: ConferenceGlobePr
 
       <div className="min-w-0">
         {selected ? (
-          <LocationDetails
+          <LocationPost
+            key={selected.key}
             location={selected}
             photos={selectedPhotos}
-            onClose={() => setSelected(null)}
+            onClose={deselect}
           />
         ) : (
           <div className="flex h-full min-h-[420px] items-center justify-center rounded-2xl border border-dashed border-[#cbd5e1] bg-white/60 p-8">
             <div className="max-w-sm text-center">
               <MousePointerClick size={28} aria-hidden="true" className="mx-auto text-[#94a3b8]" />
               <h3 className="mt-4 font-serif text-lg font-semibold text-[#0f172a]">
-                Select a country
+                Select a location
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#64748b]">
-                Click a pin on the globe or choose a country below to see its conference
-                presentations and photos.
+                Click a pin on the globe or choose a country to open a field report of the
+                presentations and photos from there.
               </p>
             </div>
           </div>

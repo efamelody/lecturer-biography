@@ -41,8 +41,19 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-[#1e293b] pt-8 text-center text-[#475569] text-xs">
-          <p>&copy; 2026 Prof. Dr. Mohd Talib Latif. All rights reserved.</p>
+        <div className="border-t border-[#1e293b] pt-8 text-center text-xs text-[#475569]">
+          <p>
+            &copy; 2026 Prof. Dr. Mohd Talib Latif —{' '}
+            <a
+              href="https://efamelody.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Site built by Efa"
+              className="text-[#334155] transition-colors hover:text-[#94a3b8]"
+            >
+              built by efa
+            </a>
+          </p>
         </div>
       </div>
     </footer>
